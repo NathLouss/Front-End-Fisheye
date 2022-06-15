@@ -1,8 +1,10 @@
+//pattern factory
 function photographerFactory(data) {
     const { name, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
+    // creation of html elements of the photographer card
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );

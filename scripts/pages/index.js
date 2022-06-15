@@ -26,8 +26,12 @@
     }
 
     async function displayData(photographers) {
+        // pick up photographer html section
         const photographersSection = document.querySelector(".photographer_section");
 
+        // for each photographer we store in a variable the result of the factory function to which photographer is passed as an argument.
+        // we apply the getUserCardDOM method to it and store the result in a variable. 
+        // inserting the photographer card in the html photographer section
         photographers.forEach((photographer) => {
             const photographerModel = photographerFactory(photographer);
             const userCardDOM = photographerModel.getUserCardDOM();
@@ -42,4 +46,3 @@
     };
     
     init();
-    
