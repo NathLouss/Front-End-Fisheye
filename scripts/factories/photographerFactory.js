@@ -1,4 +1,4 @@
-//pattern factory
+//fonction usine
 function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/IDPhotos/${portrait}`;
@@ -6,12 +6,12 @@ function photographerFactory(data) {
     const sentence = `${tagline}`;
     const cost = `${price}€/jour`;
 
-    // creation of html elements of the photographer card
+    // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         
         const link = document.createElement( 'a' );
-        link.setAttribute("href", `photographer/${id}.html`);
+        link.setAttribute("href", `photographer.html/${id}`);
         link.setAttribute("aria-label", `Portrait de ${name} - Page de ces réalisations`);
         article.appendChild(link);
 
@@ -41,5 +41,6 @@ function photographerFactory(data) {
 
         return (article);
     }
-    return { name, picture, place, sentence, cost, getUserCardDOM }
+
+    return { name, id, picture, place, sentence, cost, getUserCardDOM }
 }
