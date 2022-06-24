@@ -55,6 +55,10 @@ h1 {
     margin-bottom: 0;
 }
 
+.photographer_section a {
+    text-decoration: none;
+}
+
 .photographer_section article p {
     font-weight: 400;
     text-align: center;
