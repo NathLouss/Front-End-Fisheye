@@ -12,13 +12,12 @@ function photographerFactory(data) {
         
         const link = document.createElement( 'a' );
         link.setAttribute("href", `photographer/${id}.html`);
-        link.setAttribute("role", "navigation");
+        link.setAttribute("aria-label", `Portrait de ${name} - Page de ces réalisations`);
         article.appendChild(link);
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", `Portrait de ${name} - Page de ces réalisations`);
-        img.setAttribute("title", `Portrait de ${name}`);
+        img.setAttribute("alt", "");
         link.appendChild(img);
 
         const h2 = document.createElement( 'h2' );    
