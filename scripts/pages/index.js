@@ -6,16 +6,18 @@ async function getPhotographers() {
     // fetch(photographersData)
     //     .then(response => response.json())
     //     .then((data) => {
-        //     const photographers = data;
-        // }); 
+    //         console.log(data.photographers);
+    //         const photographers = data.photographers;
+    //         console.log(photographers);
+    //         return photographers
+    //     }); 
 
     const response = await fetch(photographersData);
     const data = await response.json();
     const photographers = data;
-    
-    return photographers                
-}
 
+    return photographers
+}
 
 async function displayData(photographers) {
     // récupération de la section html photographe 
@@ -34,7 +36,7 @@ async function displayData(photographers) {
 
 async function init() {
     // Attend résolution de la promesse/fonction getPhotographers, pour récupérer les datas Photographers et les passer en argument de la fonction displayData
-    const { photographers } = await getPhotographers();
+    const {photographers} = await getPhotographers();
     displayData(photographers);
 };
 

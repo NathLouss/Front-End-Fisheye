@@ -11,7 +11,7 @@ function photographerFactory(data) {
         const article = document.createElement( 'article' );
         
         const link = document.createElement( 'a' );
-        link.setAttribute("href", `photographer.html/${id}`);
+        link.setAttribute("href", `photographer.html?id=${id}`);
         link.setAttribute("aria-label", `Portrait de ${name} - Page de ces réalisations`);
         article.appendChild(link);
 
