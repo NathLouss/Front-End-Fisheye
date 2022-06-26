@@ -42,5 +42,27 @@ function photographerFactory(data) {
         return (article);
     }
 
-    return { name, id, picture, place, sentence, cost, getUserCardDOM }
+    // création des éléments HTML du profile(header) photographe
+    function getUserProfileDOM() {
+
+        // const article = document.createElement( 'article' );
+
+        // const h2 = document.createElement( 'h2' );    
+        // h2.textContent = name;
+        // link.appendChild(h2);
+
+        // const position = document.createElement( 'p' );
+        // position.textContent = place;
+        // position.classList.add("position");
+        // article.appendChild(position);
+        
+        // const description = document.createElement( 'p' );
+        // description.classList.add("description");
+        // description.textContent = sentence;
+        // article.appendChild(description);
+
+        // return (article);
+    }
+
+    return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
 }
