@@ -15,7 +15,7 @@ async function getPhotographers() {
 
 // Affichage des datas du photographe sélectionné
 async function displayData(photographers) {
-  const photographerSection = document.querySelector(".photograph-header");
+  const photographerSection = document.querySelector(".photographer_header");
 
   const photographer = photographers.filter(photographer => photographer.id == `${idPhotographer}`)[0];
   const photographerModel = photographerFactory(photographer);

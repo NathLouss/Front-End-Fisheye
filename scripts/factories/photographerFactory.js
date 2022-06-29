@@ -46,21 +46,25 @@ function photographerFactory(data) {
     // création des éléments HTML du profile(header) photographe
     function getUserProfileDOM() {
         const articleHeader = document.createElement( 'article' );
-        articleHeader.classList.add("position");
+        articleHeader.classList.add("profile");
+
+        const divHeader = document.createElement( 'div' );    
+        divHeader.classList.add("header_text");
+        articleHeader.appendChild(divHeader);
 
         const h2 = document.createElement( 'h2' );    
         h2.textContent = name;
-        articleHeader.appendChild(h2);
+        divHeader.appendChild(h2);
 
         const position = document.createElement( 'p' );
         position.textContent = place;
         position.classList.add("position");
-        articleHeader.appendChild(position);
+        divHeader.appendChild(position);
         
         const description = document.createElement( 'p' );
         description.classList.add("description");
         description.textContent = sentence;
-        articleHeader.appendChild(description);
+        divHeader.appendChild(description);
 
         const button = document.createElement( 'button' );
         button.classList.add("contact_button");
