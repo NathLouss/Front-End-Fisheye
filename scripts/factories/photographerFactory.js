@@ -1,6 +1,7 @@
 //fonction usine
 function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
+    console.log(name);
     const picture = `assets/photographers/IDPhotos/${portrait}`;
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
@@ -44,24 +45,35 @@ function photographerFactory(data) {
 
     // création des éléments HTML du profile(header) photographe
     function getUserProfileDOM() {
+        const articleHeader = document.createElement( 'article' );
+        articleHeader.classList.add("position");
 
-        // const article = document.createElement( 'article' );
+        const h2 = document.createElement( 'h2' );    
+        h2.textContent = name;
+        articleHeader.appendChild(h2);
 
-        // const h2 = document.createElement( 'h2' );    
-        // h2.textContent = name;
-        // link.appendChild(h2);
-
-        // const position = document.createElement( 'p' );
-        // position.textContent = place;
-        // position.classList.add("position");
-        // article.appendChild(position);
+        const position = document.createElement( 'p' );
+        position.textContent = place;
+        position.classList.add("position");
+        articleHeader.appendChild(position);
         
-        // const description = document.createElement( 'p' );
-        // description.classList.add("description");
-        // description.textContent = sentence;
-        // article.appendChild(description);
+        const description = document.createElement( 'p' );
+        description.classList.add("description");
+        description.textContent = sentence;
+        articleHeader.appendChild(description);
 
-        // return (article);
+        const button = document.createElement( 'button' );
+        button.classList.add("contact_button");
+        button.setAttribute("onclick", "displayModal()");
+        button.textContent = "Contactez-moi";
+        articleHeader.appendChild(button);
+
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", "");
+        articleHeader.appendChild(img);
+        
+        return (articleHeader);
     }
 
     return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
