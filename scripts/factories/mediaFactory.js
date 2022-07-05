@@ -17,21 +17,22 @@ function mediaFactory(dataMedias) {
       divPortfolioText.classList.add("article_text");
       articlePortfolio.appendChild(divPortfolioText);
 
-      const title = document.createElement( 'p' );    
-      title.textContent = title;
-      divPortfolioText.appendChild(title);
+      const titleImg = document.createElement( 'p' );    
+      titleImg.textContent = title;
+      divPortfolioText.appendChild(titleImg);
 
       const divLike = document.createElement( 'div' );    
       divLike.classList.add("article_like");
       divPortfolioText.appendChild(divLike);
 
       const likeNumber = document.createElement( 'p' );    
+      likeNumber.classList.add("likes");
       likeNumber.textContent = likes;
       divLike.appendChild(likeNumber);
 
-      // const likeHeart = document.createElement( 'i' );  
-      // likeHeart.classList.add("fas fa-heart");  
-      // divLike.appendChild(likeHeart);
+      const icon = document.createElement( 'i' );
+      icon.setAttribute("class", "fas fa-heart");
+      divLike.appendChild(icon);
 
       return (articlePortfolio)
 

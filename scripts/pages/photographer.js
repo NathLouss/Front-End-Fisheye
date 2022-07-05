@@ -18,8 +18,7 @@ async function getPhotographers() {
 async function displayData(photographers) {
   const photographerSection = document.querySelector(".photographer_header");
   const photographer = photographers.filter(photographer => photographer.id == `${idPhotographer}`)[0];
-  photographerName = photographer.name;
-
+  photographerName = photographer.name.split(' ')[0];
 
   const photographerModel = photographerFactory(photographer);
   const userProfileDOM = photographerModel.getUserProfileDOM();
