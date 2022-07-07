@@ -13,9 +13,8 @@ function mediaFactory(dataMedias) {
     } else if (video !== undefined && video !== null) {
       const capture = `assets/photographers/${photographerName}/${video.replace('mp4','png')}`;
       const mp4 = document.createElement( 'video' );
+      mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
-      mp4.setAttribute("width", "100%");
-      mp4.setAttribute("height", "300px");
       const src = document.createElement( 'source' );
       src.setAttribute("src", video);
       src.setAttribute("type", "video/mp4");
