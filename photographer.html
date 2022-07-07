@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Fisheye - photographe </title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <!-- <link rel="icon" type="image/png" href="assets/favicon.png"> -->
     <script src="https://kit.fontawesome.com/9d010d1a2f.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -18,22 +18,37 @@
       </div>
       <div class="photographer_portfolio">
       </div>
+      <div id="contact_modal">
+        <div class="modal">
+          <header>
+            <div class="contact_header_text">
+              <h2>Contactez-moi</h2>
+            </div>
+            <img src="assets/icons/close.svg" onclick="closeModal()" />
+          </header>
+          <form>
+            <div class="formData" data-error="Veuillez saisir votre prénom.">
+              <label for="firstname">Prénom</label>
+              <input class="text-control" type="text" id="firstname" name="firstname"/>
+            </div>
+            <div class="formData" data-error="Veuillez saisir votre nom.">
+              <label for="name">Nom</label>
+              <input class="text-control" type="text" id="name" name="name"/>
+            </div>
+            <div class="formData" data-error="Veuillez saisir un email valide.">
+              <label for="email">Email</label>
+              <input class="text-control" type="email" id="email" name="email"/>
+            </div>
+            <div class="formData" data-error="Veuillez saisir votre message.">
+              <label for="message">Votre message</label>
+              <input class="text-control" type="text" id="message" name="message"/>
+            </div>
+            <br />
+            <button class="contact_button" type="submit">Envoyer</button>
+          </form>
+        </div>
+      </div>
     </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
     <script src="scripts/factories/photographerFactory.js"></script>
     <script src="scripts/factories/mediaFactory.js"></script>
     <script src="scripts/pages/photographer.js"></script>

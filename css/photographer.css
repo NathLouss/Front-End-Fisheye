@@ -1,12 +1,3 @@
-#contact_modal {
-    display: none;
-}
-
-/* .photograph-header {
-    background-color: #FAFAFA;
-    margin: 0 100px;
-} */
-
 /* HEADER */
 
 .photographer_header {
@@ -28,6 +19,19 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* PORTFOLIO */
@@ -82,17 +86,17 @@
     padding-right: 10px;
 }
 
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
+/* MODAL */
+#contact_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
 }
 
 .modal {
@@ -104,22 +108,30 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin: 10% auto;
 }
 
 .modal header {
     justify-content: space-between;
+    align-items: flex-start;
+    height: 90px;
     width: 100%;
+    height: auto;
 }
 
 .modal header img {
     cursor: pointer;
 }
 
-.modal header h2 {
+.modal header h2,
+.modal header p {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    margin: 0;
+}
+
+.contact_header_text{
+    margin-bottom: 30px;
 }
 
 form {
@@ -147,4 +159,8 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+#message {
+    height: 170px;
 }
