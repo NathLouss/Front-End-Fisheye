@@ -5,21 +5,28 @@ function mediaFactory(dataMedias) {
   function getMediaCardDOM() {
     const articlePortfolio = document.createElement( 'article' );
 
+    const link = document.createElement( 'a' ); 
+    link.setAttribute("href", "#");
+    link.setAttribute("aria-label", "");
+    articlePortfolio.appendChild(link);
+
     if (image !== undefined && image !== null) {
       const img = document.createElement( 'img' );
       img.setAttribute("src", picture);
       img.setAttribute("alt", "");
-      articlePortfolio.appendChild(img);
+      img.setAttribute("title", title);
+      link.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const capture = `assets/photographers/${photographerName}/${video.replace('mp4','png')}`;
       const mp4 = document.createElement( 'video' );
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
+      mp4.setAttribute("title", title);
       const src = document.createElement( 'source' );
-      src.setAttribute("src", video);
+      src.setAttribute("src", `assets/photographers/${photographerName}/${video}`);
       src.setAttribute("type", "video/mp4");
       mp4.appendChild(src);
-      articlePortfolio.appendChild(mp4);
+      link.appendChild(mp4);
     }
 
     const divPortfolioText = document.createElement( 'div' );    

@@ -52,6 +52,7 @@
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
+    object-position: top;
 }
 
 .video_poster {
@@ -108,7 +109,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: 10% auto;
+    margin: 4% auto;
 }
 
 .modal header {
@@ -155,12 +156,43 @@ form div {
 }
 
 form input {
-    width: 100%;
+    width: 96%;
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.formData[data-error]::after {
+    content: attr(data-error);
+    font-size: 20px;
+    color: #ffeff0;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    text-align: right;
+    line-height: 0.3;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.formData[data-error-visible="true"]::after {
+    opacity: 1;
+    text-align: left;
+    padding-top: 2px;
+}
+
+.formData[data-error-visible="true"] .text-control {
+    border: 2px solid #e54858;
 }
 
 #message {
     height: 170px;
+}
+
+.validation {
+    display: none;
+    font-size: 30px;
+    margin: 180px;
 }
