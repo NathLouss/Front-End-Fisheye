@@ -5,7 +5,7 @@ body {
     margin: 0 20px 60px;
 }
 
-
+/* PAGE ACCUEIL */
 header {
     display: flex;
     flex-direction: row;
@@ -39,7 +39,8 @@ h1 {
     flex-direction: column;
 }
 
-.photographer_section article img {
+.photographer_section article img,
+.photographer_header article img {
     height: 200px;
     width: 200px;
     border-radius: 50%;
@@ -47,7 +48,8 @@ h1 {
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-.photographer_section article h2 {
+.photographer_section article h2,
+.photographer_header article h2 {
     color: #D3573C;
     font-size: 36px;
     font-weight: 400;
@@ -62,10 +64,14 @@ h1 {
     text-decoration: none;
 }
 
-.photographer_section article p {
+.photographer_section article p,
+.photographer_header article p {
     font-weight: 400;
     text-align: center;
 }
+
+
+/* COMPOSANTS */
 
 .position {
     color: #901C1C;
@@ -82,3 +88,4 @@ h1 {
     font-size: 9px;
     margin-top: 0;
 }
+

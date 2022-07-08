@@ -1,4 +1,3 @@
-//fonction usine
 function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/IDPhotos/${portrait}`;
@@ -42,5 +41,42 @@ function photographerFactory(data) {
         return (article);
     }
 
-    return { name, id, picture, place, sentence, cost, getUserCardDOM }
+    // création des éléments HTML du profile(header) photographe
+    function getUserProfileDOM() {
+        const articleHeader = document.createElement( 'article' );
+        articleHeader.classList.add("profile");
+
+        const divHeader = document.createElement( 'div' );    
+        divHeader.classList.add("header_text");
+        articleHeader.appendChild(divHeader);
+
+        const h2 = document.createElement( 'h2' );    
+        h2.textContent = name;
+        divHeader.appendChild(h2);
+
+        const position = document.createElement( 'p' );
+        position.textContent = place;
+        position.classList.add("position");
+        divHeader.appendChild(position);
+        
+        const description = document.createElement( 'p' );
+        description.classList.add("description");
+        description.textContent = sentence;
+        divHeader.appendChild(description);
+
+        const button = document.createElement( 'button' );
+        button.classList.add("contact_button");
+        button.setAttribute("onclick", "displayModal()");
+        button.textContent = "Contactez-moi";
+        articleHeader.appendChild(button);
+
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", "");
+        articleHeader.appendChild(img);
+        
+        return (articleHeader);
+    }
+
+    return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
 }

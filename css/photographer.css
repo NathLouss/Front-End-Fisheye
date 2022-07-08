@@ -1,11 +1,24 @@
-#contact_modal {
-    display: none;
+/* HEADER */
+
+.photographer_header {
+    height: 313px;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    padding: 30px;
+    margin: 0 50px;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+.photographer_header article {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 50px;
+}
+
+.header_text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .contact_button {
@@ -21,6 +34,72 @@
     cursor: pointer;
 }
 
+/* PORTFOLIO */
+.photographer_portfolio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin: 100px 50px;
+    justify-items: center;
+}
+
+.photographer_portfolio article {
+    width: 350px;
+}
+
+.photographer_portfolio article img {
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.video_poster {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.article_text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #901C1C;
+    margin-top: 10px;
+}
+
+.article_text p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article_like {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.likes {
+    padding-right: 10px;
+}
+
+/* MODAL */
+#contact_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(26, 39, 156, 0.4);
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -30,22 +109,30 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin: 4% auto;
 }
 
 .modal header {
     justify-content: space-between;
+    align-items: flex-start;
+    height: 90px;
     width: 100%;
+    height: auto;
 }
 
 .modal header img {
     cursor: pointer;
 }
 
-.modal header h2 {
+.modal header h2,
+.modal header p {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    margin: 0;
+}
+
+.contact_header_text{
+    margin-bottom: 30px;
 }
 
 form {
@@ -69,8 +156,43 @@ form div {
 }
 
 form input {
-    width: 100%;
+    width: 96%;
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.formData[data-error]::after {
+    content: attr(data-error);
+    font-size: 20px;
+    color: #ffeff0;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    text-align: right;
+    line-height: 0.3;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.formData[data-error-visible="true"]::after {
+    opacity: 1;
+    text-align: left;
+    padding-top: 2px;
+}
+
+.formData[data-error-visible="true"] .text-control {
+    border: 2px solid #e54858;
+}
+
+#message {
+    height: 170px;
+}
+
+.validation {
+    display: none;
+    font-size: 30px;
+    margin: 180px;
 }
