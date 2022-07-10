@@ -1,4 +1,6 @@
-const modal = document.getElementById("contact_modal");
+// récupération des éléments html
+const modal = document.querySelector(".modal");
+const contactModal = document.querySelector(".contact_container");
 const form = document.querySelector("form");
 const validation = document.querySelector(".validation");
 const formData = document.querySelectorAll(".formData");
@@ -9,16 +11,21 @@ const message = document.getElementById("message");
 const btn = document.querySelector(".contact_button");
 const submit = document.querySelector("input[type=submit]");
 
-function displayModal() {
+// affichage de la modale de contact
+function displayContactModal() {
 	modal.style.display = "block";
+  contactModal.style.display = "block";
+  slideshowModal.style.display = "none";
   displayFirstname()
 }
 
-function closeModal() {
+// fermeture de la modale
+function closeContactModal() {
   modal.style.display = "none";
   hideFirstname()
 }
 
+// affichage du nom du photographe dans le header de la modale
 const firstnamePhotographer = document.createElement( 'p' );
 function displayFirstname() {
   const modalHeader = document.querySelector(".contact_header_text");
@@ -26,19 +33,17 @@ function displayFirstname() {
   modalHeader.appendChild(firstnamePhotographer);
 }
 
-function hideFirstname() {
-  firstnamePhotographer.style.display = "none";
-}
-
+// enlève le formulaire de la modale
 function hideForm() {
   form.style.display = "none";
 }
 
+// affiche le message de validation dans la modale
 function displayValidation() {
   validation.style.display = "block";
 }
 
-// check if Firstname is valid & display or not error
+// check si l'input prénom est valide et renvoi si message erreur ou non
 function isFirstnameValid() {
   let firstnameValue = firstname.value.trim();
   if (firstnameValue != "") {
@@ -53,7 +58,7 @@ function isFirstnameValid() {
   return showError(firstname.parentNode)
 }
 
-// check if Lastname is valid & display or not error
+// check si l'input nom est valide et renvoi si message erreur ou non
 function isLastnameValid() {
   let lastnameValue = lastname.value.trim();
   if (lastnameValue != "") {
@@ -68,7 +73,7 @@ function isLastnameValid() {
   return showError(lastname.parentNode)
 }
 
-// check if email is valid & display or not error
+// check si l'input email est valide et renvoi si message erreur ou non
 function isEmailValid() {
   let emailValue = email.value.trim();
   if (emailValue != "") {
@@ -83,7 +88,7 @@ function isEmailValid() {
   return showError(email.parentNode)
 }
 
-// check if message is valid & display or not error
+// check si l'input message est valide et renvoi si message erreur ou non
 function isMessageValid() {
   let messageValue = message.value.trim();
   if (messageValue != "") {
@@ -98,21 +103,21 @@ function isMessageValid() {
   return showError(message.parentNode)
 }
 
-// display error message
+// affiche le message d'erreur
 function showError(elt) {
   elt.setAttribute("data-error-visible", true);
   
   return false
 }
   
-// hide error message
+// enlève le message d'erreur
 function hideError(elt) {
   elt.removeAttribute("data-error-visible");
 
   return true
 }
 
-// check if all inputs are valid
+// check si les inputs sont valides
 function checkInputs() {
   let isInputsValid = isFirstnameValid() && isLastnameValid() && isEmailValid() && isMessageValid();
   if (isInputsValid) {
@@ -122,12 +127,12 @@ function checkInputs() {
   return false
 }
   
-// check if inputs are valid & display or not submit button
+// donne accès au bouton si les inputs sont valides
 function disabledSubmit() {
   checkInputs ? btn.removeAttribute("disabled") : btn.setAttribute("disabled", true)
 }
 
-// check if all inputs are valid & submit the form
+// soumet le formulaire si les inputs sont valides
 function validateForm(elt) {
   elt.preventDefault();
   if (checkInputs()) {
@@ -144,3 +149,4 @@ email.addEventListener("blur", isEmailValid);
 message.addEventListener("blur", isMessageValid);
 formData.forEach(input => input.addEventListener("change", disabledSubmit));
 form.addEventListener("submit", validateForm);
+ 
