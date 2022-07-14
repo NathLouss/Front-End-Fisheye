@@ -8,15 +8,19 @@ async function getMedias() {
   return medias
 }
 
+let currentPosition = 0;
+
 async function displayDataMedias(medias) {
   const mediasSection = document.querySelector(".photographer_portfolio");
   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
-
+  
   selectedMedias.forEach((media) => {
-      media.photographerName = photographerName;
-      const mediaModel = mediaFactory(media);
-      const mediaCardDOM = mediaModel.getMediaCardDOM();
-      mediasSection.appendChild(mediaCardDOM);
+    currentPosition += 1;
+    media.currentPosition = currentPosition;
+    media.photographerName = photographerName;
+    const mediaModel = mediaFactory(media);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    mediasSection.appendChild(mediaCardDOM);
   });
 };
 

@@ -1,5 +1,5 @@
 function mediaFactory(dataMedias) {
-  const { photographerName, title, image, video, likes } = dataMedias;
+  const { photographerName, currentPosition, title, image, video, likes } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
   
   function getMediaCardDOM() {
@@ -8,7 +8,7 @@ function mediaFactory(dataMedias) {
     if (image !== undefined && image !== null) {
       const img = document.createElement( 'img' );
       img.setAttribute("src", picture);
-      img.setAttribute("onclick", "openSlideshowModal()");
+      img.setAttribute("onclick", `openSlideshowModal(currentSlide(${currentPosition}))`);
       img.setAttribute("alt", "");
       img.setAttribute("title", title);
       articlePortfolio.appendChild(img);
@@ -18,6 +18,7 @@ function mediaFactory(dataMedias) {
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
       mp4.setAttribute("title", title);
+      mp4.setAttribute("onclick", `openSlideshowModal(currentSlide(${currentPosition}))`);
       const src = document.createElement( 'source' );
       src.setAttribute("src", `assets/photographers/${photographerName}/${video}`);
       src.setAttribute("type", "video/mp4");
@@ -52,4 +53,3 @@ function mediaFactory(dataMedias) {
   return { title, image, video, likes, getMediaCardDOM }
 }
 
-// photographerId, date, price
