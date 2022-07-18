@@ -13,25 +13,30 @@ const submit = document.querySelector("input[type=submit]");
 
 // affichage de la modale de contact
 function displayContactModal() {
+  media.photographerName = photographerName;
+  const mediaModel = modalFactory(media);
+  const mediaCardDOM = mediaModel.getFormCardDOM();
+  modal.appendChild(mediaCardDOM);
+
 	modal.style.display = "block";
-  contactModal.style.display = "block";
-  slideshowModal.style.display = "none";
-  displayFirstname()
+  // contactModal.style.display = "block";
+  // lightboxModal.style.display = "none";
+  // displayFirstname()
 }
 
 // fermeture de la modale
 function closeContactModal() {
   modal.style.display = "none";
-  hideFirstname()
+  // hideFirstname()
 }
 
 // affichage du nom du photographe dans le header de la modale
-const firstnamePhotographer = document.createElement( 'p' );
-function displayFirstname() {
-  const modalHeader = document.querySelector(".contact_header_text");
-  firstnamePhotographer.textContent = photographerName;
-  modalHeader.appendChild(firstnamePhotographer);
-}
+// const firstnamePhotographer = document.createElement( 'p' );
+// function displayFirstname() {
+//   const modalHeader = document.querySelector(".contact_header_text");
+//   firstnamePhotographer.textContent = photographerName;
+//   modalHeader.appendChild(firstnamePhotographer);
+// }
 
 // enlève le formulaire de la modale
 function hideForm() {

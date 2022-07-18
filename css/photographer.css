@@ -105,7 +105,7 @@
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -132,7 +132,7 @@
     margin: 0;
 }
 
-.contact_header_text{
+.header_text{
     margin-bottom: 30px;
 }
 
@@ -198,7 +198,7 @@ form input {
     margin: 160px;
 }
 
-.slideshow {
+.lightbox {
     position: relative;
     display: none;
     border-radius: 5px;
@@ -206,20 +206,17 @@ form input {
     width: 80%;
     display: flex;
     flex-direction: column;
-    /* align-items: center;
-    justify-content: space-between; */
     padding: 35px;
     margin: 4% auto;
 }
 
-.slideshow_container {
+.lightbox_container {
     margin-top: 70px;
 }
 
 .svg_cross {
     position: absolute;
     right: 20px;
-    /* height: 45px; */
     width: 45px;
     color:#901C1C;
 }
@@ -243,9 +240,6 @@ form input {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    /* width: auto;
-    padding: 16px;
-    margin-top: -22px; */
     color: #901C1C;
     font-weight: bold;
     font-size: 48px;
@@ -257,5 +251,4 @@ form input {
 
   .next {
     right: 15px;
-    /* border-radius: 3px 0 0 3px; */
   }

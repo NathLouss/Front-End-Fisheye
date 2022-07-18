@@ -4,11 +4,13 @@ function mediaFactory(dataMedias) {
   
   function getMediaCardDOM() {
     const articlePortfolio = document.createElement( 'article' );
-
+    
     if (image !== undefined && image !== null) {
       const img = document.createElement( 'img' );
       img.setAttribute("src", picture);
-      img.setAttribute("onclick", `openSlideshowModal(currentSlide(${currentPosition}))`);
+      img.addEventListener("click", () => {
+        openLightboxModal(currentPosition)
+      })
       img.setAttribute("alt", "");
       img.setAttribute("title", title);
       articlePortfolio.appendChild(img);
@@ -18,7 +20,9 @@ function mediaFactory(dataMedias) {
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
       mp4.setAttribute("title", title);
-      mp4.setAttribute("onclick", `openSlideshowModal(currentSlide(${currentPosition}))`);
+      mp4.addEventListener("click", () => {
+        openLightboxModal(currentPosition)
+      })
       const src = document.createElement( 'source' );
       src.setAttribute("src", `assets/photographers/${photographerName}/${video}`);
       src.setAttribute("type", "video/mp4");
