@@ -58,7 +58,7 @@ function closeLightboxModal() {
   
   function showSlides(n) {
     var i;
-    var slides = document.querySelectorAll(".slide");
+    var slides = document.getElementsByClassName("slide");
     console.log("tableau", slides);
     console.log("currentposition ds show", n);
     console.log("image cliquée", slides[0].outerText);

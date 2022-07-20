@@ -66,7 +66,9 @@ function photographerFactory(data) {
 
         const button = document.createElement( 'button' );
         button.classList.add("contact_button");
-        button.setAttribute("onclick", "displayContactModal()");
+        button.addEventListener("click", () => {
+          displayContactModal()
+        })
         button.textContent = "Contactez-moi";
         articleHeader.appendChild(button);
 

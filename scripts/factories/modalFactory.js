@@ -3,27 +3,12 @@ function modalFactory(dataMedias) {
   const picture = `assets/photographers/${photographerName}/${image}`;
 
   function getFormCardDOM() { 
-    const contactContainer = document.createElement( 'div' );
-    contactContainer.classList.add("contact_container");
+    const contactContent = document.createElement( 'div' );
+    contactContent.classList.add("contact_content");
 
-    getHeaderFormCardDOM();
-
-    const form = document.createElement( 'form' );
-    contactContainer.appendChild(form);
-
-    getFirstnameDivCardDOM();
-    getLastnameDivCardDOM();
-    getEmailDivCardDOM();
-    getMessageDivCardDOM();
-    getValidationDivCardDOM();
- 
-    return (contactContainer)
-  }
-
-  function getHeaderFormCardDOM() {
     const header = document.createElement( 'header' );
     header.classList.add("header");
-    contactContainer.appendChild(header);
+    contactContent.appendChild(header);
 
     const headerText = document.createElement( 'div' );
     headerText.classList.add("header_text");
@@ -32,6 +17,7 @@ function modalFactory(dataMedias) {
     const h2 = document.createElement( 'h2' );
     h2.textContent = "Contactez-moi";
     headerText.appendChild(h2);
+
 
     const p = document.createElement( 'p' );
     p.textContent = photographerName;
@@ -44,10 +30,11 @@ function modalFactory(dataMedias) {
     })
     header.appendChild(icon);
 
-    return (header)
-  }
+    // getHeaderFormCardDOM();
 
-  function getFirstnameDivCardDOM() { 
+    const form = document.createElement( 'form' );
+    contactContent.appendChild(form);
+
     const firstnameDiv = document.createElement( 'div' );
     firstnameDiv.classList.add("formData");
     firstnameDiv.setAttribute("data-error", "Veuillez saisir votre prénom.");
@@ -65,10 +52,6 @@ function modalFactory(dataMedias) {
     firstnameInput.setAttribute("name", "firstname");
     firstnameDiv.appendChild(firstnameInput);
 
-    return (firstnameDiv)
-  }
-
-  function getLastnameDivCardDOM() { 
     const lastnameDiv = document.createElement( 'div' );
     lastnameDiv.classList.add("formData");
     lastnameDiv.setAttribute("data-error", "Veuillez saisir votre nom.");
@@ -86,10 +69,6 @@ function modalFactory(dataMedias) {
     lastnameInput.setAttribute("name", "lastname");
     lastnameDiv.appendChild(lastnameInput);
 
-    return (lastnameDiv)
-  }
-
-  function getEmailDivCardDOM() { 
     const emailDiv = document.createElement( 'div' );
     emailDiv.classList.add("formData");
     emailDiv.setAttribute("data-error", "Veuillez saisir un email valide.");
@@ -107,41 +86,168 @@ function modalFactory(dataMedias) {
     emailInput.setAttribute("name", "email");
     emailDiv.appendChild(emailInput);
 
-    return (emailDiv)
-  }
-  
-  function getMessageDivCardDOM() { 
     const messageDiv = document.createElement( 'div' );
     messageDiv.classList.add("formData");
     messageDiv.setAttribute("data-error", "Veuillez saisir votre message.");
     form.appendChild(messageDiv);
     
-    const emailLabel = document.createElement( 'label' );
-    emailLabel.setAttribute("for", "message");
-    emailLabel.textContent = "Email";
-    messageDiv.appendChild(emailLabel);
+    const messageLabel = document.createElement( 'label' );
+    messageLabel.setAttribute("for", "message");
+    messageLabel.textContent = "Message";
+    messageDiv.appendChild(messageLabel);
     
-    const emailInput = document.createElement( 'input' );
-    emailInput.classList.add("text-control");
-    emailInput.setAttribute("type", "text");
-    emailInput.setAttribute("id", "message");
-    emailInput.setAttribute("name", "message");
-    messageDiv.appendChild(emailInput);
-    
-    return (messageDiv)
-  }
+    const messageInput = document.createElement( 'input' );
+    messageInput.classList.add("text-control");
+    messageInput.setAttribute("type", "text");
+    messageInput.setAttribute("id", "message");
+    messageInput.setAttribute("name", "message");
+    messageDiv.appendChild(messageInput);
 
-  function getValidationDivCardDOM() {
+    const submit = document.createElement( 'button' );
+    submit.classList.add("contact_button");
+    submit.setAttribute("type", "submit");
+    submit.textContent = "Envoyer";
+    form.appendChild(submit);
+
     const validationDiv = document.createElement( 'div' );
     validationDiv.classList.add("validation");
-    contactContainer.appendChild(validationDiv);
+    contactContent.appendChild(validationDiv);
 
     const validationText = document.createElement( 'p' );
     validationText.textContent = "Votre message a bien été envoyé !";
     validationDiv.appendChild(validationText);
 
-    return (validationDiv)
+    // getFirstnameDivCardDOM();
+    // getLastnameDivCardDOM();
+    // getEmailDivCardDOM();
+    // getMessageDivCardDOM();
+    // getValidationDivCardDOM();
+ 
+    return (contactContent)
   }
+
+  // function getHeaderFormCardDOM() {
+  //   const header = document.createElement( 'header' );
+  //   header.classList.add("header");
+  //   contactContainer.appendChild(header);
+
+  //   const headerText = document.createElement( 'div' );
+  //   headerText.classList.add("header_text");
+  //   header.appendChild(headerText);
+    
+  //   const h2 = document.createElement( 'h2' );
+  //   h2.textContent = "Contactez-moi";
+  //   headerText.appendChild(h2);
+
+  //   const p = document.createElement( 'p' );
+  //   p.textContent = photographerName;
+  //   headerText.appendChild(p);
+
+  //   const icon = document.createElement( 'img' );
+  //   icon.setAttribute("src", "assets/icons/close.svg");
+  //   icon.addEventListener("click", () => {
+  //     closeContactModal()
+  //   })
+  //   header.appendChild(icon);
+
+  //   return (header)
+  // }
+
+  // function getFirstnameDivCardDOM() { 
+  //   const firstnameDiv = document.createElement( 'div' );
+  //   firstnameDiv.classList.add("formData");
+  //   firstnameDiv.setAttribute("data-error", "Veuillez saisir votre prénom.");
+  //   form.appendChild(firstnameDiv);
+
+  //   const firstnameLabel = document.createElement( 'label' );
+  //   firstnameLabel.setAttribute("for", "firstname");
+  //   firstnameLabel.textContent = "Prénom";
+  //   firstnameDiv.appendChild(firstnameLabel);
+
+  //   const firstnameInput = document.createElement( 'input' );
+  //   firstnameInput.classList.add("text-control");
+  //   firstnameInput.setAttribute("type", "text");
+  //   firstnameInput.setAttribute("id", "firstname");
+  //   firstnameInput.setAttribute("name", "firstname");
+  //   firstnameDiv.appendChild(firstnameInput);
+
+  //   return (firstnameDiv)
+  // }
+
+  // function getLastnameDivCardDOM() { 
+  //   const lastnameDiv = document.createElement( 'div' );
+  //   lastnameDiv.classList.add("formData");
+  //   lastnameDiv.setAttribute("data-error", "Veuillez saisir votre nom.");
+  //   form.appendChild(lastnameDiv);
+
+  //   const lastnameLabel = document.createElement( 'label' );
+  //   lastnameLabel.setAttribute("for", "lastname");
+  //   lastnameLabel.textContent = "Nom";
+  //   lastnameDiv.appendChild(lastnameLabel);
+
+  //   const lastnameInput = document.createElement( 'input' );
+  //   lastnameInput.classList.add("text-control");
+  //   lastnameInput.setAttribute("type", "text");
+  //   lastnameInput.setAttribute("id", "lastname");
+  //   lastnameInput.setAttribute("name", "lastname");
+  //   lastnameDiv.appendChild(lastnameInput);
+
+  //   return (lastnameDiv)
+  // }
+
+  // function getEmailDivCardDOM() { 
+  //   const emailDiv = document.createElement( 'div' );
+  //   emailDiv.classList.add("formData");
+  //   emailDiv.setAttribute("data-error", "Veuillez saisir un email valide.");
+  //   form.appendChild(emailDiv);
+
+  //   const emailLabel = document.createElement( 'label' );
+  //   emailLabel.setAttribute("for", "email");
+  //   emailLabel.textContent = "Email";
+  //   emailDiv.appendChild(emailLabel);
+
+  //   const emailInput = document.createElement( 'input' );
+  //   emailInput.classList.add("text-control");
+  //   emailInput.setAttribute("type", "email");
+  //   emailInput.setAttribute("id", "email");
+  //   emailInput.setAttribute("name", "email");
+  //   emailDiv.appendChild(emailInput);
+
+  //   return (emailDiv)
+  // }
+  
+  // function getMessageDivCardDOM() { 
+  //   const messageDiv = document.createElement( 'div' );
+  //   messageDiv.classList.add("formData");
+  //   messageDiv.setAttribute("data-error", "Veuillez saisir votre message.");
+  //   form.appendChild(messageDiv);
+    
+  //   const messageLabel = document.createElement( 'label' );
+  //   messageLabel.setAttribute("for", "message");
+  //   messageLabel.textContent = "Email";
+  //   messageDiv.appendChild(messageLabel);
+    
+  //   const messageInput = document.createElement( 'input' );
+  //   messageInput.classList.add("text-control");
+  //   messageInput.setAttribute("type", "text");
+  //   messageInput.setAttribute("id", "message");
+  //   messageInput.setAttribute("name", "message");
+  //   messageDiv.appendChild(messageInput);
+    
+  //   return (messageDiv)
+  // }
+
+  // function getValidationDivCardDOM() {
+  //   const validationDiv = document.createElement( 'div' );
+  //   validationDiv.classList.add("validation");
+  //   contactContainer.appendChild(validationDiv);
+
+  //   const validationText = document.createElement( 'p' );
+  //   validationText.textContent = "Votre message a bien été envoyé !";
+  //   validationDiv.appendChild(validationText);
+
+  //   return (validationDiv)
+  // }
   
   function getLightboxCardDOM() { 
     const slideContent = document.createElement( 'div' );
