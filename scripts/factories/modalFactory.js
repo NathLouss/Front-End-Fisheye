@@ -18,7 +18,6 @@ function modalFactory(dataMedias) {
     h2.textContent = "Contactez-moi";
     headerText.appendChild(h2);
 
-
     const p = document.createElement( 'p' );
     p.textContent = photographerName;
     headerText.appendChild(p);
@@ -33,6 +32,9 @@ function modalFactory(dataMedias) {
     // getHeaderFormCardDOM();
 
     const form = document.createElement( 'form' );
+    form.addEventListener("submit", (elt) => {
+      validateForm(elt)
+    })
     contactContent.appendChild(form);
 
     const firstnameDiv = document.createElement( 'div' );
@@ -50,6 +52,9 @@ function modalFactory(dataMedias) {
     firstnameInput.setAttribute("type", "text");
     firstnameInput.setAttribute("id", "firstname");
     firstnameInput.setAttribute("name", "firstname");
+    firstnameInput.addEventListener("blur", () => {
+      isFirstnameValid()
+    })
     firstnameDiv.appendChild(firstnameInput);
 
     const lastnameDiv = document.createElement( 'div' );
@@ -67,6 +72,9 @@ function modalFactory(dataMedias) {
     lastnameInput.setAttribute("type", "text");
     lastnameInput.setAttribute("id", "lastname");
     lastnameInput.setAttribute("name", "lastname");
+    lastnameInput.addEventListener("blur", () => {
+      isLastnameValid()
+    })
     lastnameDiv.appendChild(lastnameInput);
 
     const emailDiv = document.createElement( 'div' );
@@ -84,6 +92,9 @@ function modalFactory(dataMedias) {
     emailInput.setAttribute("type", "email");
     emailInput.setAttribute("id", "email");
     emailInput.setAttribute("name", "email");
+    emailInput.addEventListener("blur", () => {
+      isEmailValid()
+    })
     emailDiv.appendChild(emailInput);
 
     const messageDiv = document.createElement( 'div' );
@@ -101,6 +112,9 @@ function modalFactory(dataMedias) {
     messageInput.setAttribute("type", "text");
     messageInput.setAttribute("id", "message");
     messageInput.setAttribute("name", "message");
+    messageInput.addEventListener("blur", () => {
+      isMessageValid()
+    })
     messageDiv.appendChild(messageInput);
 
     const submit = document.createElement( 'button' );

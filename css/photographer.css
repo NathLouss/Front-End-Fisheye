@@ -194,6 +194,7 @@ form input {
 
 .validation {
     display: none;
+    justify-content: center;
     font-size: 30px;
     margin: 160px;
 }
