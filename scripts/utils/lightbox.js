@@ -33,8 +33,8 @@ const lightboxModal = document.querySelector(".lightbox");
 
 function openLightboxModal(currentPosition) {
   modal.style.display = "block";
-  // contactModal.style.display = "none";
   lightboxModal.style.display = "block";
+  contactModal.style.display = "none";
   currentSlide(currentPosition);
 }
 

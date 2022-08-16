@@ -1,6 +1,7 @@
 function modalFactory(dataMedias) {
   const { photographerName, title, image, video } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
+  const movie = `assets/photographers/${photographerName}/${video}`;
 
   function getFormCardDOM() { 
     const contactContent = document.createElement( 'div' );
@@ -277,9 +278,10 @@ function modalFactory(dataMedias) {
     } else if (video !== undefined && video !== null) {
       const mp4 = document.createElement( 'video' );
       mp4.setAttribute("title", title);
+      mp4.setAttribute("controls", "true");
       mp4.classList.add("slideVideo");
       const src = document.createElement( 'source' );
-      src.setAttribute("src", `assets/photographers/${photographerName}/${video}`);
+      src.setAttribute("src", movie);
       src.setAttribute("type", "video/mp4");
       mp4.appendChild(src);
       slideContent.appendChild(mp4);

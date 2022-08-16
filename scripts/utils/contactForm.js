@@ -26,15 +26,13 @@ init();
 // récupération des éléments html
 const modal = document.querySelector(".modal");
 const contactModal = document.querySelector(".contact_container");
-// const form = document.querySelector("form");
-// const formData = document.querySelectorAll(".formData");
 const submit = document.querySelector("input[type=submit]");
 
 // affichage de la modale de contact
 function displayContactModal() {
   modal.style.display = "block";
   contactModal.style.display = "block";
-  // lightboxModal.style.display = "none";
+  lightboxModal.style.display = "none";
 }
 
 // // fermeture de la modale
