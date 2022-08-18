@@ -3,6 +3,7 @@
   const urlParams = new URLSearchParams(queryString);
   const idPhotographer = urlParams.get('id');
   let photographerName;
+  let photographerRate;
 
 //Récupération des datas
 async function getPhotographers() {
@@ -19,7 +20,8 @@ async function displayData(photographers) {
   const photographerSection = document.querySelector(".photographer_header");
   const photographer = photographers.filter(photographer => photographer.id == `${idPhotographer}`)[0];
   photographerName = photographer.name.split(' ')[0];
-
+  photographerRate = photographer.price;
+  
   const photographerModel = photographerFactory(photographer);
   const userProfileDOM = photographerModel.getUserProfileDOM();
   photographerSection.appendChild(userProfileDOM);

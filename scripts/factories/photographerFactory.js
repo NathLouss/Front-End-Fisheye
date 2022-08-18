@@ -3,7 +3,7 @@ function photographerFactory(data) {
     const picture = `assets/photographers/IDPhotos/${portrait}`;
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
-    const cost = `${price}€/jour`;
+    const cost = `${price}€ / jour`;
 
     // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
@@ -76,9 +76,15 @@ function photographerFactory(data) {
         img.setAttribute("src", picture);
         img.setAttribute("alt", "");
         articleHeader.appendChild(img);
+
+        const thumbnail = document.querySelector(".photographer_thumbnail");
+        const thumbnailRate = document.createElement( 'p' );
+        thumbnailRate.classList.add("thumbnail_rate");
+        thumbnailRate.textContent = cost;
+        thumbnail.appendChild(thumbnailRate);
         
         return (articleHeader);
     }
-
+    
     return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
 }

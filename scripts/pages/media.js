@@ -24,9 +24,27 @@ async function displayDataMedias(medias) {
   });
 };
 
+let likesArray = [];
+
+async function displayLikesCounter(medias) {
+  const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+  
+  selectedMedias.forEach((media) => {
+    likesArray.push(media.likes);
+  });
+
+  const sumLikes = (previousValue, currentValue) => previousValue + currentValue;
+  let totalLikes = likesArray.reduce(sumLikes);
+  const counter = document.querySelector(".likes");
+  counter.insertAdjacentHTML("afterbegin", totalLikes);
+};
+
 async function init() {
   const {medias} = await getMedias();
   displayDataMedias(medias);
+  displayLikesCounter(medias);
 };
 
 init();
+
+

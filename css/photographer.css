@@ -87,10 +87,10 @@
     padding-right: 10px;
 }
 
-.photographer_insert {
+.photographer_thumbnail {
     position: fixed;
     bottom: 0;
-    right: 100px;
+    right: 2%;
     background-color: #DB8876;
     border-radius: 5px 5px 0 0;
     padding: 0 20px;
@@ -98,12 +98,12 @@
     display: flex;
 }
 
-.photographer_insert div {
+.photographer_thumbnail div {
     display: flex;
     align-items: center;
-    padding-right: 40px;
+    padding-right: 70px;
 }
-.photographer_insert div p {
+.photographer_thumbnail div p {
     padding-right: 5px;
 }
 
