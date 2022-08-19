@@ -49,6 +49,10 @@ function mediaFactory(dataMedias) {
 
     const icon = document.createElement( 'i' );
     icon.setAttribute("class", "fas fa-heart");
+    icon.addEventListener("click", (event) => {
+      event.target.parentNode.firstChild.textContent++;
+      document.querySelector(".totalLikes").textContent++;
+    })
     divLike.appendChild(icon);
 
     return (articlePortfolio)

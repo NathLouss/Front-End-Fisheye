@@ -25,6 +25,7 @@ async function displayDataMedias(medias) {
 };
 
 let likesArray = [];
+// let totalLikes = 0;
 
 async function displayLikesCounter(medias) {
   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
@@ -35,7 +36,7 @@ async function displayLikesCounter(medias) {
 
   const sumLikes = (previousValue, currentValue) => previousValue + currentValue;
   let totalLikes = likesArray.reduce(sumLikes);
-  const counter = document.querySelector(".likes");
+  const counter = document.querySelector(".totalLikes");
   counter.insertAdjacentHTML("afterbegin", totalLikes);
 };
 
@@ -46,5 +47,3 @@ async function init() {
 };
 
 init();
-
-
