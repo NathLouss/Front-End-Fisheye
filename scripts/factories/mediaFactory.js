@@ -1,32 +1,33 @@
 function mediaFactory(dataMedias) {
-  const { photographerName, title, image, video, likes } = dataMedias;
+  const { photographerName, currentPosition, title, image, video, likes } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
   
   function getMediaCardDOM() {
     const articlePortfolio = document.createElement( 'article' );
-
-    const link = document.createElement( 'a' ); 
-    link.setAttribute("href", "#");
-    link.setAttribute("aria-label", "");
-    articlePortfolio.appendChild(link);
-
+    
     if (image !== undefined && image !== null) {
       const img = document.createElement( 'img' );
       img.setAttribute("src", picture);
+      img.addEventListener("click", () => {
+        openLightboxModal(currentPosition)
+      })
       img.setAttribute("alt", "");
       img.setAttribute("title", title);
-      link.appendChild(img);
+      articlePortfolio.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const capture = `assets/photographers/${photographerName}/${video.replace('mp4','png')}`;
       const mp4 = document.createElement( 'video' );
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
       mp4.setAttribute("title", title);
+      mp4.addEventListener("click", () => {
+        openLightboxModal(currentPosition)
+      })
       const src = document.createElement( 'source' );
       src.setAttribute("src", `assets/photographers/${photographerName}/${video}`);
       src.setAttribute("type", "video/mp4");
       mp4.appendChild(src);
-      link.appendChild(mp4);
+      articlePortfolio.appendChild(mp4);
     }
 
     const divPortfolioText = document.createElement( 'div' );    
@@ -48,6 +49,10 @@ function mediaFactory(dataMedias) {
 
     const icon = document.createElement( 'i' );
     icon.setAttribute("class", "fas fa-heart");
+    icon.addEventListener("click", (event) => {
+      event.target.parentNode.firstChild.textContent++;
+      document.querySelector(".totalLikes").textContent++;
+    })
     divLike.appendChild(icon);
 
     return (articlePortfolio)
@@ -56,4 +61,3 @@ function mediaFactory(dataMedias) {
   return { title, image, video, likes, getMediaCardDOM }
 }
 
-// photographerId, date, price
