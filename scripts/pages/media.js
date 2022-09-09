@@ -12,7 +12,7 @@ let currentPosition = 0;
 
 async function displayDataMedias(medias) {
   const mediasSection = document.querySelector(".photographer_portfolio");
-  const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+  selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
   
   selectedMedias.forEach((media) => {
     currentPosition += 1;
@@ -25,7 +25,6 @@ async function displayDataMedias(medias) {
 };
 
 let likesArray = [];
-// let totalLikes = 0;
 
 async function displayLikesCounter(medias) {
   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);

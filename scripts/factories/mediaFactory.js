@@ -1,5 +1,5 @@
 function mediaFactory(dataMedias) {
-  const { photographerName, currentPosition, title, image, video, likes } = dataMedias;
+  const { photographerName, currentPosition, title, image, video, likes, date } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
   
   function getMediaCardDOM() {
@@ -58,6 +58,6 @@ function mediaFactory(dataMedias) {
     return (articlePortfolio)
   }
 
-  return { title, image, video, likes, getMediaCardDOM }
+  return { title, image, video, likes, date, getMediaCardDOM }
 }
 
