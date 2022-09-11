@@ -7,23 +7,29 @@ const date = document.getElementById("date");
 const title = document.getElementById("title");
 const portfolio = document.querySelector(".photographer_portfolio");
 
+//déclarations variables
+let medias = [];
+let selectedMedias = [];
+let sortedMedias = [];
+
 // récupération des datas medias
 async function getMedias() {
     const mediasData = "../../data/photographers.json";
     const response = await fetch(mediasData);
     const dataMedias = await response.json();
-    const medias = dataMedias;
+    medias = dataMedias;
   
     return medias
-}
-
-
-async function selectMedias(medias) {
-    const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
-    console.log(selectedMedias);
-    return selectedMedias;
 };
 
+// sélection des médias du photographe
+async function selectMedias(medias) {
+    selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+
+    return selectedMedias
+};
+
+// initiation des fonctions asynchrones
 async function init() {
     const {medias} = await getMedias();
     selectMedias(medias);
@@ -31,15 +37,19 @@ async function init() {
 
 init();
 
-const sortBy = property => {
-    selectedMedias.sort((a,b) => (a[property] < b[property]) ? -1 : ((b[property] > a[property]) ? 1 : 0));
-    return selectedMedias;
-}
+// tri des médias selon la propriété sélectionnée
+function sortBy(property) {
+    sortedMedias = selectedMedias.sort((a,b) => (a[property] < b[property]) ? -1 : ((b[property] > a[property]) ? 1 : 0));
 
-function displayMediasSorted(selectedMedias) {
+    return sortedMedias
+};
+
+// affichage des médias triés
+function displayMediasSorted(sortedMedias) {
+    const mediasSection = document.querySelector(".photographer_portfolio");
     portfolio.innerHTML = "";
     
-    selectedMedias.forEach((media) => {
+    sortedMedias.forEach((media) => {
         currentPosition += 1;
         media.currentPosition = currentPosition;
         media.photographerName = photographerName;
@@ -49,27 +59,25 @@ function displayMediasSorted(selectedMedias) {
     });
 };
 
-title.addEventListener("click", e => {
+// callback eventlistner de la dropdown
+function sortOnClick(e) {
     const property = e.target.dataset.property;
     sortBy(property);
-    displayMediasSorted(selectedMedias);
+    displayMediasSorted(sortedMedias);
+}
+
+// Eventlisteners
+title.addEventListener("click", e => {
+    sortOnClick(e);
 })
 
 date.addEventListener("click", e => {
-    const property = e.target.dataset.property;
-    sortBy(property);
-    displayMediasSorted(selectedMedias);
+    sortOnClick(e);
 })
 
 popularity.addEventListener("click", e => {
-    const property = e.target.dataset.property;
-    sortBy(property);
-    displayMediasSorted(selectedMedias);
+    sortOnClick(e);
 })
-
-
-
-//**Eventlisteners**
 
 //ouverture dropdown
 filterBtn.addEventListener("click", () => {
