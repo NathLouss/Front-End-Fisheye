@@ -1,15 +1,21 @@
+// déclarartion des variables
+let medias = [];
+let selectedMedias = [];
+let currentPosition = 0;
+let likesArray = [];
+
+
 // récupération des datas medias
 async function getMedias() {
   const mediasData = "../../data/photographers.json";
   const response = await fetch(mediasData);
   const dataMedias = await response.json();
-  const medias = dataMedias;
+  medias = dataMedias;
 
   return medias
 }
 
-let currentPosition = 0;
-
+// affichage des médias
 async function displayDataMedias(medias) {
   const mediasSection = document.querySelector(".photographer_portfolio");
   selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
@@ -24,10 +30,9 @@ async function displayDataMedias(medias) {
   });
 };
 
-let likesArray = [];
-
+// affichage des likes photo dans le compteur
 async function displayLikesCounter(medias) {
-  const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+  // const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
   
   selectedMedias.forEach((media) => {
     likesArray.push(media.likes);
@@ -39,6 +44,7 @@ async function displayLikesCounter(medias) {
   counter.insertAdjacentHTML("afterbegin", totalLikes);
 };
 
+// initialisation des fonctions asynchrones
 async function init() {
   const {medias} = await getMedias();
   displayDataMedias(medias);

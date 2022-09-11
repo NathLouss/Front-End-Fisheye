@@ -8,8 +8,8 @@ const title = document.getElementById("title");
 const portfolio = document.querySelector(".photographer_portfolio");
 
 //déclarations variables
-let medias = [];
-let selectedMedias = [];
+// let medias = [];
+// let selectedMedias = [];
 let sortedMedias = [];
 
 // récupération des datas medias
@@ -29,7 +29,7 @@ async function selectMedias(medias) {
     return selectedMedias
 };
 
-// initiation des fonctions asynchrones
+// initialisation des fonctions asynchrones
 async function init() {
     const {medias} = await getMedias();
     selectMedias(medias);
@@ -43,6 +43,12 @@ function sortBy(property) {
 
     return sortedMedias
 };
+
+// affichage de la propriété selectionnée dans le bouton de tri
+function displaySelected(choice) {
+    filterBtn.innerHTML = "";
+    filterBtn.innerHTML = choice;
+}
 
 // affichage des médias triés
 function displayMediasSorted(sortedMedias) {
@@ -62,7 +68,9 @@ function displayMediasSorted(sortedMedias) {
 // callback eventlistner de la dropdown
 function sortOnClick(e) {
     const property = e.target.dataset.property;
+    const choice = e.currentTarget.innerText;
     sortBy(property);
+    displaySelected(choice);
     displayMediasSorted(sortedMedias);
 }
 
