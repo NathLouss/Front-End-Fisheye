@@ -44,6 +44,23 @@ function sortBy(property) {
     return sortedMedias
 };
 
+// ouverture/fermeture dropdown
+function toggleDropDown() {
+    if (filterBtn.style.display == "block") {
+    filterBtn.style.display = "none";
+    filterList.style.display = "block";
+    filterListOption.forEach((option) => { 
+        option.style.display = "block"
+    });
+    } else {
+    filterBtn.style.display = "block";
+    filterList.style.display = "none";
+    filterListOption.forEach((option) => { 
+        option.style.display = "none"
+    });
+    }
+};
+
 // affichage de la propriété selectionnée dans le bouton de tri
 function displaySelected(choice) {
     filterBtn.innerHTML = "";
@@ -87,29 +104,10 @@ popularity.addEventListener("click", e => {
     sortOnClick(e);
 })
 
-//ouverture dropdown
 filterBtn.addEventListener("click", () => {
-    filterBtn.style.display = "none";
-    filterList.style.display = "block";
-    filterListOption.forEach((option) => { option.style.display = "block" });
+    toggleDropDown();
 });
 
-//fermeture dropdown
 filterList.addEventListener("click", () => {
-    filterBtn.style.display = "block";
-    filterList.style.display = "none";
-    filterListOption.forEach((option) => { option.style.display = "none" });
+    toggleDropDown();
 });
-
-// function toggleDropDown() {
-//     if (filterBtn.state) {
-//     filterBtn.state = true
-//     filterBtn.style.display = "none";
-//     filterList.style.display = "block";
-//     filterListOption.forEach((option) => { option.style.display = "block";
-//     } else {
-//     filterBtn.style.display = "block";
-//     filterList.style.display = "none";
-//     filterListOption.forEach((option) => { option.style.display = "none";
-//     })}
-// };

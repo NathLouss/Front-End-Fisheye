@@ -46,11 +46,12 @@ function mediaFactory(dataMedias) {
     likeNumber.classList.add("likes");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
-
     const icon = document.createElement( 'i' );
     icon.setAttribute("class", "fas fa-heart");
-    icon.addEventListener("click", (event) => {
-      event.target.parentNode.firstChild.textContent++;
+    icon.addEventListener("click", (e) => {
+      // debugger
+      e.target.parentNode.firstChild.textContent++;
+      // console.log(media);
       document.querySelector(".totalLikes").textContent++;
     })
     divLike.appendChild(icon);

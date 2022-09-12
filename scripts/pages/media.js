@@ -4,7 +4,6 @@ let selectedMedias = [];
 let currentPosition = 0;
 let likesArray = [];
 
-
 // récupération des datas medias
 async function getMedias() {
   const mediasData = "../../data/photographers.json";
@@ -31,9 +30,7 @@ async function displayDataMedias(medias) {
 };
 
 // affichage des likes photo dans le compteur
-async function displayLikesCounter(medias) {
-  // const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
-  
+async function displayLikesCounter() {
   selectedMedias.forEach((media) => {
     likesArray.push(media.likes);
   });
