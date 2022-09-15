@@ -1,4 +1,4 @@
-function mediaFactory(dataMedias) {
+export function mediaFactory(dataMedias) {
   const { photographerName, currentPosition, title, image, video, likes, date } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
   
@@ -49,9 +49,7 @@ function mediaFactory(dataMedias) {
     const icon = document.createElement( 'i' );
     icon.setAttribute("class", "fas fa-heart");
     icon.addEventListener("click", (e) => {
-      // debugger
       e.target.parentNode.firstChild.textContent++;
-      // console.log(media);
       document.querySelector(".totalLikes").textContent++;
     })
     divLike.appendChild(icon);
