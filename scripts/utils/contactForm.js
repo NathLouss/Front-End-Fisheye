@@ -1,11 +1,13 @@
 import { getMedias } from "../database/services.js"
 import { modalFactory } from "../factories/modalFactory.js"
 import photographerName from "../pages/photographer.js"
+// import { displayData } from "../pages/photographer.js"
 
 // récupération des éléments html
 const modal = document.querySelector(".modal");
 const contactModal = document.querySelector(".contact_container");
 const submit = document.querySelector("input[type=submit]");
+const form = document.querySelector("form");
 
 // affichage de la modale de contact
 export function displayContactModal() {
@@ -21,7 +23,6 @@ export function closeContactModal() {
 
 // enlève le formulaire de la modale
 function hideForm() {
-  const form = document.querySelector("form");
   form.style.display = "none";
 }
 
@@ -37,6 +38,7 @@ async function displayDataInContactForm(medias) {
 
 async function init() {
   const {medias} = await getMedias();
+  // const {photographerName} = await displayData();
   displayDataInContactForm(medias);
 };
 

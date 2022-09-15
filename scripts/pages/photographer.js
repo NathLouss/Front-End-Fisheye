@@ -27,6 +27,7 @@ async function displayData(photographers) {
   const photographerModel = photographerFactory(photographer);
   const userProfileDOM = photographerModel.getUserProfileDOM();
   photographerSection.appendChild(userProfileDOM);
+  return photographerName
 };  
 
 // affichage des médias dans le portfolio du photographe
@@ -68,4 +69,4 @@ async function init() {
 
 init();
 
-export default { photographerName };
+export default photographerName;
