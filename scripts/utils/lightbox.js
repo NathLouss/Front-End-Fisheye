@@ -1,19 +1,27 @@
-import { getMedias } from "../database/services.js"
-await import("../pages/photographer.js").then(idPhotographer);
-import { modalFactory } from "../factories/modalFactory.js"
-import { idPhotographer } from "../pages/photographer.js"
+// import { getMedias } from "../database/services.js"
+// import { modalFactory } from "../factories/modalFactory.js"
+// import { idPhotographer, photographerName } from "../pages/photographer.js"
+
+// import { getPhotographerId } from "../controllers/idPhotographer.js"
+// await import("../pages/photographer.js").then(idPhotographer);
+
+// Récupération de l'id du photographe
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const idPhotographer = urlParams.get('id');
+
 
 // récupération des datas medias
-// async function getMedias() {
-//   const mediasData = "../../data/photographers.json";
-//   const response = await fetch(mediasData);
-//   const dataMedias = await response.json();
-//   const medias = dataMedias;
+async function getMedias() {
+  const mediasData = "../../data/photographers.json";
+  const response = await fetch(mediasData);
+  const dataMedias = await response.json();
+  const medias = dataMedias;
   
-//   return medias
-// }
+  return medias
+}
 
-// récupération des éléments html
+// déclaration des variables
 let photographerName;
 let currentPosition = 0;
 const modal = document.querySelector(".modal");
@@ -23,7 +31,6 @@ const lightboxModal = document.querySelector(".lightbox");
 // affichage des médias du photographe sélectionné dans la lightbox
 // via la modalFactory
 async function displayMediasInLightbox(medias) {
-  debugger
   const mediasSection = document.querySelector(".lightbox_container");
   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
   
@@ -38,19 +45,15 @@ async function displayMediasInLightbox(medias) {
 
 async function init() {
   const {medias} = await getMedias();
+  // const {idPhotographer} = await getPhotographerId();
   displayMediasInLightbox(medias);
 };
 
 init();
 
 
-// Récupération de l'id du photographe
-// const queryString = window.location.search;
-// const urlParams = new URLSearchParams(queryString);
-// const idPhotographer = urlParams.get('id');
-
 // ouverture de la lightbox
-export function openLightboxModal(currentPosition) {
+function openLightboxModal(currentPosition) {
   modal.style.display = "block";
   lightboxModal.style.display = "block";
   contactModal.style.display = "none";

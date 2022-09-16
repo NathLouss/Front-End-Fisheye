@@ -1,4 +1,4 @@
-import { openLightboxModal } from "../utils/lightbox.js"
+// import { openLightboxModal } from "../utils/lightbox.js"
 
 export function mediaFactory(dataMedias) {
   const { photographerName, currentPosition, title, image, video, likes, date } = dataMedias;

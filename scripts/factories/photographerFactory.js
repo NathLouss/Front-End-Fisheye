@@ -13,7 +13,7 @@ export function photographerFactory(data) {
         
         const link = document.createElement( 'a' );
         link.setAttribute("href", `photographer.html?id=${id}`);
-        link.setAttribute("aria-label", `Portrait de ${name} - Page de ces réalisations`);
+        link.setAttribute("aria-label", `${name}`);
         article.appendChild(link);
 
         const img = document.createElement( 'img' );
@@ -68,6 +68,7 @@ export function photographerFactory(data) {
 
         const button = document.createElement( 'button' );
         button.classList.add("contact_button");
+        button.setAttribute("aria-label", "Contactez-moi");
         button.addEventListener("click", () => {
           displayContactModal()
         })
@@ -76,7 +77,7 @@ export function photographerFactory(data) {
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
+        img.setAttribute("alt", `${name}`);
         articleHeader.appendChild(img);
 
         const thumbnail = document.querySelector(".photographer_thumbnail");

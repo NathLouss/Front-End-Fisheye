@@ -1,0 +1,53 @@
+.photographer_portfolio {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* gap: 70px;
+    margin: 50px; */
+    gap: 5%;
+    margin: 5%;
+    justify-items: center;
+}
+
+.photographer_portfolio article {
+    width: 350px;
+}
+
+.photographer_portfolio article img {
+    width: 350px;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: top;
+}
+
+.video_poster {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.article_text {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #901C1C;
+    margin-top: 10px;
+}
+
+.article_text p {
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.article_like {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.likes {
+    padding-right: 10px;
+}

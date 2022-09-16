@@ -3,7 +3,7 @@ import { modalFactory } from "../factories/modalFactory.js"
 import photographerName from "../pages/photographer.js"
 // import { displayData } from "../pages/photographer.js"
 
-// récupération des éléments html
+// déclaration des variables
 const modal = document.querySelector(".modal");
 const contactModal = document.querySelector(".contact_container");
 const submit = document.querySelector("input[type=submit]");

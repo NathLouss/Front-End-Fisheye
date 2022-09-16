@@ -1,0 +1,53 @@
+.lightbox {
+    position: relative;
+    display: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    width: 80%;
+    flex-direction: column;
+    padding: 35px;
+    margin: 4% auto;
+}
+
+.lightbox_container {
+    margin-top: 70px;
+}
+
+.svg_cross {
+    position: absolute;
+    right: 20px;
+    width: 45px;
+    color:#901C1C;
+}
+
+.slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.slideImg,
+.slideVideo {
+    height: 900px;
+    width: 1050px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    color: #901C1C;
+    font-weight: bold;
+    font-size: 48px;
+    text-decoration: none;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+  .next {
+    right: 15px;
+  }

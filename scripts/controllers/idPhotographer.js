@@ -5,5 +5,5 @@
 //     const idPhotographer = urlParams.get('id');
 
 //     return idPhotographer
-// }
 
+// }

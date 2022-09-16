@@ -18,7 +18,6 @@ export const idPhotographer = urlParams.get('id');
 // affichage des datas du photographe sélectionné dans le header
 // via la photographerFactory
 async function displayData(photographers) {
-  debugger
   const photographerSection = document.querySelector(".photographer_header");
   const photographer = photographers.filter(photographer => photographer.id == `${idPhotographer}`)[0];
   photographerName = photographer.name.split(' ')[0];
@@ -27,7 +26,6 @@ async function displayData(photographers) {
   const photographerModel = photographerFactory(photographer);
   const userProfileDOM = photographerModel.getUserProfileDOM();
   photographerSection.appendChild(userProfileDOM);
-  return photographerName
 };  
 
 // affichage des médias dans le portfolio du photographe
@@ -69,4 +67,4 @@ async function init() {
 
 init();
 
-export default photographerName;
+export default photographerName
