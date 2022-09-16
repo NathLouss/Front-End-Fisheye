@@ -13,7 +13,7 @@ export function mediaFactory(dataMedias) {
       img.addEventListener("click", () => {
         openLightboxModal(currentPosition)
       })
-      img.setAttribute("alt", "");
+      img.setAttribute("aria-label", `${title}, closeup view`);
       img.setAttribute("title", title);
       articlePortfolio.appendChild(img);
     } else if (video !== undefined && video !== null) {
@@ -22,6 +22,7 @@ export function mediaFactory(dataMedias) {
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
       mp4.setAttribute("title", title);
+      mp4.setAttribute("aria-label", `${title}, closeup view`);
       mp4.addEventListener("click", () => {
         openLightboxModal(currentPosition)
       })
@@ -50,6 +51,7 @@ export function mediaFactory(dataMedias) {
     divLike.appendChild(likeNumber);
     const icon = document.createElement( 'i' );
     icon.setAttribute("class", "fas fa-heart");
+    icon.setAttribute("aria-label", "likes");
     icon.addEventListener("click", (e) => {
       e.target.parentNode.firstChild.textContent++;
       document.querySelector(".totalLikes").textContent++;

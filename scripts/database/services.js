@@ -6,7 +6,7 @@ export async function getPhotographers() {
     const data = await response.json();
     const photographers = data;
 
-    return photographers
+    return photographers["photographers"]
 }
 
 // récupération des datas medias
@@ -15,8 +15,8 @@ export async function getMedias() {
     const response = await fetch(mediasData);
     const dataMedias = await response.json();
     const medias = dataMedias;
-  
-    return medias
+
+    return medias["medias"]
   }
 
 //   async function init() {

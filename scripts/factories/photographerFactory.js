@@ -1,5 +1,3 @@
-import { displayContactModal } from "../utils/contactForm.js"
-
 export function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/IDPhotos/${portrait}`;
