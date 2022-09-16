@@ -1,4 +1,6 @@
-function photographerFactory(data) {
+import { displayContactModal } from "../utils/contactForm.js"
+
+export function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/IDPhotos/${portrait}`;
     const place = `${city}, ${country}`;
@@ -11,7 +13,7 @@ function photographerFactory(data) {
         
         const link = document.createElement( 'a' );
         link.setAttribute("href", `photographer.html?id=${id}`);
-        link.setAttribute("aria-label", `Portrait de ${name} - Page de ces réalisations`);
+        link.setAttribute("aria-label", `${name}`);
         article.appendChild(link);
 
         const img = document.createElement( 'img' );
@@ -66,6 +68,7 @@ function photographerFactory(data) {
 
         const button = document.createElement( 'button' );
         button.classList.add("contact_button");
+        button.setAttribute("aria-label", "Contactez-moi");
         button.addEventListener("click", () => {
           displayContactModal()
         })
@@ -74,7 +77,7 @@ function photographerFactory(data) {
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
+        img.setAttribute("alt", `${name}`);
         articleHeader.appendChild(img);
 
         const thumbnail = document.querySelector(".photographer_thumbnail");

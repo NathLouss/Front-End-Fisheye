@@ -1,5 +1,7 @@
-function mediaFactory(dataMedias) {
-  const { photographerName, currentPosition, title, image, video, likes } = dataMedias;
+// import { openLightboxModal } from "../utils/lightbox.js"
+
+export function mediaFactory(dataMedias) {
+  const { photographerName, currentPosition, title, image, video, likes, date } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
   
   function getMediaCardDOM() {
@@ -46,11 +48,10 @@ function mediaFactory(dataMedias) {
     likeNumber.classList.add("likes");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
-
     const icon = document.createElement( 'i' );
     icon.setAttribute("class", "fas fa-heart");
-    icon.addEventListener("click", (event) => {
-      event.target.parentNode.firstChild.textContent++;
+    icon.addEventListener("click", (e) => {
+      e.target.parentNode.firstChild.textContent++;
       document.querySelector(".totalLikes").textContent++;
     })
     divLike.appendChild(icon);
@@ -58,6 +59,6 @@ function mediaFactory(dataMedias) {
     return (articlePortfolio)
   }
 
-  return { title, image, video, likes, getMediaCardDOM }
+  return { title, image, video, likes, date, getMediaCardDOM }
 }
 

@@ -1,0 +1,70 @@
+.portfolio_filter {
+    position: relative;
+    font-weight: bold;
+    margin: 40px 50px;
+}
+
+#filter {
+    width: 170px;
+    padding: 27px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    border: none;
+}
+
+#filter,
+#filter_list {
+    position: absolute;
+    top: -25px;
+    left: 80px;
+    color: white;
+    background-color: #901C1C;
+    border-radius: 5px;
+}
+  
+#filter_list {
+    display: none;
+    width: 150px;
+    margin: 0;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 6px 18px -14px #000000;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    z-index: 1;
+}
+    
+.list_option {
+    display: none;
+    position: relative;
+    padding: 19px 10px;
+    border-top: 1px solid white;
+}
+
+
+#filter:before,
+.list_option:first-child:before {
+    border: 3px solid white;
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    right: 22px;
+    top: 25px;
+    border-bottom: none;
+    border-left: none;
+    content: " ";
+    transform: rotate(135deg);
+}
+
+.list_option:first-child:before {
+    transform: rotate(-45deg);
+    right: 13px;
+    top: 22px;
+}
+
+.list_option:first-child {
+    border: none;
+}
