@@ -1,6 +1,7 @@
-import { getMedias } from "../database/services.js"
+import { getPhotographers } from "../database/services.js"
 import { modalFactory } from "../factories/modalFactory.js"
-import photographerName from "../pages/photographer.js"
+// import { getMedias } from "../database/services.js"
+// import photographerName from "../pages/photographer.js"
 // import { displayData } from "../pages/photographer.js"
 
 // déclaration des variables
@@ -9,40 +10,43 @@ const contactModal = document.querySelector(".contact_container");
 const submit = document.querySelector("input[type=submit]");
 const form = document.querySelector("form");
 
-// affichage de la modale de contact
-export function displayContactModal() {
-  modal.style.display = "block";
-  contactModal.style.display = "block";
-  lightboxModal.style.display = "none";
-}
-
-// fermeture de la modale
-export function closeContactModal() {
-  modal.style.display = "none";
-}
-
-// enlève le formulaire de la modale
-function hideForm() {
-  form.style.display = "none";
-}
-
 // affichage des datas du photographe sélectionné dans le header
 // via la modalFactory
-async function displayDataInContactForm(medias) {
+async function displayDataInContactForm(photographers) {
   const contactSection = document.querySelector(".contact_container");
-  medias.photographerName = photographerName;
-  const formModel = modalFactory(medias);
+
+  const photographer = photographers.filter(photographer => photographer.id == idPhotographer);
+  photographerName = photographer[0].name.split(' ')[0];
+  photographers.photographerName = photographerName;
+
+  const formModel = modalFactory(photographers);
   const formCardDOM = formModel.getFormCardDOM();
   contactSection.appendChild(formCardDOM);
 };
 
 async function init() {
-  const {medias} = await getMedias();
-  // const {photographerName} = await displayData();
-  displayDataInContactForm(medias);
+  const photographers = await getPhotographers();
+  displayDataInContactForm(photographers);
 };
 
 init();
+
+// affichage de la modale de contact
+// function displayContactModal() {
+//   modal.style.display = "block";
+//   contactModal.style.display = "block";
+//   lightboxModal.style.display = "none";
+// }
+
+// fermeture de la modale
+// export function closeContactModal() {
+//   modal.style.display = "none";
+// }
+
+// enlève le formulaire de la modale
+function hideForm() {
+  form.style.display = "none";
+}
 
 // affiche le message de validation dans la modale
 function displayValidation() {

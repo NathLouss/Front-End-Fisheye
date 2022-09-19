@@ -68,7 +68,10 @@ export function photographerFactory(data) {
         button.classList.add("contact_button");
         button.setAttribute("aria-label", "Contactez-moi");
         button.addEventListener("click", () => {
-          displayContactModal()
+        //   displayContactModal()
+            modal.style.display = "block";
+            contactModal.style.display = "block";
+            lightboxModal.style.display = "none";
         })
         button.textContent = "Contactez-moi";
         articleHeader.appendChild(button);

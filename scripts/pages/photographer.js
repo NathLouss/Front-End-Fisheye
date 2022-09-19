@@ -1,7 +1,7 @@
 import { getPhotographers, getMedias } from "../database/services.js"
-import { displayContactModal } from "../utils/contactForm.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
+// import { displayContactModal } from "../utils/contactForm.js"
 // import { getPhotographerId } from "../controllers/idPhotographer.js"
 
 // déclaration des variables
@@ -20,12 +20,11 @@ const idPhotographer = urlParams.get('id');
 // via la photographerFactory
 async function displayData(photographers) {
   const photographerSection = document.querySelector(".photographer_header");
+
   const photographer = photographers.filter(photographer => photographer.id == idPhotographer);
-  console.log(photographer[0].id);
-  console.log(idPhotographer);
   photographerName = photographer[0].name.split(' ')[0];
   photographerRate = photographer[0].price;
-
+  
   const photographerModel = photographerFactory(photographer[0]);
   const userProfileDOM = photographerModel.getUserProfileDOM();
   photographerSection.appendChild(userProfileDOM);
@@ -35,7 +34,7 @@ async function displayData(photographers) {
 // via la mediaFactory
 async function displayDataMedias(medias) {
   const mediasSection = document.querySelector(".photographer_portfolio");
-  selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+  selectedMedias = medias.filter(media => media.photographerId == idPhotographer);
   
   selectedMedias.forEach((media) => {
     currentPosition += 1;
@@ -63,7 +62,7 @@ async function displayLikesCounter() {
 async function init() {
   const photographers = await getPhotographers();
   const medias = await getMedias();
-  console.log(photographers);
+  console.log("init photographers", photographers);
   displayData(photographers);
   displayDataMedias(medias);
   displayLikesCounter(medias);
@@ -71,4 +70,4 @@ async function init() {
 
 init();
 
-export default photographerName
+// export default photographerName

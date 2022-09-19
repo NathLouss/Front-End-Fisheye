@@ -1,5 +1,3 @@
-import { closeContactModal, validateForm, isFirstnameValid, isLastnameValid, isEmailValid, isMessageValid } from "../utils/contactForm.js"
-
 export function modalFactory(dataMedias) {
   const { photographerName, title, image, video } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
@@ -28,7 +26,8 @@ export function modalFactory(dataMedias) {
     const icon = document.createElement( 'img' );
     icon.setAttribute("src", "assets/icons/close.svg");
     icon.addEventListener("click", () => {
-      closeContactModal()
+      // closeContactModal()
+      modal.style.display = "none";
     })
     header.appendChild(icon);
 
