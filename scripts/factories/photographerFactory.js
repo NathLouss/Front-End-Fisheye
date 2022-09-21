@@ -1,5 +1,3 @@
-import { displayContactModal } from "../utils/contactForm.js"
-
 export function photographerFactory(data) {
     const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/IDPhotos/${portrait}`;
@@ -70,7 +68,11 @@ export function photographerFactory(data) {
         button.classList.add("contact_button");
         button.setAttribute("aria-label", "Contactez-moi");
         button.addEventListener("click", () => {
-          displayContactModal()
+            debugger
+            modal.style.display = "block";
+            contactModal.style.display = "block";
+            lightboxModal.style.display = "none";
+        //   displayContactModal()
         })
         button.textContent = "Contactez-moi";
         articleHeader.appendChild(button);

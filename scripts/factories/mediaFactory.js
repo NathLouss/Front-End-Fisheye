@@ -1,5 +1,3 @@
-// import { openLightboxModal } from "../utils/lightbox.js"
-
 export function mediaFactory(dataMedias) {
   const { photographerName, currentPosition, title, image, video, likes, date } = dataMedias;
   const picture = `assets/photographers/${photographerName}/${image}`;
