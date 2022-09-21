@@ -1,7 +1,6 @@
 import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
-// import { getPhotographerId } from "../controllers/idPhotographer.js"
 
 // déclaration des variables
 let photographerName;
@@ -13,13 +12,14 @@ let likesArray = [];
 // Récupération de l'id du photographe
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-export const idPhotographer = urlParams.get('id');
+const idPhotographer = urlParams.get('id');
 
 // affichage des datas du photographe sélectionné dans le header
 // via la photographerFactory
 async function displayData(photographers) {
   const photographerSection = document.querySelector(".photographer_header");
-  const photographer = photographers.filter(photographer => photographer.id == `${idPhotographer}`)[0];
+  const photographer = photographers.filter(p => p.id == idPhotographer)[0];
+console.log("photographer", photographer);
   photographerName = photographer.name.split(' ')[0];
   photographerRate = photographer.price;
 
@@ -58,13 +58,11 @@ async function displayLikesCounter() {
 
 // initialisation des fonctions asynchrones
 async function init() {
-  const {photographers} = await getPhotographers();
-  const {medias} = await getMedias();
+  const photographers = await getPhotographers();
+  const medias = await getMedias();
   displayData(photographers);
   displayDataMedias(medias);
   displayLikesCounter(medias);
 };
 
 init();
-
-export default photographerName
