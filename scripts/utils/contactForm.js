@@ -1,16 +1,8 @@
 import { getPhotographers } from "../database/services.js"
 import { modalFactory } from "../factories/modalFactory.js"
-// import { getMedias } from "../database/services.js"
-// import photographerName from "../pages/photographer.js"
-// import { displayData } from "../pages/photographer.js"
 
-// // déclaration des variables
-// const modal = document.querySelector(".modal");
-// const contactModal = document.querySelector(".contact_container");
-// const submit = document.querySelector("input[type=submit]");
-// const form = document.querySelector("form");
-
-// affichage des datas du photographe sélectionné dans le header
+// affichage du prénom du photographe sélectionné dans le formulaire
+// et création du formulaire
 // via la modalFactory
 async function displayDataInContactForm(photographers) {
   const contactSection = document.querySelector(".contact_container");
@@ -25,12 +17,13 @@ async function displayDataInContactForm(photographers) {
 };
 
 async function init() {
-  const photographers = await getPhotographers();
-  displayDataInContactForm(photographers);
+  const medias = await getMedias();
+  displayDataInContactForm(medias);
 };
 
 init();
 
+<<<<<<< HEAD
 // affichage de la modale de contact
 // function displayContactModal() {
 //   modal.style.display = "block";
@@ -157,4 +150,6 @@ init();
 //     form.reset();
 //   }
 // }
+=======
+>>>>>>> main
 
