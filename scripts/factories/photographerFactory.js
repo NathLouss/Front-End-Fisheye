@@ -68,18 +68,10 @@ export function photographerFactory(data) {
         button.classList.add("contact_button");
         button.setAttribute("aria-label", "Contactez-moi");
         button.addEventListener("click", () => {
-<<<<<<< HEAD
         //   displayContactModal()
             modal.style.display = "block";
             contactModal.style.display = "block";
             lightboxModal.style.display = "none";
-=======
-            debugger
-            modal.style.display = "block";
-            contactModal.style.display = "block";
-            lightboxModal.style.display = "none";
-        //   displayContactModal()
->>>>>>> main
         })
         button.textContent = "Contactez-moi";
         articleHeader.appendChild(button);

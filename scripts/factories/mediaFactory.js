@@ -9,7 +9,11 @@ export function mediaFactory(dataMedias) {
       const img = document.createElement( 'img' );
       img.setAttribute("src", picture);
       img.addEventListener("click", () => {
-        openLightboxModal(currentPosition)
+        // openLightboxModal(currentPosition)
+        document.querySelector(".modal").style.display = "block";
+        document.querySelector(".lightbox").style.display = "block";
+        document.querySelector(".contact_container").style.display = "none";
+        currentSlide(currentPosition);
       })
       img.setAttribute("aria-label", `${title}, closeup view`);
       img.setAttribute("title", title);

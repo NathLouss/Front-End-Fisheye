@@ -18,16 +18,12 @@ const idPhotographer = urlParams.get('id');
 // via la photographerFactory
 async function displayData(photographers) {
   const photographerSection = document.querySelector(".photographer_header");
+  
   const photographer = photographers.filter(p => p.id == idPhotographer)[0];
-console.log("photographer", photographer);
   photographerName = photographer.name.split(' ')[0];
   photographerRate = photographer.price;
-
-  const photographer = photographers.filter(photographer => photographer.id == idPhotographer);
-  photographerName = photographer[0].name.split(' ')[0];
-  photographerRate = photographer[0].price;
   
-  const photographerModel = photographerFactory(photographer[0]);
+  const photographerModel = photographerFactory(photographer);
   const userProfileDOM = photographerModel.getUserProfileDOM();
   photographerSection.appendChild(userProfileDOM);
 };  

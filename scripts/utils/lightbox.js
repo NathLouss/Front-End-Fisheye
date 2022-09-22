@@ -1,32 +1,15 @@
-// import { getMedias } from "../database/services.js"
-// import { modalFactory } from "../factories/modalFactory.js"
-// import { idPhotographer, photographerName } from "../pages/photographer.js"
-
-// import { getPhotographerId } from "../controllers/idPhotographer.js"
-// await import("../pages/photographer.js").then(idPhotographer);
+import { getMedias } from "../database/services.js"
+import { modalFactory } from "../factories/modalFactory.js"
 
 // Récupération de l'id du photographe
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get('id');
 
-
-// récupération des datas medias
-async function getMedias() {
-  const mediasData = "../../data/photographers.json";
-  const response = await fetch(mediasData);
-  const dataMedias = await response.json();
-  const medias = dataMedias;
-  
-  return medias
-}
-
 // déclaration des variables
-let photographerName;
-let currentPosition = 0;
+// let photographerName;
+// let currentPosition = 0;
 const modal = document.querySelector(".modal");
-const contactModal = document.querySelector(".contact_container");
-const lightboxModal = document.querySelector(".lightbox");
 
 // affichage des médias du photographe sélectionné dans la lightbox
 // via la modalFactory
@@ -44,30 +27,18 @@ async function displayMediasInLightbox(medias) {
 };
 
 async function init() {
-  const {medias} = await getMedias();
-  // const {idPhotographer} = await getPhotographerId();
+  const medias = await getMedias();
   displayMediasInLightbox(medias);
 };
 
 init();
-
-
-// ouverture de la lightbox
-function openLightboxModal(currentPosition) {
-  modal.style.display = "block";
-  lightboxModal.style.display = "block";
-  contactModal.style.display = "none";
-  currentSlide(currentPosition);
-}
 
 // fermeture de la lightbox
 function closeLightboxModal() {
   modal.style.display = "none";
 }
 
-
 // Lightbox
-// if (lightboxModal.style.display == "block") {
 function showSlides(n) {
   var i;
   var slides = document.getElementsByClassName("slide");
@@ -78,16 +49,15 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "flex";
 }
-// }
 
-  let slideIndex = 1;
-  showSlides(slideIndex);
-  
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-  
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
   
