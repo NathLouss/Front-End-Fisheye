@@ -4,6 +4,7 @@ import { mediaFactory } from "../factories/mediaFactory.js"
 
 // déclaration des variables
 let photographerName;
+let photographer;
 let photographerRate;
 let selectedMedias = [];
 let currentPosition = 0;
@@ -14,25 +15,44 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get('id');
 
+// Récupération de l'objet photographer
+async function getSelectedPhotographerData(photographers) {
+  photographer = photographers.filter(p => p.id == idPhotographer)[0];
+
+  return photographer
+}
+
+// Récupération du nom du photographer
+async function getSelectedPhotographerName(photographer) {
+  photographerName = photographer.name.split(' ')[0];
+  
+  return photographerName
+}
+
 // affichage des datas du photographe sélectionné dans le header
 // via la photographerFactory
-async function displayData(photographers) {
+async function displayData(photographer) {
   const photographerSection = document.querySelector(".photographer_header");
   
-  const photographer = photographers.filter(p => p.id == idPhotographer)[0];
-  photographerName = photographer.name.split(' ')[0];
   photographerRate = photographer.price;
-  
+  photographer.photographerName = photographerName;
+
   const photographerModel = photographerFactory(photographer);
   const userProfileDOM = photographerModel.getUserProfileDOM();
   photographerSection.appendChild(userProfileDOM);
 };  
 
+// Récupération des médias du photographer sélectionné
+async function getSelectedPhotographerMedias(medias) {
+  selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
+
+  return selectedMedias
+}
+
 // affichage des médias dans le portfolio du photographe
 // via la mediaFactory
-async function displayDataMedias(medias) {
+async function displayDataMedias(selectedMedias) {
   const mediasSection = document.querySelector(".photographer_portfolio");
-  selectedMedias = medias.filter(media => media.photographerId == idPhotographer);
   
   selectedMedias.forEach((media) => {
     currentPosition += 1;
@@ -59,10 +79,14 @@ async function displayLikesCounter() {
 // initialisation des fonctions asynchrones
 async function init() {
   const photographers = await getPhotographers();
+  getSelectedPhotographerData(photographers);
+  getSelectedPhotographerName(photographer);
+  displayData(photographer);
+
   const medias = await getMedias();
-  displayData(photographers);
-  displayDataMedias(medias);
-  displayLikesCounter(medias);
+  getSelectedPhotographerMedias(medias)
+  displayDataMedias(selectedMedias);
+  displayLikesCounter();
 };
 
 init();

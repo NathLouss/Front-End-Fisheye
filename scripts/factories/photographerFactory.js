@@ -67,12 +67,14 @@ export function photographerFactory(data) {
         const button = document.createElement( 'button' );
         button.classList.add("contact_button");
         button.setAttribute("aria-label", "Contactez-moi");
-        button.addEventListener("click", () => {
-        //   displayContactModal()
-            modal.style.display = "block";
-            contactModal.style.display = "block";
-            lightboxModal.style.display = "none";
-        })
+        // button.addEventListener("click", () => {
+        // //   displayContactModal()
+        // debugger
+        //     document.querySelector(".modal").style.display = "block";
+        //     document.querySelector(".contact_container").style.display = "block";
+        //     document.querySelector(".lightbox").style.display = "none";
+        //     displayDataInContactForm(photographer);
+        // })
         button.textContent = "Contactez-moi";
         articleHeader.appendChild(button);
 
