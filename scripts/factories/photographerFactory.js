@@ -4,6 +4,23 @@ export function photographerFactory(data) {
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
+    debugger
+    const dataPhotographer = data;
+    console.log(dataPhotographer);
+
+    // Récupération de l'objet photographer
+    function getSelectedPhotographerData() {
+        photographer = photographers.filter(p => p.id == id)[0];
+        console.log(photographer);
+        return photographer
+    }
+    
+    // Récupération du nom du photographer
+    function getSelectedPhotographerName() {
+        photographerName = name.split(' ')[0];
+        
+        return photographerName
+    }
 
     // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
@@ -92,5 +109,5 @@ export function photographerFactory(data) {
         return (articleHeader);
     }
     
-    return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
+    return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM, getSelectedPhotographerData, getSelectedPhotographerName }
 }

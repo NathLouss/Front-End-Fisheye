@@ -15,37 +15,25 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get('id');
 
-// Récupération de l'objet photographer
-async function getSelectedPhotographerData(photographers) {
-  photographer = photographers.filter(p => p.id == idPhotographer)[0];
-
-  return photographer
-}
-
-// Récupération du nom du photographer
-async function getSelectedPhotographerName(photographer) {
-  photographerName = photographer.name.split(' ')[0];
-  
-  return photographerName
-}
-
-// affichage des datas du photographe sélectionné dans le header
+// affichage du header avec les datas du photographe sélectionné
 // via la photographerFactory
-async function displayData(photographer) {
+async function displayHeader(photographers) {
   const photographerSection = document.querySelector(".photographer_header");
   
-  photographerRate = photographer.price;
-  photographer.photographerName = photographerName;
-
-  const photographerModel = photographerFactory(photographer);
+  // photographerRate = photographer.price;
+  // photographer.photographerName = photographerName;
+  
+  const photographerModel = photographerFactory(photographers);
   const userProfileDOM = photographerModel.getUserProfileDOM();
+  const selectedP = photographerModel.getSelectedPhotographerData();
+  console.log(selectedP);
   photographerSection.appendChild(userProfileDOM);
 };  
 
 // Récupération des médias du photographer sélectionné
 async function getSelectedPhotographerMedias(medias) {
   selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
-
+  
   return selectedMedias
 }
 
@@ -79,10 +67,10 @@ async function displayLikesCounter() {
 // initialisation des fonctions asynchrones
 async function init() {
   const photographers = await getPhotographers();
-  getSelectedPhotographerData(photographers);
-  getSelectedPhotographerName(photographer);
-  displayData(photographer);
-
+  displayHeader(photographers);
+  // getSelectedPhotographerData(photographers);
+  // getSelectedPhotographerName(photographer);
+  
   const medias = await getMedias();
   getSelectedPhotographerMedias(medias)
   displayDataMedias(selectedMedias);
@@ -90,3 +78,17 @@ async function init() {
 };
 
 init();
+
+// Récupération de l'objet photographer
+// async function getSelectedPhotographerData(photographers) {
+//   photographer = photographers.filter(p => p.id == idPhotographer)[0];
+
+//   return photographer
+// }
+
+// Récupération du nom du photographer
+// async function getSelectedPhotographerName(photographer) {
+//   photographerName = photographer.name.split(' ')[0];
+  
+//   return photographerName
+// }
