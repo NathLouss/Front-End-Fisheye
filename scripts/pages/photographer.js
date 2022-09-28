@@ -1,6 +1,7 @@
 import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
+import { modalFactory } from "../factories/modalFactory.js"
 
 // déclaration des variables
 let photographer;
@@ -51,6 +52,17 @@ async function displayLikesCounter() {
   const counter = document.querySelector(".totalLikes");
   counter.insertAdjacentHTML("afterbegin", totalLikes);
 };
+
+
+// doit appeler la modale.js et doit injecter le formulaire
+// affichage de la modal via la modalFactory
+displayContactForm(photographer) {
+
+}
+
+// récupère form avec un queryselector
+// appelle la fonction de contactform.js
+// init form(form) ou validateform(form)
 
 // initialisation des fonctions asynchrones
 async function init() {
