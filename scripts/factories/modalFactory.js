@@ -1,5 +1,5 @@
-export function modalFactory(dataMedias) {
-    const { photographerName, title, image, video } = dataMedias;
+export function modalFactory(data) {
+    const { photographerName, title, image, video } = data;
     const picture = `assets/photographers/${photographerName}/${image}`;
     const movie = `assets/photographers/${photographerName}/${video}`;
   
@@ -133,8 +133,8 @@ return (contactContent) */
 }
 
 function getFormCardDOM() { 
-    const formCard = `
-        <div class="contact_content">
+    const formCard = 
+        `<div class="contact_content">
             <header class="header">
                 <div class="header_text">
                     <h2>Contactez-moi</h2>
@@ -162,10 +162,21 @@ function getFormCardDOM() {
                 </div>
             </header>
             <div class="validation">Votre message a bien été envoyé !</div>
-        </div>`;
+        </div>`
+    ;
 
     return formCard;
+}
+
+  // affichage de la modale soit avec le formulaire de contact soit la lightbox
+async function displayModal(elt) {
+  // ouvre le formulaire de contact
+  if (elt.target == contactBtn) {
+    console.log("ok");
   }
+  // // ouvre la lightbox
+  // if (elt.target == ) {}
+};
 
   // enlève le formulaire de la modale
   function hideForm() {

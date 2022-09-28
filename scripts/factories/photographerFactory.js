@@ -4,6 +4,7 @@ export function photographerFactory(data) {
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
+    const photographerName = name.split(' ')[0];
     
     // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
@@ -103,13 +104,11 @@ export function photographerFactory(data) {
     // }
     
     // // Récupération du nom du photographer
-    // function getSelectedPhotographerName() {
-    //     photographerName = name.split(' ')[0];
+    function getSelectedPhotographerName() {
+        return photographerName
+    }
         
-    //     return photographerName
-    // }
-        
-        return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
+        return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM, getSelectedPhotographerName }
     }
     
     // getSelectedPhotographerData, getSelectedPhotographerName 

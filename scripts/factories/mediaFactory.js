@@ -1,5 +1,5 @@
-export function mediaFactory(dataMedias) {
-  const { photographerName, currentPosition, title, image, video, likes, date } = dataMedias;
+export function mediaFactory(data) {
+  const { photographerName, currentPosition, title, image, video, likes, date } = data;
   const picture = `assets/photographers/${photographerName}/${image}`;
   
   function getMediaCardDOM() {
@@ -63,6 +63,13 @@ export function mediaFactory(dataMedias) {
     return (articlePortfolio)
   }
 
-  return { title, image, video, likes, date, getMediaCardDOM }
+  // récupération des médias du photographer sélectionné
+// async function getSelectedPhotographerMedias(medias) {
+//   selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
+  
+//   return selectedMedias
+// }
+
+  return { title, image, video, likes, date, photographerName, currentPosition, getMediaCardDOM }
 }
 

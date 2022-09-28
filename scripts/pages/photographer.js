@@ -3,9 +3,8 @@ import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
 
 // déclaration des variables
-let photographerName;
 let photographer;
-let photographerRate;
+let photographerName;
 let selectedMedias = [];
 let currentPosition = 0;
 let likesArray = [];
@@ -19,32 +18,26 @@ const idPhotographer = urlParams.get('id');
 async function displayHeader(photographers) {
     const photographerSection = document.querySelector(".photographer_header");
     photographer = photographers.find(p => p.id == idPhotographer);
+
     const photographerModel = photographerFactory(photographer);
     const userProfileDOM = photographerModel.getUserProfileDOM();
+    photographerName = photographerModel.getSelectedPhotographerName();
     photographerSection.appendChild(userProfileDOM);
 };  
 
-
-// eécupération des médias du photographer sélectionné
-async function getSelectedPhotographerMedias(medias) {
-  selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
-  
-  return selectedMedias
-}
-
-// affichage des médias dans le portfolio du photographe
-// via la mediaFactory
-async function displayDataMedias(selectedMedias) {
-  const mediasSection = document.querySelector(".photographer_portfolio");
-  
-  selectedMedias.forEach((media) => {
-    currentPosition += 1;
-    media.currentPosition = currentPosition;
-    media.photographerName = photographerName;
-    const mediaModel = mediaFactory(media);
-    const mediaCardDOM = mediaModel.getMediaCardDOM();
-    mediasSection.appendChild(mediaCardDOM);
-  });
+// affichage des médias dans le portfolio du photographe via la mediaFactory
+async function displayDataMedias(medias) {
+    const mediasSection = document.querySelector(".photographer_portfolio");
+    selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
+    
+    selectedMedias.forEach((media) => {
+        currentPosition += 1;
+        media.currentPosition = currentPosition;
+        media.photographerName = photographerName;
+        const mediaModel = mediaFactory(media);
+        const mediaCardDOM = mediaModel.getMediaCardDOM();
+        mediasSection.appendChild(mediaCardDOM);
+    });
 };
 
 // affichage des likes photo dans le compteur
@@ -62,28 +55,11 @@ async function displayLikesCounter() {
 // initialisation des fonctions asynchrones
 async function init() {
   const photographers = await getPhotographers();
-  displayHeader(photographers);
-  // getSelectedPhotographerData(photographers);
-  // getSelectedPhotographerName(photographer);
-  
   const medias = await getMedias();
-  getSelectedPhotographerMedias(medias)
-  displayDataMedias(selectedMedias);
+  displayHeader(photographers);
+  displayDataMedias(medias);
   displayLikesCounter();
 };
 
 init();
-
-// Récupération de l'objet photographer
-// async function getSelectedPhotographerData(photographers) {
-//   photographer = photographers.filter(p => p.id == idPhotographer)[0];
-
-//   return photographer
-// }
-
-// Récupération du nom du photographer
-// async function getSelectedPhotographerName(photographer) {
-//   photographerName = photographer.name.split(' ')[0];
   
-//   return photographerName
-// }
