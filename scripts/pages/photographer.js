@@ -10,27 +10,22 @@ let selectedMedias = [];
 let currentPosition = 0;
 let likesArray = [];
 
-// Récupération de l'id du photographe
+// récupération de l'id du photographe
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get('id');
 
-// affichage du header avec les datas du photographe sélectionné
-// via la photographerFactory
+// affichage du header avec les datas du photographe sélectionné via la photographerFactory
 async function displayHeader(photographers) {
-  const photographerSection = document.querySelector(".photographer_header");
-  
-  // photographerRate = photographer.price;
-  // photographer.photographerName = photographerName;
-  
-  const photographerModel = photographerFactory(photographers);
-  const userProfileDOM = photographerModel.getUserProfileDOM();
-  const selectedP = photographerModel.getSelectedPhotographerData();
-  console.log(selectedP);
-  photographerSection.appendChild(userProfileDOM);
+    const photographerSection = document.querySelector(".photographer_header");
+    photographer = photographers.find(p => p.id == idPhotographer);
+    const photographerModel = photographerFactory(photographer);
+    const userProfileDOM = photographerModel.getUserProfileDOM();
+    photographerSection.appendChild(userProfileDOM);
 };  
 
-// Récupération des médias du photographer sélectionné
+
+// eécupération des médias du photographer sélectionné
 async function getSelectedPhotographerMedias(medias) {
   selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
   
