@@ -4,7 +4,6 @@ export function photographerFactory(data) {
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
-    debugger
     const dataPhotographer = data;
     console.log(dataPhotographer);
 
