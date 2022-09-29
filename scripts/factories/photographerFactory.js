@@ -1,10 +1,11 @@
 export function photographerFactory(data) {
-    const { name, id, city, country, tagline, price, portrait, idP } = data;
+    const { name, id, city, country, tagline, price, portrait } = data;
     const picture = `assets/photographers/IDPhotos/${portrait}`;
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
     const photographerName = name.split(' ')[0];
+    // let contactBtn;
     
     // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
@@ -65,19 +66,12 @@ export function photographerFactory(data) {
         description.textContent = sentence;
         divHeader.appendChild(description);
         
-        const button = document.createElement( 'button' );
-        button.classList.add("contact_button");
-        button.setAttribute("aria-label", "Contactez-moi");
-        // button.addEventListener("click", () => {
-        // //   displayContactModal()
         // debugger
-        //     document.querySelector(".modal").style.display = "block";
-        //     document.querySelector(".contact_container").style.display = "block";
-        //     document.querySelector(".lightbox").style.display = "none";
-        //     displayDataInContactForm(photographer);
-        // })
-        button.textContent = "Contactez-moi";
-        articleHeader.appendChild(button);
+        const contactBtn = document.createElement( 'button' );
+        contactBtn.classList.add("contact_button");
+        contactBtn.setAttribute("aria-label", "Contactez-moi");
+        contactBtn.textContent = "Contactez-moi";
+        articleHeader.appendChild(contactBtn);
         
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
@@ -90,25 +84,20 @@ export function photographerFactory(data) {
         thumbnailRate.textContent = cost;
         thumbnail.appendChild(thumbnailRate);
         
-        return (articleHeader);
+        return [articleHeader, contactBtn]
     }
 
-    // Récupération de l'objet photographer
-    // function getSelectedPhotographerData(id) {
-    //     debugger
-    //     console.log(id);
-    //     console.log(idP);
-    //     photographer = photographers.find(p => p.id == idP);
-    //     console.log(photographer);
-    //     return photographer
-    // }
+    // Récupération de l'id du photographer
+    function getSelectedPhotographerId() {
+
+        return id
+    }
     
-    // // Récupération du nom du photographer
+    // Récupération du nom du photographer
     function getSelectedPhotographerName() {
+
         return photographerName
     }
         
-        return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM, getSelectedPhotographerName }
+        return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM, getSelectedPhotographerName, getSelectedPhotographerId }
     }
-    
-    // getSelectedPhotographerData, getSelectedPhotographerName 

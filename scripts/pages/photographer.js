@@ -9,6 +9,7 @@ let photographerName;
 let selectedMedias = [];
 let currentPosition = 0;
 let likesArray = [];
+let contactBtn;
 
 // récupération de l'id du photographe
 const queryString = window.location.search;
@@ -23,7 +24,8 @@ async function displayHeader(photographers) {
     const photographerModel = photographerFactory(photographer);
     const userProfileDOM = photographerModel.getUserProfileDOM();
     photographerName = photographerModel.getSelectedPhotographerName();
-    photographerSection.appendChild(userProfileDOM);
+    photographerSection.appendChild(userProfileDOM[0]);
+    contactBtn = userProfileDOM[1];
 };  
 
 // affichage des médias dans le portfolio du photographe via la mediaFactory
@@ -43,26 +45,15 @@ async function displayDataMedias(medias) {
 
 // affichage des likes photo dans le compteur
 async function displayLikesCounter() {
-  selectedMedias.forEach((media) => {
-    likesArray.push(media.likes);
-  });
-  
-  const sumLikes = (previousValue, currentValue) => previousValue + currentValue;
-  let totalLikes = likesArray.reduce(sumLikes);
-  const counter = document.querySelector(".totalLikes");
-  counter.insertAdjacentHTML("afterbegin", totalLikes);
+    selectedMedias.forEach((media) => {
+        likesArray.push(media.likes);
+    });
+    
+    const sumLikes = (previousValue, currentValue) => previousValue + currentValue;
+    let totalLikes = likesArray.reduce(sumLikes);
+    const counter = document.querySelector(".totalLikes");
+    counter.insertAdjacentHTML("afterbegin", totalLikes);
 };
-
-
-// doit appeler la modale.js et doit injecter le formulaire
-// affichage de la modal via la modalFactory
-displayContactForm(photographer) {
-
-}
-
-// récupère form avec un queryselector
-// appelle la fonction de contactform.js
-// init form(form) ou validateform(form)
 
 // initialisation des fonctions asynchrones
 async function init() {
@@ -71,7 +62,24 @@ async function init() {
   displayHeader(photographers);
   displayDataMedias(medias);
   displayLikesCounter();
+  
+  contactBtn.addEventListener("click", function(e) {
+      if(e.target.classList.contains("contact_button")) {
+          displayModal();
+      }
+  });
 };
 
 init();
-  
+
+// affichage de la modal via appel de la modalFactory et doit injecter le formulaire
+function displayModal() {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "block";
+};
+
+console.log(contactBtn);
+
+// récupère form avec un queryselector
+// appelle la fonction de contactform.js
+// init form(form) ou validateform(form)
