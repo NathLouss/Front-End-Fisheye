@@ -66,7 +66,6 @@ export function photographerFactory(data) {
         description.textContent = sentence;
         divHeader.appendChild(description);
         
-        // debugger
         const contactBtn = document.createElement( 'button' );
         contactBtn.classList.add("contact_button");
         contactBtn.setAttribute("aria-label", "Contactez-moi");

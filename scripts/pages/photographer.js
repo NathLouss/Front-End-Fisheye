@@ -75,10 +75,17 @@ init();
 // affichage de la modal via appel de la modalFactory et doit injecter le formulaire
 function displayModal() {
     const modal = document.querySelector(".modal");
+    const contactSection = document.querySelector(".contact_container");
     modal.style.display = "block";
+    contactSection.style.display = "block";
+    //   ligthbox.style.display = "none";
+
+    photographer.photographerName = photographerName;
+    const formModel = modalFactory(photographer);
+    const formCardDOM = formModel.getFormCardDOM();
+    contactSection.innerHTML += formCardDOM;
 };
 
-console.log(contactBtn);
 
 // récupère form avec un queryselector
 // appelle la fonction de contactform.js
