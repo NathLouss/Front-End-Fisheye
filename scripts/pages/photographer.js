@@ -2,6 +2,7 @@ import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
 import { modalFactory } from "../factories/modalFactory.js"
+import { validateForm } from "../utils/contactFormB.js"
 
 // déclaration des variables
 let photographer;
@@ -10,6 +11,7 @@ let selectedMedias = [];
 let currentPosition = 0;
 let likesArray = [];
 let contactBtn;
+// let closeForm;
 
 // récupération de l'id du photographe
 const queryString = window.location.search;
@@ -65,17 +67,35 @@ async function init() {
   
   contactBtn.addEventListener("click", function(e) {
       if(e.target.classList.contains("contact_button")) {
-          displayModal();
+        displayContactModal();
       }
   });
+
+    // if (document.querySelector(".photographer_header").innerHTML != ""){
+    //     closeForm.addEventListener("click", function(e) {
+    //         if(e.target.classList.contains("contact_close")) {
+    //             closeContactModal();
+    //         }
+    //     });
+    // }
 };
 
 init();
 
+const modal = document.querySelector(".modal");
+const contactSection = document.querySelector(".contact_container");
+
+// const html = document.querySelector(".photographer_header").innerHTML;
+// if (html != ""){
+//   contactBtn.addEventListener("click", function(e) {
+//       if(e.target.classList.contains("contact_button")) {
+//         displayContactModal();
+//       }
+//   });
+// }
+
 // affichage de la modal via appel de la modalFactory et doit injecter le formulaire
-function displayModal() {
-    const modal = document.querySelector(".modal");
-    const contactSection = document.querySelector(".contact_container");
+function displayContactModal() {
     modal.style.display = "block";
     contactSection.style.display = "block";
     //   ligthbox.style.display = "none";
@@ -83,10 +103,20 @@ function displayModal() {
     photographer.photographerName = photographerName;
     const formModel = modalFactory(photographer);
     const formCardDOM = formModel.getFormCardDOM();
-    contactSection.innerHTML += formCardDOM;
+    contactSection.appendChild(formCardDOM[0]);
+    // closeForm = formCardDOM[1];
 };
+
+// function closeContactModal(e) {
+//     // closeForm = document.querySelector(".contact_close");
+//     modal.style.display = "none";
+//     contactSection.style.display = "none";
+// };
 
 
 // récupère form avec un queryselector
 // appelle la fonction de contactform.js
 // init form(form) ou validateform(form)
+const form = document.querySelector(".form_contact");
+validateForm(form);
+initForm(form);
