@@ -5,7 +5,8 @@ export function photographerFactory(data) {
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
     const photographerName = name.split(' ')[0];
-    // let contactBtn;
+    const modal = document.querySelector(".modal");
+    const contactSection = document.querySelector(".contact_container");
     
     // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
@@ -70,6 +71,11 @@ export function photographerFactory(data) {
         contactBtn.classList.add("contact_button");
         contactBtn.setAttribute("aria-label", "Contactez-moi");
         contactBtn.textContent = "Contactez-moi";
+        contactBtn.addEventListener("click", () => {
+            // displayContactModal()
+            modal.style.display = "block";
+            contactSection.style.display = "block";
+        })
         articleHeader.appendChild(contactBtn);
         
         const img = document.createElement( 'img' );
@@ -83,7 +89,7 @@ export function photographerFactory(data) {
         thumbnailRate.textContent = cost;
         thumbnail.appendChild(thumbnailRate);
         
-        return [articleHeader, contactBtn]
+        return [articleHeader]
     }
 
     // Récupération de l'id du photographer
@@ -97,6 +103,11 @@ export function photographerFactory(data) {
 
         return photographerName
     }
-        
+    
+    // function displayContactModal() {
+    //     modal.style.display = "block";
+    //     contactSection.style.display = "block";
+    // }
+
         return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM, getSelectedPhotographerName, getSelectedPhotographerId }
     }
