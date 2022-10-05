@@ -19,10 +19,10 @@
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: 4% auto;
+    margin: 10% auto;
 }
 
-.contact_container header {
+.contact_content {
     justify-content: space-between;
     align-items: flex-start;
     height: 90px;
@@ -30,18 +30,20 @@
     height: auto;
 }
 
-.contact_container header img {
+.contact_content img {
     cursor: pointer;
 }
 
-.contact_container header h2,
-.contact_container header p {
+.contact_content h2,
+.contact_content p {
     font-size: 64px;
     font-weight: normal;
     margin: 0;
 }
 
-.header_text{
+.contact_header {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 30px;
 }
 
@@ -49,7 +51,6 @@ form {
     display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: flex-start;
 }
 
 form label {
@@ -61,12 +62,10 @@ form div {
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input {
-    width: 96%;
+    width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
@@ -95,6 +94,19 @@ form input {
 
 .formData[data-error-visible="true"] .text-control {
     border: 2px solid #e54858;
+}
+
+.submit_contact {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 #message {

@@ -17,6 +17,10 @@
 // avec le bouton et son listener, le content et son id
 
 
-export function modalFactoryNew() {
-
+export function launchContactModal() {
+    const modal = document.querySelector(".contact_modal");
+    const contactSection = document.querySelector(".contact_container");
+    modal.style.display = "block";
+    contactSection.style.display = "block";
 }
+

@@ -73,23 +73,6 @@ init();
 // contactBtn.addEventListener('click', () => launchModal())
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // window.addEventListener('DOMContentLoaded', () => {
 //     debugger
 //     const contactBtn = document.querySelector(".contact_button");
@@ -125,3 +108,60 @@ init();
 // const form = document.querySelector(".form_contact");
 // validateForm(form);
 // initForm(form);
+
+// function displayContactModal() {
+//     modal.style.display = "block";
+//     contactSection.style.display = "block";
+//     // photographer.photographerName = photographerName;
+//     const formModel = modalFactory(photographer);
+//     const formCardDOM = formModel.getFormCardDOM();
+//     contactSection.appendChild(formCardDOM[0]);
+// }
+
+// // création des éléments HTML du profile(header) photographe
+// function getUserProfileDOMold() {
+//     const articleHeader = document.createElement( 'article' );
+//     articleHeader.classList.add("profile");
+
+//     const divHeader = document.createElement( 'div' );    
+//     divHeader.classList.add("header_text");
+//     articleHeader.appendChild(divHeader);
+
+//     const h2 = document.createElement( 'h2' );    
+//     h2.textContent = name;
+//     divHeader.appendChild(h2);
+
+//     const position = document.createElement( 'p' );
+//     position.textContent = place;
+//     position.classList.add("position");
+//     divHeader.appendChild(position);
+
+//     const description = document.createElement( 'p' );
+//     description.classList.add("description");
+//     description.textContent = sentence;
+//     divHeader.appendChild(description);
+
+//     const contactBtn = document.createElement( 'button' );
+//     contactBtn.classList.add("contact_button");
+//     contactBtn.setAttribute("aria-label", "Contactez-moi");
+//     contactBtn.textContent = "Contactez-moi";
+//     contactBtn.addEventListener("click", () => {
+//         displayContactModal()
+//         // modal.style.display = "block";
+//         // contactSection.style.display = "block";
+//     })
+//     articleHeader.appendChild(contactBtn);
+
+//     const img = document.createElement( 'img' );
+//     img.setAttribute("src", picture);
+//     img.setAttribute("alt", `${name}`);
+//     articleHeader.appendChild(img);
+
+//     const thumbnail = document.querySelector(".photographer_thumbnail");
+//     const thumbnailRate = document.createElement( 'p' );
+//     thumbnailRate.classList.add("thumbnail_rate");
+//     thumbnailRate.textContent = cost;
+//     thumbnail.appendChild(thumbnailRate);
+
+//     return [articleHeader]
+// }

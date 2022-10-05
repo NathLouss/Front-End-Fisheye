@@ -22,9 +22,6 @@
       <div class="photographer_header">
         <article class="profile">
             <div class="header_text">
-              <!-- <h2 class="name"></h2>
-              <p class="position"></p>
-              <p class="description"></p> -->
             </div>
             <button class="contact_button" aria-label="Contactez-moi">Contactez-moi</button>
         </article>
@@ -55,32 +52,34 @@
     <!-- modale formulaire -->
     <div class="contact_modal">
       <div class="contact_container">
-        <header class="header">
-          <div class="header_text">
-            <h2>Contactez-moi</h2>
-            <p></p>
+        <div class="contact_content">
+          <div class="contact_header">
+            <div>
+              <h2>Contactez-moi</h2>
+              <p></p>
+            </div>
             <img src="assets/icons/close.svg" class="contact_close" onclick="closeModal()" />
-            <form class="formContact">
-              <div class="formData" data-error="Veuillez saisir votre prénom.">
-                <label for="firstname">Prénom</label>
-                <input id="firstname" class="text-control" type="text" name="firstname" onchange="isFirstnameValid()"></input>
-              </div>
-              <div class="formData" data-error="Veuillez saisir votre nom.">
-                <label for="lastname">Nom</label>
-                <input id="lastname" class="text-control" type="text" name="lastname"></input>
-              </div>
-              <div class="formData" data-error="Veuillez saisir un email valide.">
-                <label for="email">Email</label>
-                <input id="email" class="text-control" type="email" name="email"></input>
-              </div>
-              <div class="formData" data-error="Veuillez saisir votre message.">
-                <label for="message">Message</label>
-                <input id="message" class="text-control" type="text" name="message"></input>
-              </div>
-              <btn class="contact_button" type="submit">Envoyer</btn>
-            </form>
           </div>
-        </header>
+          <form class="formContact">
+            <div class="formData" data-error="Veuillez saisir votre prénom.">
+              <label for="firstname">Prénom</label>
+              <input id="firstname" class="text-control" type="text" name="firstname" onchange="isFirstnameValid()"></input>
+            </div>
+            <div class="formData" data-error="Veuillez saisir votre nom.">
+              <label for="lastname">Nom</label>
+              <input id="lastname" class="text-control" type="text" name="lastname"></input>
+            </div>
+            <div class="formData" data-error="Veuillez saisir un email valide.">
+              <label for="email">Email</label>
+              <input id="email" class="text-control" type="email" name="email"></input>
+            </div>
+            <div class="formData" data-error="Veuillez saisir votre message.">
+              <label for="message">Message</label>
+              <input id="message" class="text-control" type="text" name="message"></input>
+            </div>
+            <button class="submit_contact" type="submit">Envoyer</button>
+          </form>
+        </div>
         <div class="validation">Votre message a bien été envoyé !</div>
       </div>
     </div>

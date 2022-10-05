@@ -1,7 +1,7 @@
 import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
-import { modalFactory } from "../factories/modalFactory.js"
+import { launchContactModal } from "../utils/modal.js"
 
 // déclaration des variables
 let photographer;
@@ -21,11 +21,11 @@ async function displayDataInHeader(photographers) {
 
     photographer = photographers.find(p => p.id == idPhotographer);
     const photographerModel = photographerFactory(photographer);
+    photographerName = photographerModel.getSelectedPhotographerName();
 
     photographerModel.insertDataInHeader();
     const imgDOM = photographerModel.insertPhotoInHeader();
     headerSection.appendChild(imgDOM);
-
 };  
 
 // affichage des médias dans le portfolio du photographe via la mediaFactory
@@ -68,8 +68,8 @@ async function init() {
 init();
 
 
-// const contactBtn = document.querySelector('.contact_button');
-// contactBtn.addEventListener('click', () => launchModal())
+const contactBtn = document.querySelector('.contact_button');
+contactBtn.addEventListener('click', () => launchContactModal())
 
 
 
