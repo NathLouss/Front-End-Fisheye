@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fisheye - photographe </title>
+    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png">
+    <script src="https://kit.fontawesome.com/9d010d1a2f.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" title="Logo Fisheye" /></a>
+    </header>
+    <main id="main">
+      <div class="photographer_header">
+      </div>
+      <div class="portfolio_filter">
+        <span class="filter_title">Trier par</span>
+        <button id="filter" role="button" aria-label="Trier par" aria-haspopup="listbox">Popularité</button>
+        <ul id="filter_list" role="listbox">
+          <li class="list_option" role="option" id="popularity" data-property="likes">Popularité</li>
+          <li class="list_option" role="option" id="date" data-property="date">Date</li>
+          <li class="list_option" role="option" id="title" data-property="title">Titre</li>
+        </ul>
+      </div>
+      <div class="photographer_portfolio">
+      </div>
+      <div class="photographer_thumbnail">
+        <div>
+          <p class="totalLikes"></p>
+          <i class="fas fa-heart"></i>
+        </div>
+      </div>
+      <div class="modal">
+        <div class="contact_container">
+        </div>
+        <div class="lightbox">
+          <img src="assets/icons/red-cross.png" class="svg_cross" onclick="closeLightboxModal()" aria-label="Ferme la fenêtre" />
+          <div class="lightbox_container">
+            <a class="prev" onclick="plusSlides(-1)" aria-label="Image précédente"><</a>
+            <a class="next" onclick="plusSlides(1)" aria-label="Image suivante">></a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="scripts/pages/photographer.js"></script>
+    <script type="module" src="scripts/utils/contactFormB.js"></script>
+    <script type="module"src="scripts/utils/lightbox.js"></script>
+    <script src="scripts/utils/dropDown.js"></script>
+    <!-- <script type="module" src="scripts/main.js"></script> -->
+    <!-- <script src="scripts/factories/photographerFactory.js"></script>
+    <script src="scripts/factories/mediaFactory.js"></script> -->
+    <!-- <script type="module" src="scripts/factories/modalFactory.js"></script> -->
+    <!-- <script type="module" src="scripts/pages/media.js"></script> -->
+  </body>
+</html> 

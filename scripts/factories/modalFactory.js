@@ -3,6 +3,22 @@ export function modalFactory(data) {
     const picture = `assets/photographers/${photographerName}/${image}`;
     const movie = `assets/photographers/${photographerName}/${video}`;
   
+    // // check si l'input prénom est valide et renvoi si message erreur ou non
+    function isFirstnameValid() {
+      const firstname = document.getElementById("firstname");
+      let firstnameValue = firstname.value.trim();
+      if (firstnameValue != "") {
+        const regex = /[A-Za-z0-9]{2,}/;
+        if (regex.test(firstnameValue)) {
+          return hideError(firstname.parentNode);
+        } 
+        
+        return showError(firstname.parentNode)
+      }
+      
+      return showError(firstname.parentNode)
+    }
+
     function getFormCardDOM() { 
         const contactContent = document.createElement( 'div' );
         contactContent.classList.add("contact_content");
@@ -26,17 +42,17 @@ export function modalFactory(data) {
         const icon = document.createElement( 'img' );
         icon.setAttribute("src", "assets/icons/close.svg");
         icon.classList.add("contact_close");
-        // icon.addEventListener("click", () => {
-        //   modal.style.display = "none";
-        //   // closeContactModal()
-        // })
+        icon.addEventListener("click", () => {
+          modal.style.display = "none";
+          // closeContactModal()
+        })
         header.appendChild(icon);
 
         const form = document.createElement( 'form' );
         form.classList.add("formContact");
-        // form.addEventListener("submit", (elt) => {
-        //   validateForm(elt)
-        // })
+        form.addEventListener("submit", (elt) => {
+          validateForm(elt)
+        })
         contactContent.appendChild(form);
         
         const firstnameDiv = document.createElement( 'div' );
@@ -54,9 +70,9 @@ export function modalFactory(data) {
         firstnameInput.setAttribute("type", "text");
         firstnameInput.setAttribute("id", "firstname");
         firstnameInput.setAttribute("name", "firstname");
-        // firstnameInput.addEventListener("blur", () => {
-        //   isFirstnameValid()
-        // })
+        firstnameInput.addEventListener("blur", () => {
+          isFirstnameValid()
+        })
         firstnameDiv.appendChild(firstnameInput);
 
         const lastnameDiv = document.createElement( 'div' );
@@ -74,9 +90,9 @@ export function modalFactory(data) {
         lastnameInput.setAttribute("type", "text");
         lastnameInput.setAttribute("id", "lastname");
         lastnameInput.setAttribute("name", "lastname");
-        // lastnameInput.addEventListener("blur", () => {
-        //   isLastnameValid()
-        // })
+        lastnameInput.addEventListener("blur", () => {
+          isLastnameValid()
+        })
         lastnameDiv.appendChild(lastnameInput);
         
         const emailDiv = document.createElement( 'div' );
@@ -94,9 +110,9 @@ export function modalFactory(data) {
         emailInput.setAttribute("type", "email");
         emailInput.setAttribute("id", "email");
         emailInput.setAttribute("name", "email");
-        // emailInput.addEventListener("blur", () => {
-        //   isEmailValid()
-        // })
+        emailInput.addEventListener("blur", () => {
+          isEmailValid()
+        })
         emailDiv.appendChild(emailInput);
         
         const messageDiv = document.createElement( 'div' );
@@ -114,9 +130,9 @@ export function modalFactory(data) {
         messageInput.setAttribute("type", "text");
         messageInput.setAttribute("id", "message");
         messageInput.setAttribute("name", "message");
-        // messageInput.addEventListener("blur", () => {
-        //   isMessageValid()
-        // })
+        messageInput.addEventListener("blur", () => {
+          isMessageValid()
+        })
         messageDiv.appendChild(messageInput); 
         const submit = document.createElement( 'button' );
         submit.classList.add("contact_button");

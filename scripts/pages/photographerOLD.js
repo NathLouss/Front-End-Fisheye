@@ -2,6 +2,7 @@ import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
 import { modalFactory } from "../factories/modalFactory.js"
+// import { validateForm } from "../utils/contactFormB.js"
 
 // déclaration des variables
 let photographer;
@@ -9,29 +10,29 @@ let photographerName;
 let selectedMedias = [];
 let currentPosition = 0;
 let likesArray = [];
+// let contactBtn;
+// let closeForm;
 
 // récupération de l'id du photographe
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get('id');
 
-// insertion des informations du photographe sélectionné via la photographerFactory
-async function displayDataInHeader(photographers) {
-    const headerSection = document.querySelector('.profile');
-
+// affichage du header avec les datas du photographe sélectionné via la photographerFactory
+async function displayHeader(photographers) {
+    const photographerSection = document.querySelector(".photographer_header");
     photographer = photographers.find(p => p.id == idPhotographer);
+
     const photographerModel = photographerFactory(photographer);
-
-    photographerModel.insertDataInHeader();
-    const imgDOM = photographerModel.insertPhotoInHeader();
-    headerSection.appendChild(imgDOM);
-
+    const userProfileDOM = photographerModel.getUserProfileDOM();
+    photographerName = photographerModel.getSelectedPhotographerName();
+    photographerSection.appendChild(userProfileDOM[0]);
+    contactBtn = userProfileDOM[1];
 };  
 
 // affichage des médias dans le portfolio du photographe via la mediaFactory
 async function displayDataMedias(medias) {
     const mediasSection = document.querySelector(".photographer_portfolio");
-
     selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
     
     selectedMedias.forEach((media) => {
@@ -60,7 +61,7 @@ async function displayLikesCounter() {
 async function init() {
   const photographers = await getPhotographers();
   const medias = await getMedias();
-  displayDataInHeader(photographers);
+  displayHeader(photographers);
   displayDataMedias(medias);
   displayLikesCounter();
 };

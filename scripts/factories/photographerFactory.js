@@ -5,9 +5,36 @@ export function photographerFactory(data) {
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
     const photographerName = name.split(' ')[0];
-    const modal = document.querySelector(".modal");
-    const contactSection = document.querySelector(".contact_container");
     
+    // récupération du nom et prénom du photographe
+    function insertDataInHeader() {
+        const headerText = document.querySelector('.header_text')
+
+        const h2 = document.createElement( 'h2' );    
+        h2.textContent = name;
+        headerText.appendChild(h2);
+        
+        const position = document.createElement( 'p' );
+        position.textContent = place;
+        position.classList.add("position");
+        headerText.appendChild(position);
+        
+        const description = document.createElement( 'p' );
+        description.classList.add("description");
+        description.textContent = sentence;
+        headerText.appendChild(description);
+
+        return headerText
+    }
+
+    function insertPhotoInHeader() {
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", `${name}`);
+  
+        return img
+    }
+
     // création des éléments HTML de la carte(article) photographe
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
@@ -45,7 +72,7 @@ export function photographerFactory(data) {
     }
     
     // création des éléments HTML du profile(header) photographe
-    function getUserProfileDOM() {
+    function getUserProfileDOMold() {
         const articleHeader = document.createElement( 'article' );
         articleHeader.classList.add("profile");
         
@@ -72,9 +99,9 @@ export function photographerFactory(data) {
         contactBtn.setAttribute("aria-label", "Contactez-moi");
         contactBtn.textContent = "Contactez-moi";
         contactBtn.addEventListener("click", () => {
-            // displayContactModal()
-            modal.style.display = "block";
-            contactSection.style.display = "block";
+            displayContactModal()
+            // modal.style.display = "block";
+            // contactSection.style.display = "block";
         })
         articleHeader.appendChild(contactBtn);
         
@@ -92,22 +119,27 @@ export function photographerFactory(data) {
         return [articleHeader]
     }
 
-    // Récupération de l'id du photographer
+    // récupération de l'id du photographer
     function getSelectedPhotographerId() {
 
         return id
     }
     
-    // Récupération du nom du photographer
+    // récupération du prénom du photographer
     function getSelectedPhotographerName() {
 
         return photographerName
     }
     
-    // function displayContactModal() {
+        return { name, id, picture, place, sentence, cost, getUserCardDOM, insertDataInHeader, insertPhotoInHeader, getSelectedPhotographerName, getSelectedPhotographerId }
+    }
+
+
+        // function displayContactModal() {
     //     modal.style.display = "block";
     //     contactSection.style.display = "block";
+    //     // photographer.photographerName = photographerName;
+    //     const formModel = modalFactory(photographer);
+    //     const formCardDOM = formModel.getFormCardDOM();
+    //     contactSection.appendChild(formCardDOM[0]);
     // }
-
-        return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM, getSelectedPhotographerName, getSelectedPhotographerId }
-    }
