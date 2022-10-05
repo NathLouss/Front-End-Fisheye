@@ -1,7 +1,7 @@
 import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
-import { launchContactModal } from "../utils/modal.js"
+import { launchContactModal, closeContactModal } from "../utils/modal.js"
 
 // déclaration des variables
 let photographer;
@@ -69,58 +69,10 @@ init();
 
 
 const contactBtn = document.querySelector('.contact_button');
-contactBtn.addEventListener('click', () => launchContactModal())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+contactBtn.addEventListener('click', () => launchContactModal(photographer));
+// debugger
 
 // window.addEventListener('DOMContentLoaded', () => {
-//     debugger
-//     const contactBtn = document.querySelector(".contact_button");
-//     contactBtn.addEventListener("click", () => {
-//         displayContactModal()
-//     });
-// })
-
-// const modal = document.querySelector(".modal");
-// const contactSection = document.querySelector(".contact_container");
-
-// affichage de la modal via appel de la modalFactory et doit injecter le formulaire
-// function launchContactModal() {
-//     //   ligthbox.style.display = "none";
-
-//     photographer.photographerName = photographerName;
-//     const formModel = modalFactory(photographer);
-//     const formCardDOM = formModel.getFormCardDOM();
-//     contactSection.appendChild(formCardDOM[0]);
-//     // closeForm = formCardDOM[1];
-// };
-
-// function closeContactModal(e) {
-//     // closeForm = document.querySelector(".contact_close");
-//     modal.style.display = "none";
-//     contactSection.style.display = "none";
-// };
-
-
-// récupère form avec un queryselector
-// appelle la fonction de contactform.js
-// init form(form) ou validateform(form)
-// const form = document.querySelector(".form_contact");
-// validateForm(form);
-// initForm(form);
+// const btnClose = document.querySelector('.contact_close');
+// btnClose.addEventListener("click", closeContactModal());
+// }
