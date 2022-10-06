@@ -1,7 +1,7 @@
 import { getPhotographers, getMedias } from "../database/services.js"
 import { photographerFactory } from "../factories/photographerFactory.js"
 import { mediaFactory } from "../factories/mediaFactory.js"
-import { launchContactModal, closeContactModal } from "../utils/modal.js"
+import { launchContactModal } from "../utils/modal.js"
 
 // déclaration des variables
 let photographer;
@@ -67,12 +67,6 @@ async function init() {
 
 init();
 
-
+// lancement de la modale
 const contactBtn = document.querySelector('.contact_button');
 contactBtn.addEventListener('click', () => launchContactModal(photographer));
-// debugger
-
-// window.addEventListener('DOMContentLoaded', () => {
-// const btnClose = document.querySelector('.contact_close');
-// btnClose.addEventListener("click", closeContactModal());
-// }
