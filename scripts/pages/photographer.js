@@ -18,6 +18,7 @@ const idPhotographer = urlParams.get('id');
 // insertion des informations du photographe sélectionné via la photographerFactory
 async function displayDataInHeader(photographers) {
     const headerSection = document.querySelector('.profile');
+    const thumbnail = document.querySelector('.photographer_thumbnail')
 
     photographer = photographers.find(p => p.id == idPhotographer);
     const photographerModel = photographerFactory(photographer);
@@ -26,6 +27,8 @@ async function displayDataInHeader(photographers) {
     photographerModel.insertDataInHeader();
     const imgDOM = photographerModel.insertPhotoInHeader();
     headerSection.appendChild(imgDOM);
+    const rateDOM = photographerModel.insertRateInThumbnail();
+    thumbnail.appendChild(rateDOM);
 };  
 
 // affichage des médias dans le portfolio du photographe via la mediaFactory

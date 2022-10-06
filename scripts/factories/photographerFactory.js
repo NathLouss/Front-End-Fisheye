@@ -72,6 +72,14 @@ export function photographerFactory(data) {
         return img
     }
 
+    // création de l'élément HTML rate
+    function insertRateInThumbnail() {
+        const rate = document.createElement('p');
+        rate.textContent = cost;
+ 
+        return rate
+    }
+
     // récupération de l'id du photographer
     function getSelectedPhotographerId() {
 
@@ -84,5 +92,5 @@ export function photographerFactory(data) {
         return photographerName
     }
     
-        return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, getSelectedPhotographerName, getSelectedPhotographerId }
+        return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, insertRateInThumbnail, getSelectedPhotographerName, getSelectedPhotographerId }
     }
