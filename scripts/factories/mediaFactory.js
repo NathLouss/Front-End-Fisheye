@@ -1,6 +1,9 @@
+import { openLightboxModal } from '../utils/lightbox.js'
+
 export function mediaFactory(data) {
   const { photographerName, currentPosition, title, image, video, likes, date } = data;
   const picture = `assets/photographers/${photographerName}/${image}`;
+  const movie = `assets/photographers/${photographerName}/${video}`;
   
   function getMediaCardDOM() {
     const articlePortfolio = document.createElement( 'article' );
@@ -9,11 +12,8 @@ export function mediaFactory(data) {
       const img = document.createElement( 'img' );
       img.setAttribute('src', picture);
       img.addEventListener('click', () => {
+        openLightboxModal()
         // openLightboxModal(currentPosition)
-        document.querySelector('.modal').style.display = 'block';
-        document.querySelector('.lightbox').style.display = 'block';
-        document.querySelector('.contact_container').style.display = 'none';
-        currentSlide(currentPosition);
       })
       img.setAttribute('aria-label', `${title}, closeup view`);
       img.setAttribute('title', title);
@@ -63,13 +63,42 @@ export function mediaFactory(data) {
     return (articlePortfolio)
   }
 
-  // récupération des médias du photographer sélectionné
-// async function getSelectedPhotographerMedias(medias) {
-//   selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
-  
-//   return selectedMedias
-// }
-
-  return { title, image, video, likes, date, photographerName, currentPosition, getMediaCardDOM }
+  function getLightboxCardDOM() { 
+    const slideContent = document.createElement( 'div' );
+    slideContent.classList.add("slide");
+        if (image !== undefined && image !== null) {
+          const img = document.createElement( 'img' );
+          img.setAttribute("src", picture);
+          img.classList.add("slideImg");
+          img.setAttribute("alt", "");
+          img.setAttribute("title", title);
+          slideContent.appendChild(img);
+        } else if (video !== undefined && video !== null) {
+          const mp4 = document.createElement( 'video' );
+          mp4.setAttribute("title", title);
+          mp4.setAttribute("controls", "true");
+          mp4.classList.add("slideVideo");
+          const src = document.createElement( 'source' );
+          src.setAttribute("src", movie);
+          src.setAttribute("type", "video/mp4");
+          mp4.appendChild(src);
+          slideContent.appendChild(mp4);
+        }
+    const titleImg = document.createElement( 'p' );
+    titleImg.textContent = title;
+    slideContent.appendChild(titleImg);
+      
+    return (slideContent)
 }
 
+
+return { title, image, video, likes, date, photographerName, currentPosition, getMediaCardDOM, getLightboxCardDOM }
+}
+
+
+// récupération des médias du photographer sélectionné
+// async function getSelectedPhotographerMedias(medias) {
+//   selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
+
+//   return selectedMedias
+// }

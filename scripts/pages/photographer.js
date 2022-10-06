@@ -73,3 +73,19 @@ init();
 // lancement de la modale
 const contactBtn = document.querySelector('.contact_button');
 contactBtn.addEventListener('click', () => launchContactModal(photographer));
+
+// affichage des medias du photographe sélectionné dans la lightbox via la modalFactory
+export function displayMediasInLightbox(selectedMedias) {
+  const mediasSection = document.querySelector('.lightbox_content');
+  console.log(selectedMedias);
+  debugger
+//   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+  
+  selectedMedias.forEach((media) => {
+    media.photographerName = photographerName;
+    media.currentPosition = currentPosition;
+    const mediaModel = mediaFactory(media);
+    const mediaCardDOM = mediaModel.getLightboxCardDOM();
+    mediasSection.appendChild(mediaCardDOM);
+  });
+};

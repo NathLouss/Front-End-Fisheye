@@ -6,7 +6,7 @@ export function photographerFactory(data) {
     const cost = `${price}€ / jour`;
     const photographerName = name.split(' ')[0];
     
-    // création des éléments HTML de la carte(article) photographe
+    // création des éléments HTML de la carte(article/page index) photographe
     function getUserCardDOM() {
         const article = document.createElement('article');
         
