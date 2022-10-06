@@ -1,7 +1,7 @@
-import { getPhotographers, getMedias } from "../database/services.js"
-import { photographerFactory } from "../factories/photographerFactory.js"
-import { mediaFactory } from "../factories/mediaFactory.js"
-import { launchContactModal } from "../utils/modal.js"
+import { getPhotographers, getMedias } from '../database/services.js'
+import { photographerFactory } from '../factories/photographerFactory.js'
+import { mediaFactory } from '../factories/mediaFactory.js'
+import { launchContactModal } from '../utils/modal.js'
 
 // déclaration des variables
 let photographer;
@@ -30,7 +30,7 @@ async function displayDataInHeader(photographers) {
 
 // affichage des médias dans le portfolio du photographe via la mediaFactory
 async function displayDataMedias(medias) {
-    const mediasSection = document.querySelector(".photographer_portfolio");
+    const mediasSection = document.querySelector('.photographer_portfolio');
 
     selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
     
@@ -52,8 +52,8 @@ async function displayLikesCounter() {
     
     const sumLikes = (previousValue, currentValue) => previousValue + currentValue;
     let totalLikes = likesArray.reduce(sumLikes);
-    const counter = document.querySelector(".totalLikes");
-    counter.insertAdjacentHTML("afterbegin", totalLikes);
+    const counter = document.querySelector('.totalLikes');
+    counter.insertAdjacentHTML('afterbegin', totalLikes);
 };
 
 // initialisation des fonctions asynchrones
