@@ -2,6 +2,7 @@ import { getPhotographers, getMedias } from '../database/services.js'
 import { photographerFactory } from '../factories/photographerFactory.js'
 import { mediaFactory } from '../factories/mediaFactory.js'
 import { launchContactModal } from '../utils/modal.js'
+import { openLightboxModal } from '../utils/lightbox.js'
 
 // déclaration des variables
 let photographer;
@@ -70,22 +71,40 @@ async function init() {
 
 init();
 
+
+//------------------------------------------------------------------------------------------
 // lancement de la modale
 const contactBtn = document.querySelector('.contact_button');
 contactBtn.addEventListener('click', () => launchContactModal(photographer));
 
+//------------------------------------------------------------------------------------------
+// export { selectedMedias }
+
+
+//------------------------------------------------------------------------------------------
+// lancement de la lightbox
+debugger
+const mamediaFactory = mediaFactory(openLightboxModal());
+// console.log(mamediaFactory);
+// const portfolio = document.querySelector('.photographer_portfolio');
+// if (portfolio.textContent != '  ') {
+//   const lightboxBtn = document.querySelector('.lightboxBtn');
+//   const x = articlePortfolio;
+//   lightboxBtn.addEventListener('click', () => openLightboxModal(selectedMedias));
+// } 
+
 // affichage des medias du photographe sélectionné dans la lightbox via la modalFactory
-export function displayMediasInLightbox(selectedMedias) {
-  const mediasSection = document.querySelector('.lightbox_content');
-  console.log(selectedMedias);
-  debugger
-//   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+// function displayMediasInLightbox(selectedMedias) {
+//   const mediasSection = document.querySelector('.lightbox_content');
+//   console.log(selectedMedias);
+//   debugger
+// //   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
   
-  selectedMedias.forEach((media) => {
-    media.photographerName = photographerName;
-    media.currentPosition = currentPosition;
-    const mediaModel = mediaFactory(media);
-    const mediaCardDOM = mediaModel.getLightboxCardDOM();
-    mediasSection.appendChild(mediaCardDOM);
-  });
-};
+//   selectedMedias.forEach((media) => {
+//     media.photographerName = photographerName;
+//     media.currentPosition = currentPosition;
+//     const mediaModel = mediaFactory(media);
+//     const mediaCardDOM = mediaModel.getLightboxCardDOM();
+//     mediasSection.appendChild(mediaCardDOM);
+//   });
+// };

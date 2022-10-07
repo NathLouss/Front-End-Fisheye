@@ -1,13 +1,15 @@
-import { displayMediasInLightbox } from '../pages/photographer.js'
+// import { mediaFactory } from '../factories/mediaFactory.js';
+// import { selectedMedias } from '../pages/photographer.js'
+// const mamediaFactory = mediaFactory();
 
 // récupération éléments du DOM
 const lightbox = document.querySelector('.lightbox');
 const lightboxContainer = document.querySelector('.lightbox_container');
-const lightboxContent = document.querySelector('.lightbox_content');
 const closeBtn = document.querySelector('.svg_cross');
 
-// lancement de la lightbox
+// // lancement de la lightbox
 export function openLightboxModal() {
+    debugger
     lightbox.style.display = 'block';
     lightboxContainer.style.display = 'block';
     displayMediasInLightbox();
@@ -20,8 +22,37 @@ function closeLightbox(){
     lightboxContainer.style.display = 'none';
 }
 
+// création des boutons défilement 
+function getLightboxBtn() {
+    
+}
+
 // eventlistener
 closeBtn.addEventListener('click', closeLightbox);
+
+
+// affichage des medias du photographe sélectionné dans la lightbox via la modalFactory
+function displayMediasInLightbox() {
+    const mediasSection = document.querySelector('.lightbox_container');
+    // const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
+    console.log(selectedMedias);
+    selectedMedias.forEach((media) => {
+      media.photographerName = photographerName;
+      media.currentPosition = currentPosition;
+      const mediaModel = mediaFactory(media);
+      const mediaCardDOM = mediaModel.getLightboxCardDOM();
+      mediasSection.appendChild(mediaCardDOM);
+    });
+  };
+  
+//   async function init() {
+//     const medias = await getMedias();
+//     displayMediasInLightbox(medias);
+//   };
+  
+//   init();
+
+
 
 // défilement de la Lightbox
 // let slideIndex = 1;
@@ -51,23 +82,5 @@ closeBtn.addEventListener('click', closeLightbox);
 // }
 
 
-// // affichage des medias du photographe sélectionné dans la lightbox via la modalFactory
-// function displayMediasInLightbox(medias) {
-//   const mediasSection = document.querySelector('.lightbox_container');
-//   const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
-  
-//   selectedMedias.forEach((media) => {
-//     media.photographerName = photographerName;
-//     media.currentPosition = currentPosition;
-//     const mediaModel = mediaFactory(media);
-//     const mediaCardDOM = mediaModel.getLightboxCardDOM();
-//     mediasSection.appendChild(mediaCardDOM);
-//   });
-// };
 
-// async function init() {
-//   const medias = await getMedias();
-//   displayMediasInLightbox(medias);
-// };
 
-// init();
