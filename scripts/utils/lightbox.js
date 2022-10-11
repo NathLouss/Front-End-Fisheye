@@ -1,4 +1,4 @@
-// import { mediaFactory } from '../factories/mediaFactory.js';
+import { mediaFactory } from '../factories/mediaFactory.js';
 // import { selectedMedias } from '../pages/photographer.js'
 // const mamediaFactory = mediaFactory();
 
@@ -8,18 +8,20 @@ const lightboxContainer = document.querySelector('.lightbox_container');
 const closeBtn = document.querySelector('.svg_cross');
 
 // // lancement de la lightbox
-export function openLightboxModal() {
-    debugger
-    lightbox.style.display = 'block';
-    lightboxContainer.style.display = 'block';
-    displayMediasInLightbox();
-    // currentSlide(currentPosition);
+export function openLightboxModal(currentPosition, selectedMedias) {
+  lightbox.style.display = 'block';
+  lightboxContainer.style.display = 'block';
+  displayMediasInLightbox(selectedMedias);
+  debugger
+  currentSlide(currentPosition);
+  plusSlides();
+  showSlides()
 }
 
 // fermeture de la lightbox
 function closeLightbox(){
-    lightbox.style.display = 'none';
-    lightboxContainer.style.display = 'none';
+  lightbox.style.display = 'none';
+  lightboxContainer.style.display = 'none';
 }
 
 // création des boutons défilement 
@@ -32,26 +34,17 @@ closeBtn.addEventListener('click', closeLightbox);
 
 
 // affichage des medias du photographe sélectionné dans la lightbox via la modalFactory
-function displayMediasInLightbox() {
-    const mediasSection = document.querySelector('.lightbox_container');
-    // const selectedMedias = medias.filter(media => media.photographerId == `${idPhotographer}`);
-    console.log(selectedMedias);
-    selectedMedias.forEach((media) => {
-      media.photographerName = photographerName;
-      media.currentPosition = currentPosition;
-      const mediaModel = mediaFactory(media);
-      const mediaCardDOM = mediaModel.getLightboxCardDOM();
-      mediasSection.appendChild(mediaCardDOM);
-    });
-  };
-  
-//   async function init() {
-//     const medias = await getMedias();
-//     displayMediasInLightbox(medias);
-//   };
-  
-//   init();
+function displayMediasInLightbox(selectedMedias) {
+  const mediasSection = document.querySelector('.slides_list');
 
+  selectedMedias.forEach((media) => {
+    // media.photographerName = photographerName;
+    // media.currentPosition = currentPosition;
+    const mediaModel = mediaFactory(media);
+    const mediaCardDOM = mediaModel.getLightboxCardDOM();
+    mediasSection.appendChild(mediaCardDOM);
+  });
+};
 
 
 // défilement de la Lightbox

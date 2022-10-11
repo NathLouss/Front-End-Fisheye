@@ -1,5 +1,3 @@
-// import { openLightboxModal } from '../utils/lightbox.js'
-
 export function mediaFactory(data) {
   const { photographerName, currentPosition, title, image, video, likes, date } = data;
   const picture = `assets/photographers/${photographerName}/${image}`;
@@ -8,22 +6,17 @@ export function mediaFactory(data) {
   // renvoi l'élément HTML d'un media pour le portfolio
   function getMediaCardDOM() {
     const articlePortfolio = document.createElement('article');
-    articlePortfolio.classList.add('lightboxBtn');
 
-    // const anchor = document.createElement('a');
-    // anchor.classList.add('lightboxBtn');
-    // articlePortfolio.appendChild(anchor);
+    const anchor = document.createElement('a');
+    anchor.classList.add('lightboxBtn');
+    articlePortfolio.appendChild(anchor);
 
     if (image !== undefined && image !== null) {
       const img = document.createElement('img');
       img.setAttribute('src', picture);
-      // img.addEventListener('click', () => {
-      //   openLightboxModal()
-      //   // openLightboxModal(currentPosition)
-      // })
       img.setAttribute('aria-label', `${title}, closeup view`);
       img.setAttribute('title', title);
-      articlePortfolio.appendChild(img);
+      anchor.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const capture = `assets/photographers/${photographerName}/${video.replace('mp4','png')}`;
       const mp4 = document.createElement( 'video' );
@@ -31,14 +24,11 @@ export function mediaFactory(data) {
       mp4.setAttribute('poster', capture);
       mp4.setAttribute('title', title);
       mp4.setAttribute('aria-label', `${title}, closeup view`);
-      // mp4.addEventListener('click', () => {
-      //   openLightboxModal(currentPosition)
-      // })
       const src = document.createElement('source');
       src.setAttribute('src', `assets/photographers/${photographerName}/${video}`);
       src.setAttribute('type', 'video/mp4');
       mp4.appendChild(src);
-      articlePortfolio.appendChild(mp4);
+      anchor.appendChild(mp4);
     }
 
     const divPortfolioText = document.createElement('div');    
@@ -66,12 +56,7 @@ export function mediaFactory(data) {
     })
     divLike.appendChild(icon);
 
-    articlePortfolio.addEventListener('click', () => {
-      openLightboxModal()
-      // openLightboxModal(currentPosition)
-    });
-
-    return (articlePortfolio)
+    return { articlePortfolio, anchor }
   }
 
   // renvoi l'élément HTML d'un media pour la lightbox
