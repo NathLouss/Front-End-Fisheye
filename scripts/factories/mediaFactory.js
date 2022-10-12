@@ -61,7 +61,7 @@ export function mediaFactory(data) {
 
   // renvoi l'élément HTML d'un media pour la lightbox
   function getLightboxCardDOM() { 
-    const slideContent = document.createElement('div');
+    const slideContent = document.createElement('li');
     slideContent.classList.add("slide");
         if (image !== undefined && image !== null) {
           const img = document.createElement('img');

@@ -12,10 +12,9 @@ export function openLightboxModal(currentPosition, selectedMedias) {
   lightbox.style.display = 'block';
   lightboxContainer.style.display = 'block';
   displayMediasInLightbox(selectedMedias);
-  debugger
   currentSlide(currentPosition);
-  plusSlides();
-  showSlides()
+  showSlides(slideIndex);
+  plusSlides(n)
 }
 
 // fermeture de la lightbox
@@ -48,31 +47,31 @@ function displayMediasInLightbox(selectedMedias) {
 
 
 // défilement de la Lightbox
-// let slideIndex = 1;
+let slideIndex = 1;
 // showSlides(slideIndex);
 
-// function plusSlides(n) {
-//     showSlides(slideIndex += n);
-// }
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
 
-// function currentSlide(n) {
-//     showSlides(slideIndex = n);
-// }
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
 
-// function showSlides(n) {
-//     var i;
-//     var slides = document.getElementsByClassName('slide');
-//     if (n > slides.length) {
-//         slideIndex = 1
-//     }
-//     if (n < 1) {
-//         slideIndex = slides.length
-//     }
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = 'none';
-//     }
-//     slides[slideIndex-1].style.display = 'flex';
-// }
+function showSlides(n) {
+    let i;
+    var slides = document.getElementsByClassName('slide');
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+    }
+    slides[slideIndex-1].style.display = 'flex';
+}
 
 
 
