@@ -1,15 +1,24 @@
 .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+}
+
+.lightbox_container {
     position: relative;
     display: none;
-    border-radius: 5px;
-    background-color: #ffffff;
     width: 80%;
     flex-direction: column;
     padding: 35px;
     margin: 4% auto;
 }
 
-.lightbox_container {
+.lightbox_content {
     margin-top: 70px;
 }
 

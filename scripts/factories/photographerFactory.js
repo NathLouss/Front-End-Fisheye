@@ -4,92 +4,93 @@ export function photographerFactory(data) {
     const place = `${city}, ${country}`;
     const sentence = `${tagline}`;
     const cost = `${price}€ / jour`;
-
-    // création des éléments HTML de la carte(article) photographe
+    const photographerName = name.split(' ')[0];
+    
+    // création des éléments HTML de la carte(article/page index) photographe
     function getUserCardDOM() {
-        const article = document.createElement( 'article' );
+        const article = document.createElement('article');
         
-        const link = document.createElement( 'a' );
-        link.setAttribute("href", `photographer.html?id=${id}`);
-        link.setAttribute("aria-label", `${name}`);
+        const link = document.createElement('a');
+        link.setAttribute('href', `photographer.html?id=${id}`);
+        link.setAttribute('aria-label', `${name}`);
         article.appendChild(link);
-
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", "");
+        
+        const img = document.createElement('img');
+        img.setAttribute('src', picture);
+        img.setAttribute('alt', '');
         link.appendChild(img);
-
-        const h2 = document.createElement( 'h2' );    
+        
+        const h2 = document.createElement('h2');    
         h2.textContent = name;
         link.appendChild(h2);
-
-        const position = document.createElement( 'p' );
+        
+        const position = document.createElement('p');
         position.textContent = place;
-        position.classList.add("position");
+        position.classList.add('position');
         article.appendChild(position);
         
-        const description = document.createElement( 'p' );
-        description.classList.add("description");
+        const description = document.createElement('p');
+        description.classList.add('description');
         description.textContent = sentence;
         article.appendChild(description);
         
-        const rate = document.createElement( 'p' );
-        rate.classList.add("rate");
+        const rate = document.createElement('p');
+        rate.classList.add('rate');
         rate.textContent = cost;
         article.appendChild(rate);
-
-        return (article);
-    }
-
-    // création des éléments HTML du profile(header) photographe
-    function getUserProfileDOM() {
-        const articleHeader = document.createElement( 'article' );
-        articleHeader.classList.add("profile");
-
-        const divHeader = document.createElement( 'div' );    
-        divHeader.classList.add("header_text");
-        articleHeader.appendChild(divHeader);
-
-        const h2 = document.createElement( 'h2' );    
-        h2.textContent = name;
-        divHeader.appendChild(h2);
-
-        const position = document.createElement( 'p' );
-        position.textContent = place;
-        position.classList.add("position");
-        divHeader.appendChild(position);
         
-        const description = document.createElement( 'p' );
-        description.classList.add("description");
-        description.textContent = sentence;
-        divHeader.appendChild(description);
-
-        const button = document.createElement( 'button' );
-        button.classList.add("contact_button");
-        button.setAttribute("aria-label", "Contactez-moi");
-        button.addEventListener("click", () => {
-            debugger
-            modal.style.display = "block";
-            contactModal.style.display = "block";
-            lightboxModal.style.display = "none";
-        //   displayContactModal()
-        })
-        button.textContent = "Contactez-moi";
-        articleHeader.appendChild(button);
-
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", `${name}`);
-        articleHeader.appendChild(img);
-
-        const thumbnail = document.querySelector(".photographer_thumbnail");
-        const thumbnailRate = document.createElement( 'p' );
-        thumbnailRate.classList.add("thumbnail_rate");
-        thumbnailRate.textContent = cost;
-        thumbnail.appendChild(thumbnailRate);
-        
-        return (articleHeader);
+        return article
     }
     
-    return { name, id, picture, place, sentence, cost, getUserCardDOM, getUserProfileDOM }
-}
+    // création des éléments HTML (nom/lieux/prix) du photographe
+    function insertDataInHeader() {
+        const headerText = document.querySelector('.header_text')
+
+        const h2 = document.createElement('h2');    
+        h2.textContent = name;
+        headerText.appendChild(h2);
+        
+        const position = document.createElement('p');
+        position.textContent = place;
+        position.classList.add('position');
+        headerText.appendChild(position);
+        
+        const description = document.createElement('p');
+        description.classList.add('description');
+        description.textContent = sentence;
+        headerText.appendChild(description);
+
+        return headerText
+    }
+
+    // création de l'élément HTML image du photographe
+    function insertPhotoInHeader() {
+        const img = document.createElement('img');
+        img.setAttribute('src', picture);
+        img.setAttribute('alt', `${name}`);
+  
+        return img
+    }
+
+    // création de l'élément HTML rate
+    function insertRateInThumbnail() {
+        const rate = document.createElement('p');
+        rate.textContent = cost;
+ 
+        return rate
+    }
+
+    // récupération de l'id du photographer
+    function getSelectedPhotographerId() {
+
+        return id
+    }
+    
+    // récupération du prénom du photographer
+    function getSelectedPhotographerName() {
+
+        return photographerName
+    }
+    
+        return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, insertRateInThumbnail, getSelectedPhotographerName, getSelectedPhotographerId }
+    }
