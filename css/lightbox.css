@@ -14,12 +14,20 @@
     display: none;
     width: 80%;
     flex-direction: column;
-    padding: 35px;
+    padding-top: 50px;
     margin: 4% auto;
 }
 
 .lightbox_content {
     margin-top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slides_list {
+    padding: 0 50px;
+    margin: 0;
 }
 
 .svg_cross {
@@ -46,8 +54,8 @@
 
 .prev, .next {
     cursor: pointer;
-    position: absolute;
-    top: 50%;
+    /* position: absolute;
+    top: 50%; */
     color: #901C1C;
     font-weight: bold;
     font-size: 48px;
