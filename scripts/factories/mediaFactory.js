@@ -8,7 +8,8 @@ export function mediaFactory(data) {
     const articlePortfolio = document.createElement('article');
 
     const anchor = document.createElement('a');
-    anchor.classList.add('lightboxBtn');
+    anchor.setAttribute('href', '#');
+    anchor.classList.add('lightbox_link');
     articlePortfolio.appendChild(anchor);
 
     if (image !== undefined && image !== null) {

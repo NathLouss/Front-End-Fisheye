@@ -24,12 +24,12 @@ async function displayDataPhotographer(photographers) {
   photographerName = photographerModel.getSelectedPhotographerName();
   
   // dans le header
-  const headerSection = document.querySelector('.profile');
+  const headerSection = document.querySelector('.photographer_header');
   photographerModel.insertDataInHeader();
   const imgDOM = photographerModel.insertPhotoInHeader();
   headerSection.appendChild(imgDOM);
 
-  // dans l'étiquette'
+  // dans l'étiquette
   const thumbnail = document.querySelector('.photographer_thumbnail');
   const rateDOM = photographerModel.insertRateInThumbnail();
   thumbnail.appendChild(rateDOM);
@@ -85,7 +85,7 @@ const contactBtn = document.querySelector('.contact_button');
 contactBtn.addEventListener('click', () => launchContactModal(photographer));
 
 //------------------------------------------------------------------------------------------
-// lancement du tri des médias
+// lancement dropdown de tri des médias
 const triggers = document.querySelectorAll('.trigger');
 triggers.forEach(btn => btn.addEventListener('click', () => toggleDropDown()));
 
