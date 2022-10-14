@@ -3,6 +3,7 @@ import { photographerFactory } from '../factories/photographerFactory.js'
 import { mediaFactory } from '../factories/mediaFactory.js'
 import { launchContactModal } from '../utils/modal.js'
 import { openLightboxModal } from '../utils/lightbox.js'
+import { toggleDropDown, sortOnClick } from '../utils/filter.js'
 
 // déclaration des variables
 let photographer;
@@ -17,7 +18,7 @@ const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get('id');
 
 // insertion des informations du photographe sélectionné via la photographerFactory
-  async function displayDataPhotographer(photographers) {
+async function displayDataPhotographer(photographers) {
   photographer = photographers.find(p => p.id == idPhotographer);
   const photographerModel = photographerFactory(photographer);
   photographerName = photographerModel.getSelectedPhotographerName();
@@ -52,7 +53,7 @@ async function displayDataMedias(medias) {
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediasSection.appendChild(mediaCardDOM['articlePortfolio']);
     mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, selectedMedias));
-});
+  });
 };
 
 // affichage des likes photo dans le compteur
@@ -82,3 +83,14 @@ init();
 // lancement de la modale
 const contactBtn = document.querySelector('.contact_button');
 contactBtn.addEventListener('click', () => launchContactModal(photographer));
+
+//------------------------------------------------------------------------------------------
+// lancement du tri des médias
+const triggers = document.querySelectorAll('.trigger');
+triggers.forEach(btn => btn.addEventListener('click', () => toggleDropDown()));
+
+// Event listeners
+title.addEventListener('click', e => sortOnClick(e, selectedMedias));
+date.addEventListener('click', e => sortOnClick(e, selectedMedias));
+popularity.addEventListener('click', e => sortOnClick(e, selectedMedias));
+
