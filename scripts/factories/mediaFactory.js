@@ -1,5 +1,5 @@
 export function mediaFactory(data) {
-  const { photographerName, currentPosition, title, image, video, likes, date } = data;
+  const { photographerName, title, image, video, likes } = data;
   const picture = `assets/photographers/${photographerName}/${image}`;
   const movie = `assets/photographers/${photographerName}/${video}`;
   
@@ -62,22 +62,22 @@ export function mediaFactory(data) {
   // renvoi l'élément HTML d'un media pour la lightbox
   function getLightboxCardDOM() { 
     const slideContent = document.createElement('li');
-    slideContent.classList.add("slide");
+    slideContent.classList.add('slide');
         if (image !== undefined && image !== null) {
           const img = document.createElement('img');
-          img.setAttribute("src", picture);
-          img.classList.add("slideImg");
-          img.setAttribute("alt", "");
-          img.setAttribute("title", title);
+          img.setAttribute('src', picture);
+          img.classList.add('slideImg');
+          img.setAttribute('alt', '');
+          img.setAttribute('title', title);
           slideContent.appendChild(img);
         } else if (video !== undefined && video !== null) {
           const mp4 = document.createElement('video');
-          mp4.setAttribute("title", title);
-          mp4.setAttribute("controls", "true");
-          mp4.classList.add("slideVideo");
+          mp4.setAttribute('title', title);
+          mp4.setAttribute('controls', 'true');
+          mp4.classList.add('slideVideo');
           const src = document.createElement('source');
-          src.setAttribute("src", movie);
-          src.setAttribute("type", "video/mp4");
+          src.setAttribute('src', movie);
+          src.setAttribute('type', 'video/mp4');
           mp4.appendChild(src);
           slideContent.appendChild(mp4);
         }
@@ -86,8 +86,7 @@ export function mediaFactory(data) {
     slideContent.appendChild(titleImg);
       
     return (slideContent)
-}
+  }
 
-
-return { title, image, video, likes, date, photographerName, currentPosition, getMediaCardDOM, getLightboxCardDOM }
+  return { getMediaCardDOM, getLightboxCardDOM }
 }
