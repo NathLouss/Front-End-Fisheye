@@ -45,7 +45,7 @@ async function displayDataMedias(medias) {
         const mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
         mediasSection.appendChild(mediaCardDOM["articlePortfolio"]);
-        mediaCardDOM["anchor"].addEventListener('click', () => openLightboxModal(currentPosition, selectedMedias));
+        mediaCardDOM["anchor"].addEventListener('click', () => openLightboxModal(media.currentPosition, selectedMedias));
     });
 
 };

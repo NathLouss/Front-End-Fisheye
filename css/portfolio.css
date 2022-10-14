@@ -27,6 +27,10 @@
     border-radius: 5px;
 }
 
+.lightboxBtn {
+    cursor: pointer;
+}
+
 .article_text {
     display: flex;
     justify-content: space-between;
