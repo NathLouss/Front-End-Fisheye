@@ -92,5 +92,5 @@ export function photographerFactory(data) {
         return photographerName
     }
     
-        return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, insertRateInThumbnail, getSelectedPhotographerName, getSelectedPhotographerId }
-    }
+    return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, insertRateInThumbnail, getSelectedPhotographerName, getSelectedPhotographerId }
+}
