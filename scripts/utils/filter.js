@@ -1,16 +1,13 @@
 import { mediaFactory } from '../factories/mediaFactory.js'
+import { openLightboxModal } from './lightbox.js';
 
 // récupération des éléments DOM
 const filterBtn = document.querySelector('#filter');
 const filterList = document.querySelector('#filter_list');
 const filterListOption = document.querySelectorAll('.list_option');
+const portfolio = document.querySelector('.photographer_portfolio');
 let sortedMedias = [];
 let currentPosition = 0;
-let photographerName;
-// const popularity = document.getElementById('popularity');
-// const date = document.getElementById('date');
-// const title = document.getElementById('title');
-const portfolio = document.querySelector('.photographer_portfolio');
 
 // ouverture/fermeture de la dropdown de tri
 export function toggleDropDown() {
@@ -51,7 +48,7 @@ function displaySelected(choice) {
     filterBtn.innerHTML = choice;
 }
 
-// affichage des médias triés
+// affichage des médias triés et passage en argument pour l'affichage dans la lightbox
 function displayMediasSorted(sortedMedias) {
     const mediasSection = document.querySelector('.photographer_portfolio');
     portfolio.innerHTML = '';
@@ -62,5 +59,6 @@ function displayMediasSorted(sortedMedias) {
         const mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
 		mediasSection.appendChild(mediaCardDOM['articlePortfolio']);
+        mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, sortedMedias));
     });
 }
