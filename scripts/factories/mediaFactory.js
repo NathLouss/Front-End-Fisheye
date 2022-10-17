@@ -49,15 +49,17 @@ export function mediaFactory(data) {
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
     const icon = document.createElement('i');
-    icon.setAttribute('class', 'fas fa-heart');
+    icon.classList.add('likes-icon', 'fas', 'fa-heart');
+    // icon.setAttribute('class', 'fas fa-heart');
     icon.setAttribute('aria-label', 'likes');
-    icon.addEventListener('click', (e) => {
-      e.target.parentNode.firstChild.textContent++;
-      document.querySelector('.totalLikes').textContent++;
-    })
+    // icon.addEventListener('click', (e) => {
+    //   debugger
+    //   e.target.parentNode.firstChild.textContent++;
+    //   document.querySelector('.totalLikes').textContent++;
+    // })
     divLike.appendChild(icon);
 
-    return { articlePortfolio, anchor }
+    return { articlePortfolio, anchor, icon }
   }
 
   // renvoi l'élément HTML d'un media pour la lightbox

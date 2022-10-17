@@ -1,5 +1,6 @@
 import { mediaFactory } from '../factories/mediaFactory.js'
 import { openLightboxModal } from './lightbox.js';
+import { incrementLikes } from '../utils/likes.js';
 
 // récupération des éléments DOM
 const filterBtn = document.querySelector('#filter');
@@ -60,5 +61,6 @@ function displayMediasSorted(sortedMedias) {
         const mediaCardDOM = mediaModel.getMediaCardDOM();
 		mediasSection.appendChild(mediaCardDOM['articlePortfolio']);
         mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, sortedMedias));
+        mediaCardDOM['icon'].addEventListener('click', (e) => incrementLikes(e, media));
     });
 }

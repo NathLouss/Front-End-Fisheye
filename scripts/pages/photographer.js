@@ -4,6 +4,7 @@ import { mediaFactory } from '../factories/mediaFactory.js'
 import { launchContactModal } from '../utils/modal.js'
 import { openLightboxModal } from '../utils/lightbox.js'
 import { toggleDropDown, sortOnClick } from '../utils/filter.js'
+import { incrementLikes } from '../utils/likes.js'
 
 // déclaration des variables
 let photographer;
@@ -42,9 +43,9 @@ async function displayDataPhotographer(photographers) {
 // affichage des médias dans le portfolio du photographe via la mediaFactory
 async function displayDataMedias(medias) {
   const mediasSection = document.querySelector('.photographer_portfolio');
-
+  
   selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
-
+  
   selectedMedias.forEach((media) => {
     currentPosition += 1;
     media.currentPosition = currentPosition;
@@ -53,6 +54,7 @@ async function displayDataMedias(medias) {
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     mediasSection.appendChild(mediaCardDOM['articlePortfolio']);
     mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, selectedMedias));
+    mediaCardDOM['icon'].addEventListener('click', (e) => incrementLikes(e, media));
   });
 };
 
