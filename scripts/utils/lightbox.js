@@ -11,6 +11,7 @@ let executed = false;
 export function openLightboxModal(currentPosition, selectedMedias) {
   lightbox.style.display = 'block';
   lightboxContainer.style.display = 'flex';
+  debugger
   displayMediasInLightbox(selectedMedias);
   getSlideBtnOnce();
   currentSlide(currentPosition);

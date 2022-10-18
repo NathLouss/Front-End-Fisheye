@@ -28,6 +28,7 @@
     height: 90px;
     width: 100%;
     height: auto;
+    z-index: -1 ;
 }
 
 .contact_content img {
@@ -95,6 +96,22 @@ form input {
 
 .formData[data-error-visible="true"] .text-control {
     border: 2px solid #e54858;
+}
+
+#firstname {
+    z-index: 0;
+}
+
+#lastname {
+    z-index: 1;
+}
+
+#email {
+    z-index: 2;
+}
+
+#message {
+    z-index: 3;
 }
 
 .submit_contact {
