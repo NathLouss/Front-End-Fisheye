@@ -1,15 +1,20 @@
 .photographer_portfolio {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    /* gap: 70px;
-    margin: 50px; */
+    grid-template-columns: repeat(3, 1fr);
     gap: 5%;
-    margin: 5%;
+    margin-top: 5%;
     justify-items: center;
 }
 
 .photographer_portfolio article {
-    width: 350px;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.lightbox_link {
+    display: block;
+    cursor: pointer;
 }
 
 .photographer_portfolio article img {
@@ -46,6 +51,7 @@
     display: flex;
     align-items: center;
     margin: 0;
+    cursor: pointer;
 }
 
 .likes {

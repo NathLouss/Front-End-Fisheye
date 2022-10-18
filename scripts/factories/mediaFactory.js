@@ -1,5 +1,5 @@
 export function mediaFactory(data) {
-  const { photographerName, currentPosition, title, image, video, likes, date } = data;
+  const { photographerName, title, image, video, likes } = data;
   const picture = `assets/photographers/${photographerName}/${image}`;
   const movie = `assets/photographers/${photographerName}/${video}`;
   
@@ -8,7 +8,8 @@ export function mediaFactory(data) {
     const articlePortfolio = document.createElement('article');
 
     const anchor = document.createElement('a');
-    anchor.classList.add('lightboxBtn');
+    anchor.setAttribute('href', '#');
+    anchor.classList.add('lightbox_link');
     articlePortfolio.appendChild(anchor);
 
     if (image !== undefined && image !== null) {
@@ -48,36 +49,38 @@ export function mediaFactory(data) {
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
     const icon = document.createElement('i');
-    icon.setAttribute('class', 'fas fa-heart');
+    icon.classList.add('likes-icon', 'fas', 'fa-heart');
+    // icon.setAttribute('class', 'fas fa-heart');
     icon.setAttribute('aria-label', 'likes');
-    icon.addEventListener('click', (e) => {
-      e.target.parentNode.firstChild.textContent++;
-      document.querySelector('.totalLikes').textContent++;
-    })
+    // icon.addEventListener('click', (e) => {
+    //   debugger
+    //   e.target.parentNode.firstChild.textContent++;
+    //   document.querySelector('.totalLikes').textContent++;
+    // })
     divLike.appendChild(icon);
 
-    return { articlePortfolio, anchor }
+    return { articlePortfolio, anchor, icon }
   }
 
   // renvoi l'élément HTML d'un media pour la lightbox
   function getLightboxCardDOM() { 
     const slideContent = document.createElement('li');
-    slideContent.classList.add("slide");
+    slideContent.classList.add('slide');
         if (image !== undefined && image !== null) {
           const img = document.createElement('img');
-          img.setAttribute("src", picture);
-          img.classList.add("slideImg");
-          img.setAttribute("alt", "");
-          img.setAttribute("title", title);
+          img.setAttribute('src', picture);
+          img.classList.add('slideImg');
+          img.setAttribute('alt', '');
+          img.setAttribute('title', title);
           slideContent.appendChild(img);
         } else if (video !== undefined && video !== null) {
           const mp4 = document.createElement('video');
-          mp4.setAttribute("title", title);
-          mp4.setAttribute("controls", "true");
-          mp4.classList.add("slideVideo");
+          mp4.setAttribute('title', title);
+          mp4.setAttribute('controls', 'true');
+          mp4.classList.add('slideVideo');
           const src = document.createElement('source');
-          src.setAttribute("src", movie);
-          src.setAttribute("type", "video/mp4");
+          src.setAttribute('src', movie);
+          src.setAttribute('type', 'video/mp4');
           mp4.appendChild(src);
           slideContent.appendChild(mp4);
         }
@@ -86,8 +89,7 @@ export function mediaFactory(data) {
     slideContent.appendChild(titleImg);
       
     return (slideContent)
-}
+  }
 
-
-return { title, image, video, likes, date, photographerName, currentPosition, getMediaCardDOM, getLightboxCardDOM }
+  return { getMediaCardDOM, getLightboxCardDOM }
 }

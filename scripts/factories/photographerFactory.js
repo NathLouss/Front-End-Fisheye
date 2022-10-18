@@ -46,17 +46,18 @@ export function photographerFactory(data) {
     function insertDataInHeader() {
         const headerText = document.querySelector('.header_text')
 
-        const h2 = document.createElement('h2');    
+        const h2 = document.createElement('h2'); 
+        h2.classList.add('header_firstname');   
         h2.textContent = name;
         headerText.appendChild(h2);
         
         const position = document.createElement('p');
         position.textContent = place;
-        position.classList.add('position');
+        position.classList.add('header_position');
         headerText.appendChild(position);
         
         const description = document.createElement('p');
-        description.classList.add('description');
+        description.classList.add('header_description');
         description.textContent = sentence;
         headerText.appendChild(description);
 
@@ -92,5 +93,5 @@ export function photographerFactory(data) {
         return photographerName
     }
     
-        return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, insertRateInThumbnail, getSelectedPhotographerName, getSelectedPhotographerId }
-    }
+    return { getUserCardDOM, insertDataInHeader, insertPhotoInHeader, insertRateInThumbnail, getSelectedPhotographerName, getSelectedPhotographerId }
+}

@@ -1,16 +1,23 @@
 .portfolio_filter {
     position: relative;
     font-weight: bold;
-    margin: 40px 50px;
+    margin: 40px 0;
 }
 
 #filter {
     width: 170px;
-    padding: 27px 18px;
-    font-size: 16px;
+    padding: 24px 20px;
+    font-family: "DM Sans";
     font-weight: bold;
     text-align: left;
     border: none;
+    cursor: pointer;
+}
+
+#filter,
+#filter_list,
+.filter_title {
+    font-size: 18px;
 }
 
 #filter,
@@ -25,15 +32,12 @@
   
 #filter_list {
     display: none;
-    width: 150px;
+    width: 170px;
     margin: 0;
     padding: 5px 10px;
-    font-size: 16px;
     font-weight: bold;
     box-shadow: 0px 6px 18px -14px #000000;
     cursor: pointer;
-    list-style: none;
-    user-select: none;
     z-index: 1;
 }
     
