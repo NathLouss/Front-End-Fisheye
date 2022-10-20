@@ -1,4 +1,4 @@
-.contact_modal {
+.contact_background {
     display: none;
     position: fixed;
     z-index: 1;
@@ -11,7 +11,7 @@
 }
 
 .contact_container {
-    display: none;
+    /* display: none; */
     border-radius: 5px;
     background-color: #DB8876;
     width: 50%;

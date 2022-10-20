@@ -2,7 +2,7 @@
 const main = document.getElementById('main');
 const body = document.querySelector('body');
 const btnOpen = document.querySelector('.contact_button');
-const modal = document.querySelector('.contact_modal');
+const modalbg = document.querySelector('.contact_background');
 const contactSection = document.querySelector('.contact_container');
 const contactHeader = document.querySelector('.contact_header');
 let btnClose;
@@ -14,43 +14,10 @@ const form = document.querySelector('form');
 
 // lancement de la modale
 export function launchContactModal(photographer) {
-    modal.style.display = 'block';
-    contactSection.style.display = 'block';
+    modalbg.style.display = 'block';
     insertFirstnameInForm(photographer);
     createBtnClose();
     modalAccessibility();
-}
-
-// affichage et accessibilité de la modale
-function modalAccessibility() {
-    debugger
-    if (main.ariaHidden == 'false') {
-        main.toggleAttribute('aria-hidden');
-        // main.removeAttribute('aria-hidden');
-        // main.setAttribute('aria-hidden', 'true');
-        contactSection.removeAttribute('aria-hidden');
-        contactSection.setAttribute('aria-hidden', 'false');
-        body.classList.add('no-scroll');
-        btnClose.focus()
-    } else {
-        main.removeAttribute('aria-hidden');
-        main.setAttribute('aria-hidden', 'false');
-        contactSection.removeAttribute('aria-hidden');
-        contactSection.setAttribute('aria-hidden', 'true');
-        body.classList.remove('no-scroll');
-        btnOpen.focus()
-    }
-}
-
-// création du bouton de fermeture de la modale
-function createBtnClose() {
-    btnClose = document.createElement('img');
-    btnClose.setAttribute('src', `assets/icons/close.svg`);
-    btnClose.classList.add('contact_close');
-    btnClose.addEventListener('click', event => {
-        closeContactModal(event)
-    });
-    contactHeader.appendChild(btnClose);
 }
 
 // insertion prénom du photographe dans le header modale
@@ -59,9 +26,54 @@ function insertFirstnameInForm(photographer) {
     name.innerHTML = photographer['name'].split(' ')[0];
 }
 
+// création du bouton de fermeture de la modale
+function createBtnClose() {
+    btnClose = document.createElement('img');
+    btnClose.setAttribute('src', 'assets/icons/close.svg');
+    btnClose.setAttribute('aria-label', 'Fermer le formulaire');
+    btnClose.setAttribute('alt', 'Croix pour fermer le formulaire');
+    btnClose.classList.add('contact_close');
+    btnClose.addEventListener('click', event => {
+        closeContactModal(event)
+    });
+    contactHeader.appendChild(btnClose);
+}
+
+// affichage et accessibilité de la modale
+function modalAccessibility() {
+    // debugger
+    if (main.ariaHidden == 'false') {
+        main.removeAttribute('aria-hidden');
+        main.setAttribute('aria-hidden', 'true');
+        modalbg.removeAttribute('aria-hidden');
+        modalbg.setAttribute('aria-hidden', 'false');
+        body.classList.add('no-scroll');
+        debugger
+        firstname.focus();
+        // contactSection.setAttribute('tabindex', '0')
+
+    } else {
+        main.removeAttribute('aria-hidden');
+        main.setAttribute('aria-hidden', 'false');
+        modalbg.removeAttribute('aria-hidden');
+        modalbg.setAttribute('aria-hidden', 'true');
+        body.classList.remove('no-scroll');
+        btnOpen.focus();
+        contactSection.setAttribute('tabindex', '-1')
+    }
+}
+
+// Close modal when escape key is pressed
+function onKey(e) {
+    let keynum = e.key
+    if (keynum == 'Escape') {
+        closeContactModal()
+    }
+}
+
 // fermeture de la modale
 function closeContactModal() {
-    modal.style.display = 'none';
+    modalbg.style.display = 'none';
     contactSection.style.display = 'none';
     contactHeader.removeChild(btnClose);
     modalAccessibility();
@@ -174,6 +186,7 @@ function displayValidation() {
 }
 
 //eventlisteners
+contactSection.addEventListener('keydown', (e) => onKey(e));
 firstname.addEventListener('blur', isFirstnameValid);
 lastname.addEventListener('blur', isLastnameValid);
 email.addEventListener('blur', isEmailValid);

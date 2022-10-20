@@ -45,34 +45,34 @@
 
     </main>
 
-    <!-- modale formulaire -->
-    <div class="contact_modal">
-      <div class="contact_container" role="dialog" aria-hidden="true" aria-describedby="Formulaire de contact" aria-labelledby="form">
+    <!-- modale de contact -->
+    <div class="contact_background" aria-hidden="true">
+      <div class="contact_container" role="dialog" aria-describedby="Contactez-moi" aria-labelledby="form" tabindex="-1">
         <div class="contact_content">
           <div class="contact_header">
             <div>
               <h2>Contactez-moi</h2>
-              <p id="name"></p>
+              <p id="name" aria-label="Nom du Photographe"></p>
             </div>
           </div>
-          <form class="formContact">
+          <form action="#" method="post" aria-labelledby="Formulaire de contact">
             <div class="formData" data-error="Veuillez saisir votre prénom.">
               <label for="firstname">Prénom</label>
-              <input id="firstname" class="text-control" type="text" name="firstname"></input>
+              <input id="firstname" class="text-control" type="text" name="firstname" aria-labelledby="Prénom" required></input>
             </div>
             <div class="formData" data-error="Veuillez saisir votre nom.">
               <label for="lastname">Nom</label>
-              <input id="lastname" class="text-control" type="text" name="lastname"></input>
+              <input id="lastname" class="text-control" type="text" name="lastname" aria-labelledby="Nom" required></input>
             </div>
             <div class="formData" data-error="Veuillez saisir un email valide.">
               <label for="email">Email</label>
-              <input id="email" class="text-control" type="email" name="email"></input>
+              <input id="email" class="text-control" type="email" name="email" aria-labelledby="Email" required></input>
             </div>
             <div class="formData" data-error="Veuillez saisir votre message.">
               <label for="message">Message</label>
-              <input id="message" class="text-control" type="text" name="message"></input>
+              <input id="message" class="text-control" type="text" name="message" aria-labelledby="Message" required></input>
             </div>
-            <button class="submit_contact" type="submit">Envoyer</button>
+            <button class="submit_contact" type="submit" aria-label="Envoyer votre message">Envoyer</button>
           </form>
         </div>
         <div class="validation">Votre message a bien été envoyé !</div>
