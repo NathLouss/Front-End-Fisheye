@@ -13,6 +13,7 @@ export function openLightboxModal(currentPosition, selectedMedias) {
   lightboxContainer.style.display = 'flex';
   displayMediasInLightbox(selectedMedias);
   getSlideBtnOnce();
+  console.log(currentPosition);
   currentSlide(currentPosition);
   lightboxAccessibility();
 }
@@ -62,7 +63,8 @@ function lightboxAccessibility() {
 // récupération du media selectionné pour l'afficher dans la lightbox
 let slideIndex = 1;
 function currentSlide(currentPosition) {
-  showSlides(slideIndex = currentPosition);
+  slideIndex = currentPosition;
+  showSlides(slideIndex);
 }
 
 // défilement des medias dans la Lightbox

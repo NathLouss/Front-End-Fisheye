@@ -4,22 +4,22 @@ import { incrementLikes } from '../utils/likes.js';
 
 // récupération des éléments DOM
 const filterBtn = document.querySelector('#filter');
+filterBtn.style.display = 'inline';
 const filterList = document.querySelector('#filter_list');
 const filterListOption = document.querySelectorAll('.list_option');
 const portfolio = document.querySelector('.photographer_portfolio');
-let sortedMedias = [];
-let currentPosition = 0;
+// let sortedMedias = [];
 
 // ouverture/fermeture de la dropdown de tri
 export function toggleDropDown() {
-    if (filterBtn.style.display == 'block') {
+    if (filterBtn.style.display == 'inline') {
         filterBtn.style.display = 'none';
         filterList.style.display = 'block';
         filterListOption.forEach((option) => { 
             option.style.display = 'block'
         });
     } else {
-        filterBtn.style.display = 'block';
+        filterBtn.style.display = 'inline';
         filterList.style.display = 'none';
         filterListOption.forEach((option) => { 
             option.style.display = 'none'
@@ -33,14 +33,14 @@ export function sortOnClick(e, selectedMedias) {
     const choice = e.currentTarget.innerText;
     sortBy(property, selectedMedias);
     displaySelected(choice);
-    displayMediasSorted(sortedMedias);
+    displayMediasSorted(selectedMedias);
 }
 
 // tri des médias selon la propriété sélectionnée
 function sortBy(property, selectedMedias) {
-    sortedMedias = selectedMedias.sort((a,b) => (a[property] < b[property]) ? -1 : ((b[property] > a[property]) ? 1 : 0));
+    selectedMedias = selectedMedias.sort((a,b) => (a[property] > b[property]) ? -1 : ((b[property] < a[property]) ? 1 : 0));
 
-    return sortedMedias
+    return selectedMedias
 }
 
 // affichage de la propriété selectionnée dans le bouton de tri
@@ -50,17 +50,18 @@ function displaySelected(choice) {
 }
 
 // affichage des médias triés et passage en argument pour l'affichage dans la lightbox
-function displayMediasSorted(sortedMedias) {
+function displayMediasSorted(selectedMedias) {
     const mediasSection = document.querySelector('.photographer_portfolio');
     portfolio.innerHTML = '';
+    let currentPosition = 0;
     
-    sortedMedias.forEach((media) => {
+    selectedMedias.forEach((media) => {
         currentPosition += 1;
         media.currentPosition = currentPosition;
         const mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
 		mediasSection.appendChild(mediaCardDOM['articlePortfolio']);
-        mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, sortedMedias));
+        mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, selectedMedias));
         mediaCardDOM['icon'].addEventListener('click', (e) => incrementLikes(e, media));
     });
 }

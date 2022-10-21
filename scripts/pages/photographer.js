@@ -10,7 +10,6 @@ import { incrementLikes } from '../utils/likes.js'
 let photographer;
 let photographerName;
 let selectedMedias = [];
-let currentPosition = 0;
 let likesArray = [];
 
 // récupération de l'id du photographe
@@ -29,25 +28,26 @@ async function displayDataPhotographer(photographers) {
   photographerModel.insertDataInHeader();
   const imgDOM = photographerModel.insertPhotoInHeader();
   headerSection.appendChild(imgDOM);
-
+  
   // dans l'étiquette
   const thumbnail = document.querySelector('.photographer_thumbnail');
   const rateDOM = photographerModel.insertRateInThumbnail();
   thumbnail.appendChild(rateDOM);
-
+  
   // dans le titre de la page
   const titlePage = document.querySelector('.title');
   titlePage.innerHTML = `Fisheye - ${photographer.name}`;
 };  
 
 // affichage des médias dans le portfolio du photographe via la mediaFactory
-async function displayDataMedias(medias) {
+async function displayDataMedias() {
   const mediasSection = document.querySelector('.photographer_portfolio');
+  let currentPosition = 0;
   
-  selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
+  // selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
   
   selectedMedias.forEach((media) => {
-    currentPosition += 1;
+    currentPosition = parseInt(currentPosition)+1;
     media.currentPosition = currentPosition;
     media.photographerName = photographerName;
     const mediaModel = mediaFactory(media);
@@ -74,8 +74,9 @@ async function displayLikesCounter() {
 async function init() {
   const photographers = await getPhotographers();
   const medias = await getMedias();
+  selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
   displayDataPhotographer(photographers);
-  displayDataMedias(medias);
+  displayDataMedias();
   displayLikesCounter();
 };
 
