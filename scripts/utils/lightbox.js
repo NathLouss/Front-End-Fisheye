@@ -11,10 +11,10 @@ let executed = false;
 export function openLightboxModal(currentPosition, selectedMedias) {
   lightboxBg.style.display = 'block';
   lightboxContainer.style.display = 'flex';
-  debugger
   displayMediasInLightbox(selectedMedias);
   getSlideBtnOnce();
   currentSlide(currentPosition);
+  lightboxAccessibility();
 }
 
 // création des medias du photographe sélectionné dans la lightbox via la modalFactory
@@ -44,6 +44,17 @@ function getSlideBtnOnce() {
   lightboxContainer.insertAdjacentElement('beforeend' , next);
 
   executed = true;
+  }
+}
+
+function lightboxAccessibility() {
+  if (main.ariaHidden == 'false') {
+    main.removeAttribute('aria-hidden');
+    main.setAttribute('aria-hidden', 'true');
+  }
+  else {
+    main.removeAttribute('aria-hidden');
+    main.setAttribute('aria-hidden', 'false');
   }
 }
 
