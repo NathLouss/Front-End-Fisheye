@@ -38,7 +38,7 @@ function createBtnClose() {
     contactHeader.appendChild(btnClose);
 }
 
-// affichage et accessibilité de la modale
+// accessibilité de la modale
 function modalAccessibility() {
     if (main.ariaHidden == 'false') {
         main.removeAttribute('aria-hidden');

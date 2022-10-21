@@ -8,7 +8,7 @@ filterBtn.style.display = 'inline';
 const filterList = document.querySelector('#filter_list');
 const filterListOption = document.querySelectorAll('.list_option');
 const portfolio = document.querySelector('.photographer_portfolio');
-// let sortedMedias = [];
+let sortedMedias = [];
 
 // ouverture/fermeture de la dropdown de tri
 export function toggleDropDown() {
@@ -33,14 +33,14 @@ export function sortOnClick(e, selectedMedias) {
     const choice = e.currentTarget.innerText;
     sortBy(property, selectedMedias);
     displaySelected(choice);
-    displayMediasSorted(selectedMedias);
+    displayMediasSorted(sortedMedias);
 }
 
 // tri des médias selon la propriété sélectionnée
 function sortBy(property, selectedMedias) {
-    selectedMedias = selectedMedias.sort((a,b) => (a[property] > b[property]) ? -1 : ((b[property] < a[property]) ? 1 : 0));
+    sortedMedias = selectedMedias.sort((a,b) => (a[property] > b[property]) ? -1 : ((b[property] < a[property]) ? 1 : 0));
 
-    return selectedMedias
+    return sortedMedias
 }
 
 // affichage de la propriété selectionnée dans le bouton de tri
@@ -50,18 +50,18 @@ function displaySelected(choice) {
 }
 
 // affichage des médias triés et passage en argument pour l'affichage dans la lightbox
-function displayMediasSorted(selectedMedias) {
+function displayMediasSorted(sortedMedias) {
     const mediasSection = document.querySelector('.photographer_portfolio');
     portfolio.innerHTML = '';
     let currentPosition = 0;
     
-    selectedMedias.forEach((media) => {
+    sortedMedias.forEach((media) => {
         currentPosition += 1;
         media.currentPosition = currentPosition;
         const mediaModel = mediaFactory(media);
         const mediaCardDOM = mediaModel.getMediaCardDOM();
 		mediasSection.appendChild(mediaCardDOM['articlePortfolio']);
-        mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, selectedMedias));
+        mediaCardDOM['anchor'].addEventListener('click', () => openLightboxModal(media.currentPosition, sortedMedias));
         mediaCardDOM['icon'].addEventListener('click', (e) => incrementLikes(e, media));
     });
 }

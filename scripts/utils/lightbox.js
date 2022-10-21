@@ -12,9 +12,10 @@ export function openLightboxModal(currentPosition, selectedMedias) {
   lightboxBg.style.display = 'block';
   lightboxContainer.style.display = 'flex';
   displayMediasInLightbox(selectedMedias);
-  getSlideBtnOnce();
+  getSlideBtnOnce(currentPosition);
   console.log(currentPosition);
-  currentSlide(currentPosition);
+  showSlides(currentPosition);
+  // currentSlide(currentPosition);
   lightboxAccessibility();
 }
 
@@ -28,7 +29,7 @@ function displayMediasInLightbox(selectedMedias) {
 };
 
 // création des boutons de défilement de la lightbox une seule fois
-function getSlideBtnOnce() {
+function getSlideBtnOnce(currentPosition) {
   if (!executed) { 
   const previous = document.createElement('a');
   previous.innerHTML = '<';
@@ -48,6 +49,7 @@ function getSlideBtnOnce() {
   }
 }
 
+// accessibilité de la lightbox
 function lightboxAccessibility() {
   if (main.ariaHidden == 'false') {
     main.removeAttribute('aria-hidden');
@@ -61,30 +63,33 @@ function lightboxAccessibility() {
 
 //------------------------------------------------------------------------------------------
 // récupération du media selectionné pour l'afficher dans la lightbox
-let slideIndex = 1;
-function currentSlide(currentPosition) {
-  slideIndex = currentPosition;
-  showSlides(slideIndex);
-}
+// let slideIndex = 1;
+// function currentSlide(currentPosition) {
+//   slideIndex = currentPosition;
+//   showSlides(slideIndex);
+// }
 
+let currentPosition = 1;
 // défilement des medias dans la Lightbox
 function changeSlide(n) {
-  showSlides(slideIndex += n);
+  // let newCurrentPosition = currentPosition + n;
+  // showSlides(newCurrentPosition);
+  showSlides(currentPosition += n);
 }
 
 // affichage des medias dans la Lightbox
-function showSlides(n) {
+function showSlides(currentPosition) {
   const slides = document.getElementsByClassName('slide');
-  if (n > slides.length) {
-      slideIndex = 1
+  if (currentPosition > slides.length) {
+    currentPosition = 1
   }
-  if (n < 1) {
-      slideIndex = slides.length
+  if (currentPosition < 1) {
+    currentPosition = slides.length
   }
   for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = 'none';
+    slides[i].style.display = 'none';
   }
-  slides[slideIndex-1].style.display = 'flex';
+  slides[currentPosition-1].style.display = 'flex';
 }
 
 //------------------------------------------------------------------------------------------
