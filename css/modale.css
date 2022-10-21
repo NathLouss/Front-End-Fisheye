@@ -1,9 +1,11 @@
 .contact_background {
     display: none;
-    position: fixed;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
-    left: 0;
+    position: fixed;
     top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
     overflow: auto;
@@ -11,15 +13,14 @@
 }
 
 .contact_container {
-    /* display: none; */
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 600px;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: 10% auto;
+    /* margin: 1% auto; */
 }
 
 .contact_content {
@@ -33,20 +34,21 @@
 
 .contact_content img {
     cursor: pointer;
-}
-
-.contact_content h2,
-.contact_content p {
-    font-size: 64px;
-    font-weight: normal;
-    margin: 0;
+    padding-top: 15px;
 }
 
 .contact_header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 30px;
+    margin-bottom: 90px;
+}
+
+.contact_header h2,
+.contact_header p {
+    font-size: 64px;
+    font-weight: normal;
+    margin: 0;
 }
 
 form {
@@ -67,12 +69,21 @@ form div {
 }
 
 form input {
-    width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
     font-size: 20px;
     padding-left: 20px;
+}
+
+textarea {
+    height: 170px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    padding-left: 20px;
+    font-family: 'DM SANS';
+    padding-top: 15px;
 }
 
 .formData[data-error]::after {
@@ -98,22 +109,6 @@ form input {
     border: 2px solid #e54858;
 }
 
-#firstname {
-    z-index: 0;
-}
-
-#lastname {
-    z-index: 1;
-}
-
-#email {
-    z-index: 2;
-}
-
-#message {
-    z-index: 3;
-}
-
 .submit_contact {
     font-size: 18px;
     font-weight: bold;
@@ -128,13 +123,9 @@ form input {
     cursor: pointer;
 }
 
-#message {
-    height: 170px;
-}
-
-.validation {
+.contact_validation {
     display: none;
     justify-content: center;
     font-size: 30px;
-    margin: 160px;
+    margin: 160px 20px 100px;
 }

@@ -1,7 +1,7 @@
 import { mediaFactory } from '../factories/mediaFactory.js';
 
 // récupération éléments du DOM
-const lightbox = document.querySelector('.lightbox');
+const lightboxBg = document.querySelector('.lightbox_background');
 const lightboxContainer = document.querySelector('.lightbox_container');
 const closeBtn = document.querySelector('.svg_cross');
 const mediasSection = document.querySelector('.slides_list');
@@ -9,7 +9,7 @@ let executed = false;
 
 // lancement de la lightbox
 export function openLightboxModal(currentPosition, selectedMedias) {
-  lightbox.style.display = 'block';
+  lightboxBg.style.display = 'block';
   lightboxContainer.style.display = 'flex';
   debugger
   displayMediasInLightbox(selectedMedias);
@@ -77,7 +77,7 @@ function showSlides(n) {
 //------------------------------------------------------------------------------------------
 // fermeture de la lightbox
 function closeLightbox(){
-  lightbox.style.display = 'none';
+  lightboxBg.style.display = 'none';
   lightboxContainer.style.display = 'none';
   mediasSection.innerHTML = '';
 }

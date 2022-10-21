@@ -1,8 +1,7 @@
 // récupération éléments du DOM
 const main = document.getElementById('main');
 const body = document.querySelector('body');
-const btnOpen = document.querySelector('.contact_button');
-const modalbg = document.querySelector('.contact_background');
+const modalBg = document.querySelector('.contact_background');
 const contactSection = document.querySelector('.contact_container');
 const contactHeader = document.querySelector('.contact_header');
 let btnClose;
@@ -14,7 +13,7 @@ const form = document.querySelector('form');
 
 // lancement de la modale
 export function launchContactModal(photographer) {
-    modalbg.style.display = 'block';
+    modalBg.style.display = 'flex';
     insertFirstnameInForm(photographer);
     createBtnClose();
     modalAccessibility();
@@ -41,25 +40,20 @@ function createBtnClose() {
 
 // affichage et accessibilité de la modale
 function modalAccessibility() {
-    // debugger
     if (main.ariaHidden == 'false') {
         main.removeAttribute('aria-hidden');
         main.setAttribute('aria-hidden', 'true');
-        modalbg.removeAttribute('aria-hidden');
-        modalbg.setAttribute('aria-hidden', 'false');
+        contactSection.removeAttribute('aria-hidden');
+        contactSection.setAttribute('aria-hidden', 'false');
         body.classList.add('no-scroll');
-        debugger
         firstname.focus();
-        // contactSection.setAttribute('tabindex', '0')
-
     } else {
         main.removeAttribute('aria-hidden');
         main.setAttribute('aria-hidden', 'false');
-        modalbg.removeAttribute('aria-hidden');
-        modalbg.setAttribute('aria-hidden', 'true');
+        contactSection.removeAttribute('aria-hidden');
+        contactSection.setAttribute('aria-hidden', 'true');
         body.classList.remove('no-scroll');
-        btnOpen.focus();
-        contactSection.setAttribute('tabindex', '-1')
+        firstname.blur();
     }
 }
 
@@ -73,8 +67,7 @@ function onKey(e) {
 
 // fermeture de la modale
 function closeContactModal() {
-    modalbg.style.display = 'none';
-    contactSection.style.display = 'none';
+    modalBg.style.display = 'none';
     contactHeader.removeChild(btnClose);
     modalAccessibility();
 }
@@ -181,7 +174,7 @@ function hideForm() {
 
 // affiche le message de validation dans la modale
 function displayValidation() {
-    const validation = document.querySelector('.validation');
+    const validation = document.querySelector('.contact_validation');
     validation.style.display = 'flex';
 }
 
