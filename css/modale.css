@@ -1,56 +1,41 @@
-.contact_modal {
+.contact_background {
     display: none;
-    position: fixed;
+    justify-content: center;
+    align-items: center;
     z-index: 1;
-    left: 0;
+    position: fixed;
     top: 0;
+    left: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
     background-color: rgba(26, 39, 156, 0.4);
 }
 
 .contact_container {
-    display: none;
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    width: 700px;
     padding: 35px;
-    margin: 10% auto;
-}
-
-.contact_content {
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 90px;
-    width: 100%;
-    height: auto;
 }
 
 .contact_content img {
     cursor: pointer;
+    padding-top: 15px;
 }
 
-.contact_content h2,
-.contact_content p {
+.contact_header {
+    align-items: flex-start;
+    margin-bottom: 90px;
+}
+
+.contact_header h2,
+.contact_header p {
     font-size: 64px;
     font-weight: normal;
     margin: 0;
 }
 
-.contact_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 30px;
-}
-
 form {
-    display: flex;
-    width: 100%;
     flex-direction: column;
 }
 
@@ -62,16 +47,22 @@ form label {
 form div {
     display: flex;
     flex-direction: column;
-    width: 100%;
+
 }
 
-form input {
-    width: 100%;
+form input, 
+textarea {
+    font-family: 'DM Sans';
+    font-size: 20px;
     height: 68px;
     border: none;
     border-radius: 5px;
-    font-size: 20px;
     padding-left: 20px;
+}
+
+textarea {
+    height: 170px;
+    padding-top: 15px;
 }
 
 .formData[data-error]::after {
@@ -103,7 +94,6 @@ form input {
     color: white;
     width: 170px;
     height: 70px;
-    padding: 11px;
     margin-top: 20px;
     border: none;
     background-color: #901C1C;
@@ -111,13 +101,9 @@ form input {
     cursor: pointer;
 }
 
-#message {
-    height: 170px;
-}
-
-.validation {
+.contact_validation {
     display: none;
     justify-content: center;
     font-size: 30px;
-    margin: 160px;
+    margin: 160px 20px 100px;
 }

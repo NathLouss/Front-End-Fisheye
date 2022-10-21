@@ -1,5 +1,7 @@
 // récupération éléments du DOM
-const modal = document.querySelector('.contact_modal');
+const main = document.getElementById('main');
+const body = document.querySelector('body');
+const modalBg = document.querySelector('.contact_background');
 const contactSection = document.querySelector('.contact_container');
 const contactHeader = document.querySelector('.contact_header');
 let btnClose;
@@ -11,16 +13,24 @@ const form = document.querySelector('form');
 
 // lancement de la modale
 export function launchContactModal(photographer) {
-    modal.style.display = 'block';
-    contactSection.style.display = 'block';
+    modalBg.style.display = 'flex';
     insertFirstnameInForm(photographer);
     createBtnClose();
+    modalAccessibility();
+}
+
+// insertion prénom du photographe dans le header modale
+function insertFirstnameInForm(photographer) {
+    const name = document.querySelector('#name');
+    name.innerHTML = photographer['name'].split(' ')[0];
 }
 
 // création du bouton de fermeture de la modale
-function createBtnClose () {
+function createBtnClose() {
     btnClose = document.createElement('img');
-    btnClose.setAttribute('src', `assets/icons/close.svg`);
+    btnClose.setAttribute('src', 'assets/icons/close.svg');
+    btnClose.setAttribute('aria-label', 'Fermer le formulaire');
+    btnClose.setAttribute('alt', 'Croix pour fermer le formulaire');
     btnClose.classList.add('contact_close');
     btnClose.addEventListener('click', event => {
         closeContactModal(event)
@@ -28,17 +38,38 @@ function createBtnClose () {
     contactHeader.appendChild(btnClose);
 }
 
-// insertion prénom du photographe dans le header modale
-function insertFirstnameInForm (photographer) {
-    const name = document.querySelector('#name');
-    name.innerHTML = photographer['name'].split(' ')[0];
+// affichage et accessibilité de la modale
+function modalAccessibility() {
+    if (main.ariaHidden == 'false') {
+        main.removeAttribute('aria-hidden');
+        main.setAttribute('aria-hidden', 'true');
+        contactSection.removeAttribute('aria-hidden');
+        contactSection.setAttribute('aria-hidden', 'false');
+        body.classList.add('no-scroll');
+        firstname.focus();
+    } else {
+        main.removeAttribute('aria-hidden');
+        main.setAttribute('aria-hidden', 'false');
+        contactSection.removeAttribute('aria-hidden');
+        contactSection.setAttribute('aria-hidden', 'true');
+        body.classList.remove('no-scroll');
+        firstname.blur();
+    }
+}
+
+// Close modal when escape key is pressed
+function onKey(e) {
+    let keynum = e.key
+    if (keynum == 'Escape') {
+        closeContactModal()
+    }
 }
 
 // fermeture de la modale
 function closeContactModal() {
-    modal.style.display = 'none';
-    contactSection.style.display = 'none';
+    modalBg.style.display = 'none';
     contactHeader.removeChild(btnClose);
+    modalAccessibility();
 }
 
 // validation input prénom
@@ -143,11 +174,12 @@ function hideForm() {
 
 // affiche le message de validation dans la modale
 function displayValidation() {
-    const validation = document.querySelector('.validation');
+    const validation = document.querySelector('.contact_validation');
     validation.style.display = 'flex';
 }
 
 //eventlisteners
+contactSection.addEventListener('keydown', (e) => onKey(e));
 firstname.addEventListener('blur', isFirstnameValid);
 lastname.addEventListener('blur', isLastnameValid);
 email.addEventListener('blur', isEmailValid);

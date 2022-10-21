@@ -1,7 +1,7 @@
 import { mediaFactory } from '../factories/mediaFactory.js';
 
 // récupération éléments du DOM
-const lightbox = document.querySelector('.lightbox');
+const lightboxBg = document.querySelector('.lightbox_background');
 const lightboxContainer = document.querySelector('.lightbox_container');
 const closeBtn = document.querySelector('.svg_cross');
 const mediasSection = document.querySelector('.slides_list');
@@ -9,11 +9,12 @@ let executed = false;
 
 // lancement de la lightbox
 export function openLightboxModal(currentPosition, selectedMedias) {
-  lightbox.style.display = 'block';
+  lightboxBg.style.display = 'block';
   lightboxContainer.style.display = 'flex';
   displayMediasInLightbox(selectedMedias);
   getSlideBtnOnce();
   currentSlide(currentPosition);
+  lightboxAccessibility();
 }
 
 // création des medias du photographe sélectionné dans la lightbox via la modalFactory
@@ -43,6 +44,17 @@ function getSlideBtnOnce() {
   lightboxContainer.insertAdjacentElement('beforeend' , next);
 
   executed = true;
+  }
+}
+
+function lightboxAccessibility() {
+  if (main.ariaHidden == 'false') {
+    main.removeAttribute('aria-hidden');
+    main.setAttribute('aria-hidden', 'true');
+  }
+  else {
+    main.removeAttribute('aria-hidden');
+    main.setAttribute('aria-hidden', 'false');
   }
 }
 
@@ -76,7 +88,7 @@ function showSlides(n) {
 //------------------------------------------------------------------------------------------
 // fermeture de la lightbox
 function closeLightbox(){
-  lightbox.style.display = 'none';
+  lightboxBg.style.display = 'none';
   lightboxContainer.style.display = 'none';
   mediasSection.innerHTML = '';
 }
