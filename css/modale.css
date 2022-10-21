@@ -8,28 +8,14 @@
     left: 0;
     height: 100%;
     width: 100%;
-    overflow: auto;
     background-color: rgba(26, 39, 156, 0.4);
 }
 
 .contact_container {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 600px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    width: 700px;
     padding: 35px;
-    /* margin: 1% auto; */
-}
-
-.contact_content {
-    justify-content: space-between;
-    align-items: flex-start;
-    height: 90px;
-    width: 100%;
-    height: auto;
-    z-index: -1 ;
 }
 
 .contact_content img {
@@ -38,8 +24,6 @@
 }
 
 .contact_header {
-    display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 90px;
 }
@@ -52,8 +36,6 @@
 }
 
 form {
-    display: flex;
-    width: 100%;
     flex-direction: column;
 }
 
@@ -65,24 +47,21 @@ form label {
 form div {
     display: flex;
     flex-direction: column;
-    width: 100%;
+
 }
 
-form input {
+form input, 
+textarea {
+    font-family: 'DM Sans';
+    font-size: 20px;
     height: 68px;
     border: none;
     border-radius: 5px;
-    font-size: 20px;
     padding-left: 20px;
 }
 
 textarea {
     height: 170px;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    padding-left: 20px;
-    font-family: 'DM SANS';
     padding-top: 15px;
 }
 
@@ -115,7 +94,6 @@ textarea {
     color: white;
     width: 170px;
     height: 70px;
-    padding: 11px;
     margin-top: 20px;
     border: none;
     background-color: #901C1C;
