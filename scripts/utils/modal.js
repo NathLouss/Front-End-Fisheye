@@ -43,15 +43,15 @@ function modalAccessibility() {
     if (main.ariaHidden == 'false') {
         main.removeAttribute('aria-hidden');
         main.setAttribute('aria-hidden', 'true');
-        contactSection.removeAttribute('aria-hidden');
-        contactSection.setAttribute('aria-hidden', 'false');
+        modalBg.removeAttribute('aria-hidden');
+        modalBg.setAttribute('aria-hidden', 'false');
         body.classList.add('no-scroll');
         firstname.focus();
     } else {
         main.removeAttribute('aria-hidden');
         main.setAttribute('aria-hidden', 'false');
-        contactSection.removeAttribute('aria-hidden');
-        contactSection.setAttribute('aria-hidden', 'true');
+        modalBg.removeAttribute('aria-hidden');
+        modalBg.setAttribute('aria-hidden', 'true');
         body.classList.remove('no-scroll');
         firstname.blur();
     }

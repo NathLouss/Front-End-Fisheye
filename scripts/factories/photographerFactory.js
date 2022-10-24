@@ -46,10 +46,10 @@ export function photographerFactory(data) {
     function insertDataInHeader() {
         const headerText = document.querySelector('.header_text')
 
-        const h2 = document.createElement('h2'); 
-        h2.classList.add('header_firstname');   
-        h2.textContent = name;
-        headerText.appendChild(h2);
+        const h1 = document.createElement('h1'); 
+        h1.classList.add('header_firstname');   
+        h1.textContent = name;
+        headerText.appendChild(h1);
         
         const position = document.createElement('p');
         position.textContent = place;
