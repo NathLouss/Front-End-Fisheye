@@ -102,9 +102,8 @@
         role="dialog"
         aria-label="Contactez-moi"
         aria-describedby="Remplissez tous les champs"
-        tabindex="-1"
       >
-        <div class="contact_content">
+        <div class="contact_content" tabindex="-1">
           <header class="contact_header">
             <div class="left_header">
               <h2>Contactez-moi</h2>
@@ -121,7 +120,6 @@
                 name="firstname"
                 aria-label="Prénom"
                 required
-                tabindex="0"
               />
             </div>
             <div class="formData" data-error="Veuillez saisir votre nom.">
@@ -133,7 +131,6 @@
                 name="lastname"
                 aria-label="Nom"
                 required
-                tabindex="0"
               />
             </div>
             <div class="formData" data-error="Veuillez saisir un email valide.">
@@ -145,7 +142,6 @@
                 name="email"
                 aria-label="Email"
                 required
-                tabindex="0"
               />
             </div>
             <div class="formData" data-error="Veuillez saisir votre message.">
@@ -156,7 +152,6 @@
                 name="message"
                 aria-label="Message"
                 required
-                tabindex="0"
               ></textarea>
             </div>
             <button
@@ -175,7 +170,7 @@
     </div>
 
     <!-- modale lightbox -->
-    <div class="lightbox_background">
+    <div class="lightbox_background" aria-hidden="true">
       <div
         class="lightbox_container"
         role="dialog"
@@ -189,7 +184,7 @@
           alt="Croix pour fermer la fenêtre"
           aria-label="Fermer la fenêtre"
         />
-        <ul class="slides_list"></ul>
+        <ul class="slides_list" aria-label="Les différents médias de "></ul>
       </div>
     </div>
 

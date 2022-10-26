@@ -1,6 +1,7 @@
 // récupération éléments du DOM
-const main = document.getElementById("main");
 const body = document.querySelector("body");
+const main = document.getElementById("main");
+const btnOpen = document.querySelector(".contact_button");
 const modalBg = document.querySelector(".contact_background");
 const contactSection = document.querySelector(".contact_container");
 const contactHeader = document.querySelector(".contact_header");
@@ -38,33 +39,6 @@ function createBtnClose() {
   contactHeader.appendChild(btnClose);
 }
 
-// accessibilité de la modale
-function modalAccessibility() {
-  if (main.ariaHidden == "false") {
-    main.removeAttribute("aria-hidden");
-    main.setAttribute("aria-hidden", "true");
-    modalBg.removeAttribute("aria-hidden");
-    modalBg.setAttribute("aria-hidden", "false");
-    body.classList.add("no-scroll");
-    firstname.focus();
-  } else {
-    main.removeAttribute("aria-hidden");
-    main.setAttribute("aria-hidden", "false");
-    modalBg.removeAttribute("aria-hidden");
-    modalBg.setAttribute("aria-hidden", "true");
-    body.classList.remove("no-scroll");
-    firstname.blur();
-  }
-}
-
-// Close modal when escape key is pressed
-function onKey(e) {
-  let keynum = e.key;
-  if (keynum == "Escape") {
-    closeContactModal();
-  }
-}
-
 // fermeture de la modale
 function closeContactModal() {
   modalBg.style.display = "none";
@@ -72,6 +46,32 @@ function closeContactModal() {
   modalAccessibility();
 }
 
+//------------------------------------------------------------------------------------------
+// accessibilité de la modale
+function modalAccessibility() {
+  if (main.ariaHidden == "false") {
+    debugger;
+    main.setAttribute("aria-hidden", "true");
+    modalBg.setAttribute("aria-hidden", "false");
+    body.classList.add("no-scroll");
+    firstname.focus();
+  } else {
+    main.setAttribute("aria-hidden", "false");
+    modalBg.setAttribute("aria-hidden", "true");
+    body.classList.remove("no-scroll");
+    btnOpen.focus();
+  }
+}
+
+// fermeture de la modale au clavier
+function onKey(e) {
+  let keynum = e.key;
+  if (keynum == "Escape") {
+    closeContactModal();
+  }
+}
+
+//------------------------------------------------------------------------------------------
 // validation input prénom
 function isFirstnameValid() {
   let firstnameValue = firstname.value.trim();

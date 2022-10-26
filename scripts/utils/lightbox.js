@@ -56,12 +56,10 @@ function getSlideBtnOnce(currentPosition) {
 function lightboxAccessibility() {
   if (main.ariaHidden == "false") {
     body.classList.add("no-scroll");
-    main.removeAttribute("aria-hidden");
     main.setAttribute("aria-hidden", "true");
     lightboxBg.setAttribute("aria-hidden", "false");
   } else {
     body.classList.remove("no-scroll");
-    main.removeAttribute("aria-hidden");
     main.setAttribute("aria-hidden", "false");
     lightboxBg.setAttribute("aria-hidden", "true");
   }
