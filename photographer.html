@@ -1,36 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png">
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png" />
 
-    <title class="title"></title>
+    <title class="title">Fisheye - Nom photographe</title>
 
-    <script src="https://kit.fontawesome.com/9d010d1a2f.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script
+      src="https://kit.fontawesome.com/9d010d1a2f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" title="Logo Fisheye" /></a>
+      <a href="index.html">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="Fisheye Home page"
+          title="Logo Fisheye"
+        />
+      </a>
     </header>
-    
-    <main id="main" aria-hidden="false">
 
+    <main id="main" aria-hidden="false">
       <div class="photographer_header">
         <div class="header_text"></div>
-        <button class="contact_button" aria-label="Contactez-moi">Contactez-moi</button>
+        <button class="contact_button" aria-label="Contactez-moi">
+          Contactez-moi
+        </button>
       </div>
 
       <div class="portfolio_filter">
         <span class="filter_title">Trier par</span>
-        <button id="filter" class="trigger" role="button" aria-label="Trier par" aria-haspopup="listbox">Popularité</button>
-        <ul id="filter_list" class="trigger" role="listbox">
-          <li class="list_option" role="option" id="popularity" data-property="likes">Popularité</li>
-          <li class="list_option" role="option" id="date" data-property="date">Date</li>
-          <li class="list_option" role="option" id="title" data-property="title">Titre</li>
+        <button
+          id="filter"
+          class="trigger"
+          role="button"
+          aria-label="Trier par"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          Popularité
+        </button>
+        <ul
+          id="filter_list"
+          class="trigger"
+          role="listbox"
+          aria-expanded="true"
+        >
+          <li
+            id="popularity"
+            class="list_option"
+            role="option"
+            data-property="likes"
+            aria-label="Trier par popularité"
+          >
+            Popularité
+          </li>
+          <li
+            id="date"
+            class="list_option"
+            role="option"
+            data-property="date"
+            aria-label="Trier par date"
+          >
+            Date
+          </li>
+          <li
+            id="title"
+            class="list_option"
+            role="option"
+            data-property="title"
+            aria-label="Trier par titre"
+          >
+            Titre
+          </li>
         </ul>
       </div>
 
@@ -42,53 +93,101 @@
           <i class="fas fa-heart"></i>
         </div>
       </div>
-
     </main>
 
     <!-- modale de contact -->
-    <div class="contact_background">
-      <div class="contact_container" role="dialog" aria-hidden="true" aria-labelledby="Contactez-moi" aria-describedby="Remplissez tous les champs"  tabindex="-1">
-        <div class="contact_content">
+    <div class="contact_background" aria-hidden="true">
+      <div
+        class="contact_container"
+        role="dialog"
+        aria-label="Contactez-moi"
+        aria-describedby="Remplissez tous les champs"
+      >
+        <div class="contact_content" tabindex="-1">
           <header class="contact_header">
             <div class="left_header">
               <h2>Contactez-moi</h2>
               <p id="name" aria-label="Nom du Photographe"></p>
             </div>
           </header>
-          <form action="#" method="post" aria-labelledby="Formulaire de contact">
+          <form aria-label="Formulaire de contact">
             <div class="formData" data-error="Veuillez saisir votre prénom.">
               <label for="firstname">Prénom</label>
-              <input id="firstname" class="text-control" type="text" name="firstname" aria-labelledby="Prénom" required tabindex="0"></input>
+              <input
+                id="firstname"
+                class="text-control"
+                type="text"
+                name="firstname"
+                aria-label="Prénom"
+                required
+              />
             </div>
             <div class="formData" data-error="Veuillez saisir votre nom.">
               <label for="lastname">Nom</label>
-              <input id="lastname" class="text-control" type="text" name="lastname" aria-labelledby="Nom" required tabindex="0"></input>
+              <input
+                id="lastname"
+                class="text-control"
+                type="text"
+                name="lastname"
+                aria-label="Nom"
+                required
+              />
             </div>
             <div class="formData" data-error="Veuillez saisir un email valide.">
               <label for="email">Email</label>
-              <input id="email" class="text-control" type="email" name="email" aria-labelledby="Email" required tabindex="0"></input>
+              <input
+                id="email"
+                class="text-control"
+                type="email"
+                name="email"
+                aria-label="Email"
+                required
+              />
             </div>
             <div class="formData" data-error="Veuillez saisir votre message.">
               <label for="message">Message</label>
-              <textarea id="message" class="text-control" type="text" name="message" aria-labelledby="Message" required tabindex="0"></textarea>
+              <textarea
+                id="message"
+                class="text-control"
+                name="message"
+                aria-label="Message"
+                required
+              ></textarea>
             </div>
-            <button class="submit_contact" type="submit" aria-label="Envoyer votre message">Envoyer</button>
+            <button
+              class="submit_contact"
+              type="submit"
+              aria-label="Envoyer votre message"
+            >
+              Envoyer
+            </button>
           </form>
         </div>
-        <div class="contact_validation" aria-label="Validation d'envoi">Votre message a bien été envoyé !</div>
+        <div class="contact_validation" aria-label="Validation d'envoi">
+          Votre message a bien été envoyé !
+        </div>
       </div>
     </div>
 
     <!-- modale lightbox -->
-    <div class="lightbox_background">
-      <div class="lightbox_container" aria-label="Portfolio image agrandie" aria-hidden="true" tabindex="-1">
-          <img src="assets/icons/red-cross.png" class="svg_cross" aria-label="Ferme la fenêtre" />
-          <ul class="slides_list"></ul>
+    <div class="lightbox_background" aria-hidden="true">
+      <div
+        class="lightbox_container"
+        role="dialog"
+        aria-label="Portfolio image agrandie"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <img
+          src="assets/icons/red-cross.png"
+          class="svg_cross"
+          alt="Croix pour fermer la fenêtre"
+          aria-label="Fermer la fenêtre"
+        />
+        <ul class="slides_list" aria-label="Les différents médias de "></ul>
       </div>
     </div>
 
     <script type="module" src="scripts/pages/photographer.js"></script>
-
   </body>
-
-</html> 
+</html>
