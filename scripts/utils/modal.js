@@ -1,16 +1,19 @@
 // récupération éléments du DOM
 const body = document.querySelector("body");
 const main = document.getElementById("main");
-const btnOpen = document.querySelector(".contact_button");
 const modalBg = document.querySelector(".contact_background");
 const contactSection = document.querySelector(".contact_container");
 const contactHeader = document.querySelector(".contact_header");
 let btnClose;
+const form = document.querySelector("form");
 const firstname = document.getElementById("firstname");
 const lastname = document.getElementById("lastname");
 const email = document.getElementById("email");
 const message = document.getElementById("message");
-const form = document.querySelector("form");
+let firstnameValue;
+let lastnameValue;
+let emailValue;
+let messageValue;
 
 // lancement de la modale
 export function launchContactModal(photographer) {
@@ -28,11 +31,15 @@ function insertFirstnameInForm(photographer) {
 
 // création du bouton de fermeture de la modale
 function createBtnClose() {
-  btnClose = document.createElement("img");
-  btnClose.setAttribute("src", "assets/icons/close.svg");
+  btnClose = document.createElement("button");
   btnClose.setAttribute("aria-label", "Fermer le formulaire");
-  btnClose.setAttribute("alt", "Croix pour fermer le formulaire");
   btnClose.classList.add("contact_close");
+
+  const cross = document.createElement("img");
+  cross.setAttribute("src", "assets/icons/close.svg");
+  cross.setAttribute("alt", "Croix pour fermer le formulaire");
+  btnClose.appendChild(cross);
+
   btnClose.addEventListener("click", (event) => {
     closeContactModal(event);
   });
@@ -50,16 +57,47 @@ function closeContactModal() {
 // accessibilité de la modale
 function modalAccessibility() {
   if (main.ariaHidden == "false") {
-    debugger;
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
-    firstname.focus();
+    btnClose.focus();
+    document.addEventListener("keydown", (e) => trapFocus(e));
   } else {
     main.setAttribute("aria-hidden", "false");
     modalBg.setAttribute("aria-hidden", "true");
     body.classList.remove("no-scroll");
-    btnOpen.focus();
+    document.removeEventListener("keydown", (e) => trapFocus(e));
+  }
+}
+
+// garde le focus dans la modale
+function trapFocus(e) {
+  // debugger;
+  let isTabPressed = e.key === "Tab";
+  const focusableElements =
+    "button:not([disabled]), input:not([disabled]), textarea:not([disabled])";
+  const firstFocusableElement =
+    contactSection.querySelectorAll(focusableElements)[0];
+  const focusableContent = contactSection.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+  if (!isTabPressed) {
+    return;
+  }
+
+  if (e.shiftKey) {
+    // if shift key pressed for shift + tab combination
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus(); // add focus for the last focusable element
+      e.preventDefault();
+    }
+  } else {
+    // if tab key is pressed
+    if (document.activeElement === lastFocusableElement) {
+      // if focused has reached to last focusable element then focus first focusable element after pressing tab
+      firstFocusableElement.focus(); // add focus for the first focusable element
+      e.preventDefault();
+    }
   }
 }
 
@@ -74,7 +112,7 @@ function onKey(e) {
 //------------------------------------------------------------------------------------------
 // validation input prénom
 function isFirstnameValid() {
-  let firstnameValue = firstname.value.trim();
+  firstnameValue = firstname.value.trim();
   if (firstnameValue != "") {
     const regex = /[A-Za-z0-9]{2,}/;
     if (regex.test(firstnameValue)) {
@@ -89,7 +127,7 @@ function isFirstnameValid() {
 
 // validation input nom
 function isLastnameValid() {
-  let lastnameValue = lastname.value.trim();
+  lastnameValue = lastname.value.trim();
   if (lastnameValue != "") {
     const regex = /[A-Za-z0-9]{2,}/;
     if (regex.test(lastnameValue)) {
@@ -104,7 +142,7 @@ function isLastnameValid() {
 
 // validation input email
 function isEmailValid() {
-  let emailValue = email.value.trim();
+  emailValue = email.value.trim();
   if (emailValue != "") {
     const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
     if (regex.test(emailValue)) {
@@ -119,7 +157,7 @@ function isEmailValid() {
 
 // validation input message
 function isMessageValid() {
-  let messageValue = message.value.trim();
+  messageValue = message.value.trim();
   if (messageValue != "") {
     const regex = /^.{10,}$/;
     if (regex.test(messageValue)) {
@@ -164,16 +202,26 @@ function checkInputs() {
 function validateForm(elt) {
   elt.preventDefault();
   if (checkInputs()) {
-    hideForm();
-    displayValidation();
+    form.style.display = "none";
     form.reset();
+    displayValidation();
+    updateFocusElt();
+    console.log(`Prénom: ${firstnameValue}`);
+    console.log(`Nom: ${lastnameValue}`);
+    console.log(`E-mail: ${emailValue}`);
+    console.log(`Message: ${messageValue}`);
   }
 }
 
 // enlève le formulaire de la modale
-function hideForm() {
-  const form = document.querySelector("form");
-  form.style.display = "none";
+function updateFocusElt() {
+  const inputs = document.querySelectorAll(".text-control");
+  const submit = document.querySelector(".submit_contact");
+  inputs.forEach((input) => {
+    input.setAttribute("disabled", "true");
+  });
+  submit.setAttribute("disabled", "true");
+  btnClose.focus();
 }
 
 // affiche le message de validation dans la modale
