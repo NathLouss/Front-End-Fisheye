@@ -1,109 +1,113 @@
 .contact_background {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(26, 39, 156, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(26, 39, 156, 0.4);
 }
 
 .contact_container {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 700px;
-    padding: 35px;
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 700px;
+  padding: 35px;
+}
+
+.contact_close {
+  background-color: transparent;
+  border: none;
 }
 
 .contact_content img {
-    cursor: pointer;
-    padding-top: 15px;
+  cursor: pointer;
+  padding-top: 15px;
 }
 
 .contact_header {
-    align-items: flex-start;
-    margin-bottom: 90px;
+  align-items: flex-start;
+  margin-bottom: 90px;
 }
 
 .contact_header h2,
 .contact_header p {
-    font-size: 64px;
-    font-weight: normal;
-    margin: 0;
+  font-size: 64px;
+  font-weight: normal;
+  margin: 0;
 }
 
 form {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 form label {
-    color: #312E2E;
-    font-size: 36px;
+  color: #312e2e;
+  font-size: 36px;
 }
 
 form div {
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
-form input, 
+form input,
 textarea {
-    font-family: 'DM Sans';
-    font-size: 20px;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-    padding-left: 20px;
+  font-family: "DM Sans";
+  font-size: 20px;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+  padding-left: 20px;
 }
 
 textarea {
-    height: 170px;
-    padding-top: 15px;
+  height: 170px;
+  padding-top: 15px;
 }
 
 .formData[data-error]::after {
-    content: attr(data-error);
-    font-size: 20px;
-    color: #ffeff0;
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 7px;
-    text-align: right;
-    line-height: 0.3;
-    opacity: 0;
-    transition: 0.3s;
+  content: attr(data-error);
+  font-size: 20px;
+  color: #ffeff0;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .formData[data-error-visible="true"]::after {
-    opacity: 1;
-    text-align: left;
-    padding-top: 2px;
+  opacity: 1;
+  text-align: left;
+  padding-top: 2px;
 }
 
 .formData[data-error-visible="true"] .text-control {
-    border: 2px solid #e54858;
+  border: 2px solid #e54858;
 }
 
 .submit_contact {
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    width: 170px;
-    height: 70px;
-    margin-top: 20px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  width: 170px;
+  height: 70px;
+  margin-top: 20px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .contact_validation {
-    display: none;
-    justify-content: center;
-    font-size: 30px;
-    margin: 160px 20px 100px;
+  display: none;
+  justify-content: center;
+  font-size: 30px;
+  margin: 160px 20px 100px;
 }
