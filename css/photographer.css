@@ -1,68 +1,73 @@
 .photographer_header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 313px;
-    border-radius: 5px;
-    background-color: #FAFAFA;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 313px;
+  border-radius: 5px;
+  background-color: #fafafa;
 }
 
 .header_text {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .header_firstname {
-    font-size: 64px;
-    color: #D3573C;
-    margin: 0;
-    font-weight: 400;
+  font-size: 64px;
+  color: #d3573c;
+  margin: 0;
+  font-weight: 400;
 }
 
 .header_position {
-    font-size: 24px;
-    color: #901C1C;
-    font-weight: 400;
-    margin-bottom: 0;
+  font-size: 24px;
+  color: #901c1c;
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
 .header_description {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .contact_button {
-    font-size: 20px;
-    font-family: "DM Sans";
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
+  font-size: 20px;
+  font-family: "DM Sans";
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact_button:hover {
+  background-color: #db8876;
+  transition: 1s;
 }
 
 /* THUMBNAIL */
 .photographer_thumbnail {
-    position: fixed;
-    bottom: 0;
-    right: 2%;
-    background-color: #DB8876;
-    border-radius: 5px 5px 0 0;
-    padding: 0 20px;
-    font-weight: bold;
-    display: flex;
-    font-size: 24px;
+  position: fixed;
+  bottom: 0;
+  right: 2%;
+  background-color: #db8876;
+  border-radius: 5px 5px 0 0;
+  padding: 0 20px;
+  font-weight: bold;
+  display: flex;
+  font-size: 24px;
 }
 
 .photographer_thumbnail div {
-    display: flex;
-    align-items: center;
-    padding-right: 70px;
+  display: flex;
+  align-items: center;
+  padding-right: 70px;
 }
 
 .photographer_thumbnail div p {
-    padding-right: 5px;
+  padding-right: 5px;
 }

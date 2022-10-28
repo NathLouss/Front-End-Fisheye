@@ -11,6 +11,13 @@ body {
   margin: 0 50px 60px;
 }
 
+:focus-visible {
+  outline: dashed;
+  outline-color: #901c1c;
+  border-radius: 5px;
+  outline-width: 1px;
+}
+
 .no-scroll {
   overflow: hidden;
 }

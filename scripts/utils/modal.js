@@ -72,7 +72,6 @@ function modalAccessibility() {
 
 // garde le focus dans la modale
 function trapFocus(e) {
-  // debugger;
   let isTabPressed = e.key === "Tab";
   const focusableElements =
     "button:not([disabled]), input:not([disabled]), textarea:not([disabled])";
@@ -86,16 +85,16 @@ function trapFocus(e) {
   }
 
   if (e.shiftKey) {
-    // if shift key pressed for shift + tab combination
+    // si la touche Maj est enfoncée pour la combinaison Maj + tabulation
     if (document.activeElement === firstFocusableElement) {
-      lastFocusableElement.focus(); // add focus for the last focusable element
+      lastFocusableElement.focus(); // ajouter le focus pour le dernier élément focalisable
       e.preventDefault();
     }
   } else {
-    // if tab key is pressed
+    // si la touche de tabulation est enfoncée
     if (document.activeElement === lastFocusableElement) {
-      // if focused has reached to last focusable element then focus first focusable element after pressing tab
-      firstFocusableElement.focus(); // add focus for the first focusable element
+      // si la focalisation a atteint le dernier élément focalisable, alors focalisez le premier élément focalisable après avoir appuyé sur la tabulation
+      firstFocusableElement.focus(); // ajouter le focus pour le premier élément focalisable
       e.preventDefault();
     }
   }
