@@ -13,9 +13,9 @@ body {
 
 :focus-visible {
   outline: dashed;
-  outline-color: #901c1c;
+  outline-color: #db8876;
   border-radius: 5px;
-  outline-width: 1px;
+  outline-width: 3px;
 }
 
 .no-scroll {

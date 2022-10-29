@@ -6,7 +6,6 @@ import { incrementLikes } from "../utils/likes.js";
 const filterBtn = document.querySelector("#filter");
 filterBtn.style.display = "inline";
 const filterList = document.querySelector("#filter_list");
-// const filterListOption = document.querySelectorAll(".list_option");
 const popularity = document.querySelector("#popularity");
 const portfolio = document.querySelector(".photographer_portfolio");
 let sortedMedias = [];
@@ -16,27 +15,20 @@ export function toggleDropDown() {
   if (filterBtn.style.display == "inline") {
     filterBtn.style.display = "none";
     filterList.style.display = "block";
-    debugger;
     filterBtn.setAttribute("aria-expanded", "true");
     filterList.setAttribute("aria-expanded", "true");
     popularity.focus();
-    // filterListOption.forEach((option) => {
-    //     option.style.display = 'block'
-    // });
   } else {
     filterBtn.style.display = "inline";
     filterList.style.display = "none";
     filterBtn.setAttribute("aria-expanded", "false");
     filterList.setAttribute("aria-expanded", "false");
     popularity.blur();
-    // filterListOption.forEach((option) => {
-    //     option.style.display = 'none'
-    // });
   }
 }
 
 // lancement du tri des médias
-export function sortOnClick(e, selectedMedias) {
+export function updateSort(e, selectedMedias) {
   const property = e.target.dataset.property;
   const choice = e.currentTarget.innerText;
   sortBy(property, selectedMedias);
@@ -47,7 +39,7 @@ export function sortOnClick(e, selectedMedias) {
 // tri des médias selon la propriété sélectionnée
 function sortBy(property, selectedMedias) {
   sortedMedias = selectedMedias.sort((a, b) =>
-    a[property] > b[property] ? -1 : b[property] < a[property] ? 1 : 0
+    a[property] < b[property] ? -1 : b[property] > a[property] ? 1 : 0
   );
 
   return sortedMedias;
@@ -55,8 +47,11 @@ function sortBy(property, selectedMedias) {
 
 // affichage de la propriété selectionnée dans le bouton de tri
 function displaySelected(choice) {
+  filterList.style.display = "none";
+  filterBtn.style.display = "inline";
   filterBtn.innerHTML = "";
   filterBtn.innerHTML = choice;
+  filterBtn.style.display = "inline";
 }
 
 // affichage des médias triés et passage en argument pour l'affichage dans la lightbox
