@@ -3,10 +3,12 @@ import { openLightboxModal } from "./lightbox.js";
 import { incrementLikes } from "../utils/likes.js";
 
 // récupération des éléments DOM
-const filterBtn = document.querySelector("#filter");
+const filterBtn = document.querySelector(".filter_btn");
 filterBtn.style.display = "inline";
-const filterList = document.querySelector("#filter_list");
-const popularity = document.querySelector("#popularity");
+const filterList = document.querySelector(".filter_list");
+export const popularity = document.querySelector("#popularity");
+export const date = document.querySelector("#date");
+export const title = document.querySelector("#title");
 const portfolio = document.querySelector(".photographer_portfolio");
 let sortedMedias = [];
 
@@ -16,13 +18,11 @@ export function toggleDropDown() {
     filterBtn.style.display = "none";
     filterList.style.display = "block";
     filterBtn.setAttribute("aria-expanded", "true");
-    filterList.setAttribute("aria-expanded", "true");
     popularity.focus();
   } else {
-    filterBtn.style.display = "inline";
     filterList.style.display = "none";
+    filterBtn.style.display = "inline";
     filterBtn.setAttribute("aria-expanded", "false");
-    filterList.setAttribute("aria-expanded", "false");
     popularity.blur();
   }
 }
@@ -50,7 +50,10 @@ function displaySelected(choice) {
   filterList.style.display = "none";
   filterBtn.style.display = "inline";
   filterBtn.innerHTML = "";
+  const closeArrow = document.createElement("i");
+  closeArrow.classList.add("fas", "fa-chevron-down");
   filterBtn.innerHTML = choice;
+  filterBtn.appendChild(closeArrow);
   filterBtn.style.display = "inline";
 }
 

@@ -37,19 +37,18 @@
         </button>
       </div>
 
-      <div class="portfolio_filter">
-        <label class="filter_title">Trier par</label>
+      <div class="filter">
+        <label class="filter_label">Trier par</label>
         <button
-          id="filter"
-          class="trigger"
-          role="button"
+          class="filter_btn trigger"
           aria-label="Trier par"
           aria-haspopup="listbox"
           aria-expanded="false"
         >
-          Popularité
+          <span>Popularité</span>
+          <span><i class="fas fa-chevron-down"></i></span>
         </button>
-        <ul id="filter_list" class="trigger" role="listbox">
+        <ul class="filter_list" role="listbox" aria-labelledby="Option de tri">
           <li
             id="popularity"
             class="list_option"
@@ -58,7 +57,10 @@
             aria-label="Trier par popularité"
             tabindex="0"
           >
-            Popularité
+            <span>Popularité</span>
+            <span class="trigger"
+              ><i class="fas fa-chevron-up chevron_list"></i
+            ></span>
           </li>
           <li
             id="date"

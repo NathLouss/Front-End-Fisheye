@@ -3,7 +3,13 @@ import { photographerFactory } from "../factories/photographerFactory.js";
 import { mediaFactory } from "../factories/mediaFactory.js";
 import { launchContactModal } from "../utils/modal.js";
 import { openLightboxModal } from "../utils/lightbox.js";
-import { toggleDropDown, updateSort } from "../utils/filter.js";
+import {
+  toggleDropDown,
+  updateSort,
+  popularity,
+  date,
+  title,
+} from "../utils/filter.js";
 import { incrementLikes } from "../utils/likes.js";
 
 // déclaration des variables
@@ -43,8 +49,6 @@ async function displayDataPhotographer(photographers) {
 async function displayDataMedias() {
   const mediasSection = document.querySelector(".photographer_portfolio");
   let currentPosition = 0;
-
-  // selectedMedias = medias.filter(m => m.photographerId == idPhotographer);
 
   selectedMedias.forEach((media) => {
     currentPosition = parseInt(currentPosition) + 1;
