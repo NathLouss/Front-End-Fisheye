@@ -6,9 +6,7 @@ import { incrementLikes } from "../utils/likes.js";
 const filterBtn = document.querySelector(".filter_btn");
 filterBtn.style.display = "inline";
 const filterList = document.querySelector(".filter_list");
-export const popularity = document.querySelector("#popularity");
-export const date = document.querySelector("#date");
-export const title = document.querySelector("#title");
+const popularity = document.querySelector("#popularity");
 const portfolio = document.querySelector(".photographer_portfolio");
 let sortedMedias = [];
 
@@ -29,7 +27,7 @@ export function toggleDropDown() {
 
 // lancement du tri des médias
 export function updateSort(e, selectedMedias) {
-  const property = e.target.dataset.property;
+  const property = e.currentTarget.dataset.property;
   const choice = e.currentTarget.innerText;
   sortBy(property, selectedMedias);
   displaySelected(choice);
