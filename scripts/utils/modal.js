@@ -14,6 +14,7 @@ let firstnameValue;
 let lastnameValue;
 let emailValue;
 let messageValue;
+const inputs = document.querySelectorAll(".text-control");
 
 // lancement de la modale
 export function launchContactModal(photographer) {
@@ -109,93 +110,132 @@ function onKey(e) {
 }
 
 //------------------------------------------------------------------------------------------
-// validation input prénom
-function isFirstnameValid() {
-  firstnameValue = firstname.value.trim();
-  if (firstnameValue != "") {
-    const regex = /[A-Za-z0-9]{2,}/;
-    if (regex.test(firstnameValue)) {
-      return hideError(firstname.parentNode);
+function isInputValid(e) {
+  const inputValue = e.currentTarget.value.trim();
+  const regex = {
+    firstname: /[A-Za-z0-9]{2,}/,
+    lastname: /[A-Za-z0-9]{2,}/,
+    email: /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/,
+    message: /^.{10,}$/,
+  };
+  const regexInput = regex[e.currentTarget.name];
+
+  if (inputValue != "") {
+    if (regexInput.test(inputValue)) {
+      return hideError(e.currentTarget.parentNode);
     }
 
-    return showError(firstname.parentNode);
+    return showError(e.currentTarget.parentNode);
   }
 
-  return showError(firstname.parentNode);
+  return showError(e.currentTarget.parentNode);
 }
+
+// validation input prénom
+// function isFirstnameValid() {
+//   firstnameValue = firstname.value.trim();
+//   if (firstnameValue != "") {
+//     const regex = /[A-Za-z0-9]{2,}/;
+//     if (regex.test(firstnameValue)) {
+//       return hideError(firstname.parentNode);
+//     }
+
+//     return showError(firstname.parentNode);
+//   }
+
+//   return showError(firstname.parentNode);
+// }
 
 // validation input nom
-function isLastnameValid() {
-  lastnameValue = lastname.value.trim();
-  if (lastnameValue != "") {
-    const regex = /[A-Za-z0-9]{2,}/;
-    if (regex.test(lastnameValue)) {
-      return hideError(lastname.parentNode);
-    }
+// function isLastnameValid() {
+//   lastnameValue = lastname.value.trim();
+//   if (lastnameValue != "") {
+//     const regex = /[A-Za-z0-9]{2,}/;
+//     if (regex.test(lastnameValue)) {
+//       return hideError(lastname.parentNode);
+//     }
 
-    return showError(lastname.parentNode);
-  }
+//     return showError(lastname.parentNode);
+//   }
 
-  return showError(lastname.parentNode);
-}
+//   return showError(lastname.parentNode);
+// }
 
 // validation input email
-function isEmailValid() {
-  emailValue = email.value.trim();
-  if (emailValue != "") {
-    const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
-    if (regex.test(emailValue)) {
-      return hideError(email.parentNode);
-    }
+// function isEmailValid() {
+//   emailValue = email.value.trim();
+//   if (emailValue != "") {
+//     const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
+//     if (regex.test(emailValue)) {
+//       return hideError(email.parentNode);
+//     }
 
-    return showError(email.parentNode);
-  }
+//     return showError(email.parentNode);
+//   }
 
-  return showError(email.parentNode);
-}
+//   return showError(email.parentNode);
+// }
 
 // validation input message
-function isMessageValid() {
-  messageValue = message.value.trim();
-  if (messageValue != "") {
-    const regex = /^.{10,}$/;
-    if (regex.test(messageValue)) {
-      return hideError(message.parentNode);
-    }
+// function isMessageValid() {
+//   messageValue = message.value.trim();
+//   if (messageValue != "") {
+//     const regex = /^.{10,}$/;
+//     if (regex.test(messageValue)) {
+//       return hideError(message.parentNode);
+//     }
 
-    return showError(message.parentNode);
-  }
+//     return showError(message.parentNode);
+//   }
 
-  return showError(message.parentNode);
-}
+//   return showError(message.parentNode);
+// }
 
 // affiche le message d'erreur
-function showError(elt) {
-  elt.setAttribute("data-error-visible", true);
+function showError(e) {
+  e.setAttribute("data-error-visible", true);
+  e.lastElementChild.setAttribute("data-validation", "false");
 
-  return false;
+  // return false;
 }
 
 // enlève le message d'erreur
-function hideError(elt) {
-  elt.removeAttribute("data-error-visible");
-
-  return true;
+function hideError(e) {
+  e.removeAttribute("data-error-visible");
+  e.lastElementChild.setAttribute("data-validation", "true");
+  // return true;
 }
 
 // check si tous les inputs sont valides
 function checkInputs() {
-  let isInputsValid =
-    isFirstnameValid() &&
-    isLastnameValid() &&
-    isEmailValid() &&
-    isMessageValid();
-  if (isInputsValid) {
-    return true;
-  }
+  // let isInputsValid =
+  //   isFirstnameValid() &&
+  //   isLastnameValid() &&
+  //   isEmailValid() &&
+  //   isMessageValid();
+//   inputs.forEach((input) => {
+//     if (input.dataset.validation === "true") {
+//       return true;
+//     }
 
-  return false;
+//     return false;
+//   });
+// }
+
+  inputs.forEach((input) => { 
+    ckeckValidity(input) {
+      return input.dataset.validation === "true";
+    }
+  })
 }
+
+//   );
+//   if (isInputsValid) {
+//     return true;
+//   }
+
+//   return false;
+// }
 
 // soumet le formulaire si les inputs sont valides
 function validateForm(elt) {
@@ -231,8 +271,12 @@ function displayValidation() {
 
 //eventlisteners
 contactSection.addEventListener("keydown", (e) => onKey(e));
-firstname.addEventListener("blur", isFirstnameValid);
-lastname.addEventListener("blur", isLastnameValid);
-email.addEventListener("blur", isEmailValid);
-message.addEventListener("blur", isMessageValid);
+// firstname.addEventListener("blur", isFirstnameValid);
+// lastname.addEventListener("blur", isLastnameValid);
+// email.addEventListener("blur", isEmailValid);
+// message.addEventListener("blur", isMessageValid);
 form.addEventListener("submit", validateForm);
+
+inputs.forEach((input) =>
+  input.addEventListener("blur", (e) => isInputValid(e))
+);
