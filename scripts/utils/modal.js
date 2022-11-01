@@ -14,7 +14,7 @@ let firstnameValue;
 let lastnameValue;
 let emailValue;
 let messageValue;
-const inputs = document.querySelectorAll(".text-control");
+let inputs = document.querySelectorAll(".text-control");
 
 // lancement de la modale
 export function launchContactModal(photographer) {
@@ -119,9 +119,19 @@ function isInputValid(e) {
     message: /^.{10,}$/,
   };
   const regexInput = regex[e.currentTarget.name];
+  const name = {
+    firstname: "firstname",
+    lastname: "lastname",
+    email: "email",
+    message: "message",
+  };
+  // let nameInput = name[e.currentTarget.name];
+  let dataSend = {};
 
   if (inputValue != "") {
     if (regexInput.test(inputValue)) {
+      let property = e.currentTarget.name;
+      dataSend.property.value = inputValue;
       return hideError(e.currentTarget.parentNode);
     }
 
@@ -213,29 +223,17 @@ function checkInputs() {
   //   isLastnameValid() &&
   //   isEmailValid() &&
   //   isMessageValid();
-//   inputs.forEach((input) => {
-//     if (input.dataset.validation === "true") {
-//       return true;
-//     }
+  //   );
+  //   if (isInputsValid) {
+  //     return true;
+  //   }
 
-//     return false;
-//   });
-// }
-
-  inputs.forEach((input) => { 
-    ckeckValidity(input) {
-      return input.dataset.validation === "true";
-    }
-  })
+  //   return false;
+  // }
+  inputs = Array.from(inputs);
+  let check = inputs.every((input) => input.dataset.validation == "true");
+  return check;
 }
-
-//   );
-//   if (isInputsValid) {
-//     return true;
-//   }
-
-//   return false;
-// }
 
 // soumet le formulaire si les inputs sont valides
 function validateForm(elt) {
@@ -245,6 +243,7 @@ function validateForm(elt) {
     form.reset();
     displayValidation();
     updateFocusElt();
+    console.log(nameInput);
     console.log(`Prénom: ${firstnameValue}`);
     console.log(`Nom: ${lastnameValue}`);
     console.log(`E-mail: ${emailValue}`);
