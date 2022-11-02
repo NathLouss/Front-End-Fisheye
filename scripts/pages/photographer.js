@@ -54,9 +54,14 @@ async function displayDataMedias() {
     mediaCardDOM["anchor"].addEventListener("click", () =>
       openLightboxModal(media.currentPosition, selectedMedias)
     );
-    mediaCardDOM["icon"].addEventListener(
+    mediaCardDOM["divLike"].addEventListener(
       "click",
       (e) => incrementLikes(e, media),
+      { once: true }
+    );
+    mediaCardDOM["divLike"].addEventListener(
+      "keydown",
+      (e) => e.key === "Enter" && incrementLikes(e, media),
       { once: true }
     );
   });
@@ -88,18 +93,18 @@ async function init() {
 init();
 
 //------------------------------------------------------------------------------------------
-// lancement de la modale
+// Event listener lancement de la modale
 const contactBtn = document.querySelector(".contact_button");
 contactBtn.addEventListener("click", () => launchContactModal(photographer));
 
 //------------------------------------------------------------------------------------------
-// lancement dropdown de tri des médias
+// Event listener lancement dropdown de tri des médias
 const triggers = document.querySelectorAll(".trigger");
 triggers.forEach((btn) =>
   btn.addEventListener("click", () => toggleDropDown())
 );
 
-// Event listeners
+// Event listeners tri des médias
 const optionSort = document.querySelectorAll(".list_option");
 optionSort.forEach((option) =>
   option.addEventListener("click", (e) => updateSort(e, selectedMedias))
