@@ -53,6 +53,14 @@ function getSlideBtnOnce() {
   }
 }
 
+// fermeture de la lightbox
+function closeLightbox() {
+  lightboxBg.style.display = "none";
+  lightboxContainer.style.display = "none";
+  mediasSection.innerHTML = "";
+  lightboxAccessibility();
+}
+
 //------------------------------------------------------------------------------------------
 // accessibilité de la lightbox
 function lightboxAccessibility() {
@@ -70,42 +78,6 @@ function lightboxAccessibility() {
     document.removeEventListener("keydown", (e) => trapFocus(e));
   }
 }
-
-// navigation au clavier dans la lightbox
-document.addEventListener("keydown", (e) => {
-  const eventKey = e.key;
-  if (eventKey === "ArrowRight") {
-    changeMedia(1);
-  } else if (eventKey === "ArrowLeft") {
-    changeMedia(-1);
-  } else if (eventKey === "Escape") {
-    closeLightbox();
-  }
-});
-
-// lecture video au clavier
-function playVideo() {
-  let slideActive = document.querySelector(".active");
-  let slideActiveClass = slideActive.firstChild.className;
-  if (
-    slideActiveClass == "slideVideo" ||
-    slideActiveClass == "slideVideo inProgress"
-  ) {
-    if (slideActiveClass == "slideVideo inProgress") {
-      slideActive.firstChild.pause();
-      slideActive.firstChild.classList.remove("inProgress");
-    } else {
-      slideActive.firstChild.play();
-      slideActive.firstChild.classList.add("inProgress");
-    }
-  }
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.code == "Space" || e.code == "Enter") {
-    playVideo();
-  }
-});
 
 // garde le focus dans la modale
 function trapFocus(e) {
@@ -137,10 +109,27 @@ function trapFocus(e) {
   }
 }
 
-//------------------------------------------------------------------------------------------
-let slideIndex = 1;
+// lecture video au clavier
+function playVideo() {
+  let slideActive = document.querySelector(".active");
+  let slideActiveClass = slideActive.firstChild.className;
+  if (
+    slideActiveClass == "slideVideo" ||
+    slideActiveClass == "slideVideo inProgress"
+  ) {
+    if (slideActiveClass == "slideVideo inProgress") {
+      slideActive.firstChild.pause();
+      slideActive.firstChild.classList.remove("inProgress");
+    } else {
+      slideActive.firstChild.play();
+      slideActive.firstChild.classList.add("inProgress");
+    }
+  }
+}
 
+//------------------------------------------------------------------------------------------
 // récupération du media selectionné pour l'afficher dans la lightbox
+let slideIndex = 1;
 function currentSlide(currentPosition) {
   showSlides((slideIndex = currentPosition));
 }
@@ -176,13 +165,20 @@ function showSlides(p) {
 }
 
 //------------------------------------------------------------------------------------------
-// fermeture de la lightbox
-function closeLightbox() {
-  lightboxBg.style.display = "none";
-  lightboxContainer.style.display = "none";
-  mediasSection.innerHTML = "";
-  lightboxAccessibility();
-}
-
 // eventlistener
 closeBtn.addEventListener("click", closeLightbox);
+document.addEventListener("keydown", (e) => {
+  const eventKey = e.key;
+  if (eventKey === "ArrowRight") {
+    changeMedia(1);
+  } else if (eventKey === "ArrowLeft") {
+    changeMedia(-1);
+  } else if (eventKey === "Escape") {
+    closeLightbox();
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.code == "Space" || e.code == "Enter") {
+    playVideo();
+  }
+});
