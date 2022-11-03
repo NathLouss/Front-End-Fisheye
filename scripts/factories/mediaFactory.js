@@ -68,6 +68,7 @@ export function mediaFactory(data) {
   function getLightboxCardDOM() {
     const slideContent = document.createElement("li");
     slideContent.classList.add("slide");
+    slideContent.setAttribute("tabindex", "0");
     if (image !== undefined && image !== null) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
