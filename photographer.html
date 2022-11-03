@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png" />
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png"/>
 
     <title class="title">Fisheye - Nom photographe</title>
 
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
@@ -37,7 +37,7 @@
         </button>
       </div>
 
-      <div class="filter">
+      <section class="filter">
         <label class="filter_label">Trier par</label>
         <button
           class="filter_btn trigger"
@@ -46,7 +46,7 @@
           aria-expanded="false"
         >
           <span>Popularité</span>
-          <span><i class="fas fa-chevron-down"></i></span>
+          <span><span class="fas fa-chevron-down"></span></span>
         </button>
         <ul class="filter_list" role="listbox" aria-labelledby="Option de tri">
           <li
@@ -58,9 +58,9 @@
             tabindex="0"
           >
             <span>Popularité</span>
-            <span class="trigger"
-              ><i class="fas fa-chevron-up chevron_list"></i
-            ></span>
+            <span class="trigger">
+              <span class="fas fa-chevron-up chevron_list"></span>
+            </span>
           </li>
           <li
             id="date"
@@ -83,20 +83,20 @@
             Titre
           </li>
         </ul>
-      </div>
+      </section>
 
-      <div class="photographer_portfolio"></div>
+      <section class="photographer_portfolio"></div>
 
-      <div class="photographer_thumbnail">
+      <aside class="photographer_thumbnail">
         <div>
           <p class="totalLikes"></p>
           <i class="fas fa-heart"></i>
         </div>
-      </div>
+      </aside>
     </main>
 
     <!-- modale de contact -->
-    <div class="contact_background" aria-hidden="true">
+    <aside class="contact_background" aria-hidden="true">
       <div
         class="contact_container"
         role="dialog"
@@ -114,9 +114,9 @@
             <div class="formData" data-error="Veuillez saisir votre prénom.">
               <label for="firstname">Prénom</label>
               <input
+                type="text"
                 id="firstname"
                 class="text-control"
-                type="text"
                 name="firstname"
                 aria-label="Prénom"
                 data-validation="false"
@@ -126,9 +126,9 @@
             <div class="formData" data-error="Veuillez saisir votre nom.">
               <label for="lastname">Nom</label>
               <input
+                type="text"
                 id="lastname"
                 class="text-control"
-                type="text"
                 name="lastname"
                 aria-label="Nom"
                 data-validation="false"
@@ -138,9 +138,9 @@
             <div class="formData" data-error="Veuillez saisir un email valide.">
               <label for="email">Email</label>
               <input
+                type="email"
                 id="email"
                 class="text-control"
-                type="email"
                 name="email"
                 aria-label="Email"
                 data-validation="false"
@@ -171,26 +171,22 @@
           Votre message a bien été envoyé !
         </div>
       </div>
-    </div>
+    </aside>
 
     <!-- modale lightbox -->
-    <div class="lightbox_background" aria-hidden="true">
+    <aside class="lightbox_background" aria-hidden="true">
       <div
         class="lightbox_container"
         role="dialog"
         aria-label="Portfolio vue rapprochée"
         aria-hidden="true"
       >
-        <button
-          class="svg_cross"
-          alt="Croix pour fermer la fenêtre"
-          aria-label="Fermer la fenêtre"
-        >
-          <i class="fas fa-times"></i>
+        <button class="svg_cross" aria-label="Fermer la fenêtre">
+          <span class="fas fa-times"></span>
         </button>
         <ul class="slides_list" aria-label="liste des médias"></ul>
       </div>
-    </div>
+    </aside>
 
     <script type="module" src="scripts/pages/photographer.js"></script>
   </body>
