@@ -6,14 +6,8 @@ const contactSection = document.querySelector(".contact_container");
 const contactHeader = document.querySelector(".contact_header");
 let btnClose;
 const form = document.querySelector("form");
-const firstname = document.getElementById("firstname");
-const lastname = document.getElementById("lastname");
-const email = document.getElementById("email");
-const message = document.getElementById("message");
-let firstnameValue;
-let lastnameValue;
-let emailValue;
-let messageValue;
+let inputs = document.querySelectorAll(".text-control");
+let dataSend = {};
 
 // lancement de la modale
 export function launchContactModal(photographer) {
@@ -109,92 +103,46 @@ function onKey(e) {
 }
 
 //------------------------------------------------------------------------------------------
-// validation input prénom
-function isFirstnameValid() {
-  firstnameValue = firstname.value.trim();
-  if (firstnameValue != "") {
-    const regex = /[A-Za-z0-9]{2,}/;
-    if (regex.test(firstnameValue)) {
-      return hideError(firstname.parentNode);
+// check si les inputs sont valides
+function isInputValid(e) {
+  const inputValue = e.currentTarget.value.trim();
+  const regex = {
+    firstname: /[A-Za-z0-9]{2,}/,
+    lastname: /[A-Za-z0-9]{2,}/,
+    email: /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/,
+    message: /^.{10,}$/,
+  };
+  const regexInput = regex[e.currentTarget.name];
+
+  if (inputValue != "") {
+    if (regexInput.test(inputValue)) {
+      dataSend[e.currentTarget.name] = inputValue;
+      return hideError(e.currentTarget.parentNode);
     }
 
-    return showError(firstname.parentNode);
+    return showError(e.currentTarget.parentNode);
   }
 
-  return showError(firstname.parentNode);
-}
-
-// validation input nom
-function isLastnameValid() {
-  lastnameValue = lastname.value.trim();
-  if (lastnameValue != "") {
-    const regex = /[A-Za-z0-9]{2,}/;
-    if (regex.test(lastnameValue)) {
-      return hideError(lastname.parentNode);
-    }
-
-    return showError(lastname.parentNode);
-  }
-
-  return showError(lastname.parentNode);
-}
-
-// validation input email
-function isEmailValid() {
-  emailValue = email.value.trim();
-  if (emailValue != "") {
-    const regex = /[A-Za-z0-9]{1,}@[A-Za-z0-9]{2,}.[A-Za-z0-9]{2,}/;
-    if (regex.test(emailValue)) {
-      return hideError(email.parentNode);
-    }
-
-    return showError(email.parentNode);
-  }
-
-  return showError(email.parentNode);
-}
-
-// validation input message
-function isMessageValid() {
-  messageValue = message.value.trim();
-  if (messageValue != "") {
-    const regex = /^.{10,}$/;
-    if (regex.test(messageValue)) {
-      return hideError(message.parentNode);
-    }
-
-    return showError(message.parentNode);
-  }
-
-  return showError(message.parentNode);
+  return showError(e.currentTarget.parentNode);
 }
 
 // affiche le message d'erreur
-function showError(elt) {
-  elt.setAttribute("data-error-visible", true);
-
-  return false;
+function showError(e) {
+  e.setAttribute("data-error-visible", true);
+  e.lastElementChild.setAttribute("data-validation", "false");
 }
 
 // enlève le message d'erreur
-function hideError(elt) {
-  elt.removeAttribute("data-error-visible");
-
-  return true;
+function hideError(e) {
+  e.removeAttribute("data-error-visible");
+  e.lastElementChild.setAttribute("data-validation", "true");
 }
 
 // check si tous les inputs sont valides
 function checkInputs() {
-  let isInputsValid =
-    isFirstnameValid() &&
-    isLastnameValid() &&
-    isEmailValid() &&
-    isMessageValid();
-  if (isInputsValid) {
-    return true;
-  }
-
-  return false;
+  inputs = Array.from(inputs);
+  let check = inputs.every((input) => input.dataset.validation == "true");
+  return check;
 }
 
 // soumet le formulaire si les inputs sont valides
@@ -205,14 +153,11 @@ function validateForm(elt) {
     form.reset();
     displayValidation();
     updateFocusElt();
-    console.log(`Prénom: ${firstnameValue}`);
-    console.log(`Nom: ${lastnameValue}`);
-    console.log(`E-mail: ${emailValue}`);
-    console.log(`Message: ${messageValue}`);
+    console.log(dataSend);
   }
 }
 
-// enlève le formulaire de la modale
+// update du focus après suppression du formulaire
 function updateFocusElt() {
   const inputs = document.querySelectorAll(".text-control");
   const submit = document.querySelector(".submit_contact");
@@ -229,10 +174,10 @@ function displayValidation() {
   validation.style.display = "flex";
 }
 
+//------------------------------------------------------------------------------------------
 //eventlisteners
 contactSection.addEventListener("keydown", (e) => onKey(e));
-firstname.addEventListener("blur", isFirstnameValid);
-lastname.addEventListener("blur", isLastnameValid);
-email.addEventListener("blur", isEmailValid);
-message.addEventListener("blur", isMessageValid);
 form.addEventListener("submit", validateForm);
+inputs.forEach((input) =>
+  input.addEventListener("blur", (e) => isInputValid(e))
+);

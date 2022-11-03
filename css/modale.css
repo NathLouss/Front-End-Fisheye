@@ -111,3 +111,10 @@ textarea {
   font-size: 30px;
   margin: 160px 20px 100px;
 }
+
+.contact_close:focus-visible,
+form input:focus-visible,
+textarea:focus-visible,
+.submit_contact {
+  outline-color: white !important;
+}

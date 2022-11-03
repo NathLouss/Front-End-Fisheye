@@ -2,6 +2,7 @@ import { mediaFactory } from "../factories/mediaFactory.js";
 
 // récupération éléments du DOM
 const body = document.querySelector("body");
+const main = document.querySelector("main");
 const lightboxBg = document.querySelector(".lightbox_background");
 const lightboxContainer = document.querySelector(".lightbox_container");
 const closeBtn = document.querySelector(".svg_cross");
@@ -14,9 +15,7 @@ export function openLightboxModal(currentPosition, selectedMedias) {
   lightboxContainer.style.display = "flex";
   displayMediasInLightbox(selectedMedias);
   getSlideBtnOnce(currentPosition);
-  console.log(currentPosition);
-  showSlides(currentPosition);
-  // currentSlide(currentPosition);
+  currentSlide(currentPosition);
   lightboxAccessibility();
 }
 
@@ -30,79 +29,156 @@ function displayMediasInLightbox(selectedMedias) {
 }
 
 // création des boutons de défilement de la lightbox une seule fois
-function getSlideBtnOnce(currentPosition) {
+function getSlideBtnOnce() {
   if (!executed) {
-    const previous = document.createElement("a");
-    previous.innerHTML = "<";
+    const previous = document.createElement("button");
     previous.classList.add("prev");
-    previous.setAttribute("type", "button");
-    previous.setAttribute("aria-label", "Contenu précédent");
-    previous.addEventListener("click", () => changeSlide(-1));
+    previous.setAttribute("aria-label", "Media précédent");
+    const iLeft = document.createElement("i");
+    iLeft.classList.add("fas", "fa-chevron-left");
+    previous.appendChild(iLeft);
+    previous.addEventListener("click", () => changeMedia(-1));
     lightboxContainer.insertAdjacentElement("afterbegin", previous);
 
-    const next = document.createElement("a");
-    next.innerHTML = ">";
+    const next = document.createElement("button");
     next.classList.add("next");
-    next.setAttribute("type", "button");
-    next.setAttribute("aria-label", "Contenu suivant");
-    next.addEventListener("click", () => changeSlide(1));
+    next.setAttribute("aria-label", "Media suivant");
+    const iRight = document.createElement("i");
+    iRight.classList.add("fas", "fa-chevron-right");
+    next.appendChild(iRight);
+    next.addEventListener("click", () => changeMedia(1));
     lightboxContainer.insertAdjacentElement("beforeend", next);
 
     executed = true;
   }
 }
 
+// fermeture de la lightbox
+function closeLightbox() {
+  lightboxBg.style.display = "none";
+  lightboxContainer.style.display = "none";
+  mediasSection.innerHTML = "";
+  lightboxAccessibility();
+}
+
+//------------------------------------------------------------------------------------------
 // accessibilité de la lightbox
 function lightboxAccessibility() {
   if (main.ariaHidden == "false") {
     body.classList.add("no-scroll");
     main.setAttribute("aria-hidden", "true");
     lightboxBg.setAttribute("aria-hidden", "false");
+    lightboxContainer.setAttribute("aria-hidden", "false");
+    document.addEventListener("keydown", (e) => trapFocus(e));
   } else {
     body.classList.remove("no-scroll");
     main.setAttribute("aria-hidden", "false");
     lightboxBg.setAttribute("aria-hidden", "true");
+    lightboxContainer.setAttribute("aria-hidden", "false");
+    document.removeEventListener("keydown", (e) => trapFocus(e));
+  }
+}
+
+// garde le focus dans la modale
+function trapFocus(e) {
+  let isTabPressed = e.key === "Tab";
+  const focusableElements = "button:not([disabled])";
+  const firstFocusableElement =
+    lightboxContainer.querySelectorAll(focusableElements)[0];
+  const focusableContent =
+    lightboxContainer.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+  if (!isTabPressed) {
+    return;
+  }
+
+  if (e.shiftKey) {
+    // si la touche Maj est enfoncée pour la combinaison Maj + tabulation
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus(); // ajouter le focus pour le dernier élément focalisable
+      e.preventDefault();
+    }
+  } else {
+    // si la touche de tabulation est enfoncée
+    if (document.activeElement === lastFocusableElement) {
+      // si la focalisation a atteint le dernier élément focalisable, alors focalisez le premier élément focalisable après avoir appuyé sur la tabulation
+      firstFocusableElement.focus(); // ajouter le focus pour le premier élément focalisable
+      e.preventDefault();
+    }
+  }
+}
+
+// lecture video au clavier
+function playVideo() {
+  let slideActive = document.querySelector(".active");
+  let slideActiveClass = slideActive.firstChild.className;
+  if (
+    slideActiveClass == "slideVideo" ||
+    slideActiveClass == "slideVideo inProgress"
+  ) {
+    if (slideActiveClass == "slideVideo inProgress") {
+      slideActive.firstChild.pause();
+      slideActive.firstChild.classList.remove("inProgress");
+    } else {
+      slideActive.firstChild.play();
+      slideActive.firstChild.classList.add("inProgress");
+    }
   }
 }
 
 //------------------------------------------------------------------------------------------
 // récupération du media selectionné pour l'afficher dans la lightbox
-// let slideIndex = 1;
-// function currentSlide(currentPosition) {
-//   slideIndex = currentPosition;
-//   showSlides(slideIndex);
-// }
+let slideIndex = 1;
+function currentSlide(currentPosition) {
+  showSlides((slideIndex = currentPosition));
+}
 
-let currentPosition = 1;
-// défilement des medias dans la Lightbox
-function changeSlide(n) {
-  // let newCurrentPosition = currentPosition + n;
-  // showSlides(newCurrentPosition);
-  showSlides((currentPosition += n));
+// changement de media dans la Lightbox
+function changeMedia(n) {
+  showSlides((slideIndex += n));
 }
 
 // affichage des medias dans la Lightbox
-function showSlides(currentPosition) {
-  const slides = document.getElementsByClassName("slide");
-  if (currentPosition > slides.length) {
-    currentPosition = 1;
+function showSlides(p) {
+  var slides = document.getElementsByClassName("slide");
+  // si dde position sup au total des slides,
+  // réinitialise slideindex pour revenir au dbt
+  if (p > slides.length) {
+    slideIndex = 1;
   }
-  if (currentPosition < 1) {
-    currentPosition = slides.length;
+  // si dde position inf au total des slides,
+  // affiche la dernière slide
+  if (p < 1) {
+    slideIndex = slides.length;
   }
+  // cache tous les slides par défaut
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
+    slides[i].classList.remove("active");
+    slides[i].setAttribute("aria-hidden", "false");
   }
-  slides[currentPosition - 1].style.display = "flex";
+  // affiche le slide selon index
+  slides[slideIndex - 1].style.display = "flex";
+  slides[slideIndex - 1].classList.add("active");
+  slides[slideIndex - 1].setAttribute("aria-hidden", "true");
 }
 
 //------------------------------------------------------------------------------------------
-// fermeture de la lightbox
-function closeLightbox() {
-  lightboxBg.style.display = "none";
-  lightboxContainer.style.display = "none";
-  mediasSection.innerHTML = "";
-}
-
 // eventlistener
 closeBtn.addEventListener("click", closeLightbox);
+document.addEventListener("keydown", (e) => {
+  const eventKey = e.key;
+  if (eventKey === "ArrowRight") {
+    changeMedia(1);
+  } else if (eventKey === "ArrowLeft") {
+    changeMedia(-1);
+  } else if (eventKey === "Escape") {
+    closeLightbox();
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.code == "Space" || e.code == "Enter") {
+    playVideo();
+  }
+});

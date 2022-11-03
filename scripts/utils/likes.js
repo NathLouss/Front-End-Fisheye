@@ -1,8 +1,8 @@
 // récupération des éléments DOM
-const totalLikes = document.querySelector('.totalLikes');
+const totalLikes = document.querySelector(".totalLikes");
 
 export function incrementLikes(e, media) {
-  e.target.parentNode.firstChild.textContent++;
-  totalLikes.textContent++; 
-  media['likes']++
+  e.target.firstChild.textContent++;
+  totalLikes.textContent++;
+  media["likes"]++;
 }
