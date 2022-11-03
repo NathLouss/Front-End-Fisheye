@@ -15,7 +15,7 @@ export function mediaFactory(data) {
     if (image !== undefined && image !== null) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
-      img.setAttribute("aria-label", `${title}, closeup view`);
+      img.setAttribute("aria-label", `${title}, vue rapprochée`);
       img.setAttribute("title", title);
       anchor.appendChild(img);
     } else if (video !== undefined && video !== null) {
@@ -56,7 +56,7 @@ export function mediaFactory(data) {
     likeNumber.classList.add("likes");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
-    const icon = document.createElement("i");
+    const icon = document.createElement("span");
     icon.classList.add("likes-icon", "fas", "fa-heart");
     icon.setAttribute("aria-label", "likes");
     divLike.appendChild(icon);

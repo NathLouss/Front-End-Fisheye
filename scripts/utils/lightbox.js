@@ -34,7 +34,7 @@ function getSlideBtnOnce() {
     const previous = document.createElement("button");
     previous.classList.add("prev");
     previous.setAttribute("aria-label", "Media précédent");
-    const iLeft = document.createElement("i");
+    const iLeft = document.createElement("span");
     iLeft.classList.add("fas", "fa-chevron-left");
     previous.appendChild(iLeft);
     previous.addEventListener("click", () => changeMedia(-1));
@@ -43,7 +43,7 @@ function getSlideBtnOnce() {
     const next = document.createElement("button");
     next.classList.add("next");
     next.setAttribute("aria-label", "Media suivant");
-    const iRight = document.createElement("i");
+    const iRight = document.createElement("span");
     iRight.classList.add("fas", "fa-chevron-right");
     next.appendChild(iRight);
     next.addEventListener("click", () => changeMedia(1));
