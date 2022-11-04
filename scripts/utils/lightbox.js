@@ -34,8 +34,9 @@ function getSlideBtnOnce() {
     const previous = document.createElement("button");
     previous.classList.add("prev");
     previous.setAttribute("aria-label", "Media précédent");
-    const iLeft = document.createElement("span");
+    const iLeft = document.createElement("i");
     iLeft.classList.add("fas", "fa-chevron-left");
+    iLeft.setAttribute("aria-hidden", "true");
     previous.appendChild(iLeft);
     previous.addEventListener("click", () => changeMedia(-1));
     lightboxContainer.insertAdjacentElement("afterbegin", previous);
@@ -43,8 +44,9 @@ function getSlideBtnOnce() {
     const next = document.createElement("button");
     next.classList.add("next");
     next.setAttribute("aria-label", "Media suivant");
-    const iRight = document.createElement("span");
+    const iRight = document.createElement("i");
     iRight.classList.add("fas", "fa-chevron-right");
+    iRight.setAttribute("aria-hidden", "true");
     next.appendChild(iRight);
     next.addEventListener("click", () => changeMedia(1));
     lightboxContainer.insertAdjacentElement("beforeend", next);
@@ -127,6 +129,11 @@ function playVideo() {
   }
 }
 
+// désactive effet touche Enter
+function cancelEnter(e) {
+  e.preventDefault;
+}
+
 //------------------------------------------------------------------------------------------
 // récupération du media selectionné pour l'afficher dans la lightbox
 let slideIndex = 1;
@@ -178,7 +185,8 @@ document.addEventListener("keydown", (e) => {
   }
 });
 document.addEventListener("keydown", (e) => {
-  if (e.code == "Space" || e.code == "Enter") {
-    playVideo();
-  }
+  e.code == "Space" && playVideo();
+});
+document.addEventListener("keydown", (e) => {
+  e.code == "Enter" && cancelEnter(e);
 });

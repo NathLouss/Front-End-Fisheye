@@ -29,9 +29,9 @@ function createBtnClose() {
   btnClose.setAttribute("aria-label", "Fermer le formulaire");
   btnClose.classList.add("contact_close");
 
-  const cross = document.createElement("img");
-  cross.setAttribute("src", "assets/icons/close.svg");
-  cross.setAttribute("alt", "Croix pour fermer le formulaire");
+  const cross = document.createElement("i");
+  cross.classList.add("fas", "fa-times");
+  cross.setAttribute("aria-hidden", "true");
   btnClose.appendChild(cross);
 
   btnClose.addEventListener("click", (event) => {

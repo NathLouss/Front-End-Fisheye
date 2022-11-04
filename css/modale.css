@@ -16,6 +16,13 @@
   background-color: #db8876;
   width: 700px;
   padding: 35px;
+  scale: 0.8;
+}
+
+@media screen and (max-width: 1440px) {
+  .contact_container {
+    scale: 0.6;
+  }
 }
 
 .contact_close {
@@ -23,9 +30,10 @@
   border: none;
 }
 
-.contact_content img {
+.contact_content i {
   cursor: pointer;
-  padding-top: 15px;
+  color: white;
+  font-size: 65px;
 }
 
 .contact_header {

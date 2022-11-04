@@ -27,7 +27,7 @@ export function mediaFactory(data) {
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
       mp4.setAttribute("title", title);
-      mp4.setAttribute("aria-label", `${title}, closeup view`);
+      mp4.setAttribute("aria-label", `${title}, vue rapprochée`);
       const src = document.createElement("source");
       src.setAttribute(
         "src",
@@ -56,7 +56,7 @@ export function mediaFactory(data) {
     likeNumber.classList.add("likes");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
-    const icon = document.createElement("span");
+    const icon = document.createElement("i");
     icon.classList.add("likes-icon", "fas", "fa-heart");
     icon.setAttribute("aria-label", "likes");
     divLike.appendChild(icon);
