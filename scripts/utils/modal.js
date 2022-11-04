@@ -19,8 +19,9 @@ export function launchContactModal(photographer) {
 
 // insertion prénom du photographe dans le header modale
 function insertFirstnameInForm(photographer) {
-  const name = document.querySelector("#name");
-  name.innerHTML = photographer["name"].split(" ")[0];
+  const nameSpace = document.querySelector("#name");
+  const h1 = photographer["name"].split(" ")[0];
+  nameSpace.innerHTML = `Contactez-moi<br />${h1}`;
 }
 
 // création du bouton de fermeture de la modale

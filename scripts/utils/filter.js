@@ -28,9 +28,11 @@ export function toggleDropDown() {
 // lancement du tri des médias
 export function updateSort(e, selectedMedias) {
   const property = e.currentTarget.dataset.property;
-  const choice = e.currentTarget.innerText;
+  const optionName = e.currentTarget.innerText;
+  const optionElt = e.currentTarget;
   sortBy(property, selectedMedias);
-  displaySelected(choice);
+  displaySelected(optionName);
+  accessibilityFilter(optionElt);
   displayMediasSorted(sortedMedias);
 }
 
@@ -44,15 +46,22 @@ function sortBy(property, selectedMedias) {
 }
 
 // affichage de la propriété selectionnée dans le bouton de tri
-function displaySelected(choice) {
+function displaySelected(optionName) {
   filterList.style.display = "none";
   filterBtn.style.display = "inline";
   filterBtn.innerHTML = "";
   const closeArrow = document.createElement("i");
   closeArrow.classList.add("fas", "fa-chevron-down");
-  filterBtn.innerHTML = choice;
+  filterBtn.innerHTML = optionName;
   filterBtn.appendChild(closeArrow);
   filterBtn.style.display = "inline";
+}
+
+// indication accessibilité sur les options de filtre
+function accessibilityFilter(optionElt) {
+  const options = document.querySelectorAll(".list_option");
+  options.forEach((option) => option.setAttribute("aria-selected", "false"));
+  optionElt.setAttribute("aria-selected", "true");
 }
 
 // affichage des médias triés et passage en argument pour l'affichage dans la lightbox

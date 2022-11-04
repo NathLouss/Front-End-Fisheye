@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="utf-8"/>
-    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png"/>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/icons/FishEye_favicon.png" />
 
     <title class="title">Fisheye - Nom photographe</title>
 
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
@@ -37,25 +37,25 @@
         </button>
       </div>
 
-      <section class="filter">
+      <div class="filter">
         <label class="filter_label">Trier par</label>
         <button
           class="filter_btn trigger"
           aria-labelledby="Trier par"
-          role="button"
           aria-haspopup="listbox"
           aria-expanded="false"
         >
           <span>Popularité</span>
           <span><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
         </button>
-        <ul class="filter_list" role="listbox" aria-label="Option de tri" aria-selected="true">
+        <ul class="filter_list" role="listbox" aria-label="Option de tri">
           <li
             id="popularity"
             class="list_option"
-            role="listbox"
-            data-property="likes"
+            role="option"
             aria-label="Trier par popularité"
+            aria-selected="false"
+            data-property="likes"
             tabindex="0"
           >
             <span>Popularité</span>
@@ -66,9 +66,10 @@
           <li
             id="date"
             class="list_option"
-            role="listbox"
-            data-property="date"
+            role="option"
             aria-label="Trier par date"
+            aria-selected="false"
+            data-property="date"
             tabindex="0"
           >
             Date
@@ -76,17 +77,18 @@
           <li
             id="title"
             class="list_option"
-            role="listbox"
-            data-property="title"
+            role="option"
             aria-label="Trier par titre"
+            aria-selected="false"
+            data-property="title"
             tabindex="0"
           >
             Titre
           </li>
         </ul>
-      </section>
+      </div>
 
-      <section class="photographer_portfolio"></div>
+      <section class="photographer_portfolio"></section>
 
       <aside class="photographer_thumbnail">
         <div>
@@ -102,13 +104,11 @@
         class="contact_container"
         role="dialog"
         aria-label="Contactez-moi"
+        aria-labelledby="name"
       >
         <div class="contact_content">
           <header class="contact_header">
-            <div class="left_header">
-              <h2>Contactez-moi</h2>
-              <p id="name" aria-label="Nom du Photographe"></p>
-            </div>
+            <h1 id="name" aria-label="name">Contactez-moi</h1>
           </header>
           <form aria-label="Formulaire de contact">
             <div class="formData" data-error="Veuillez saisir votre prénom.">
@@ -171,9 +171,7 @@
             </button>
           </form>
         </div>
-        <div class="contact_validation" aria-label="Validation d'envoi">
-          Votre message a bien été envoyé !
-        </div>
+        <div class="contact_validation">Votre message a bien été envoyé !</div>
       </div>
     </aside>
 
