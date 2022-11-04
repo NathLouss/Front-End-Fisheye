@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 1440px) {
   .lightbox_container {
-    scale: 0.9;
+    transform: scale(0.9);
   }
 }
 
