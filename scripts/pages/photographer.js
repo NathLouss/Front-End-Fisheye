@@ -16,6 +16,9 @@ let likesArray = [];
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const idPhotographer = urlParams.get("id");
+if (!idPhotographer) {
+  window.location.href = "index.html";
+}
 
 // insertion des informations du photographe sélectionné via la photographerFactory
 async function displayDataPhotographer(photographers) {
@@ -80,6 +83,7 @@ async function displayLikesCounter() {
   counter.insertAdjacentHTML("afterbegin", totalLikes);
 }
 
+//------------------------------------------------------------------------------------------
 // initialisation des fonctions asynchrones
 async function init() {
   const photographers = await getPhotographers();
@@ -97,7 +101,6 @@ init();
 const contactBtn = document.querySelector(".contact_button");
 contactBtn.addEventListener("click", () => launchContactModal(photographer));
 
-//------------------------------------------------------------------------------------------
 // Event listener lancement dropdown de tri des médias
 const triggers = document.querySelectorAll(".trigger");
 triggers.forEach((btn) =>

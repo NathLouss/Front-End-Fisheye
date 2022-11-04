@@ -3,8 +3,7 @@ export async function getPhotographers() {
   const response = await fetch("data/photographers.json");
   const data = await response.json();
   if (!response.ok) {
-    const error = "Impossible de récupérer les données photographe !";
-    throw error;
+    console.log("Photographers: ", response.statusText);
   }
   const { photographers } = data;
 
@@ -16,8 +15,7 @@ export async function getMedias() {
   const response = await fetch("data/photographers.json");
   const data = await response.json();
   if (!response.ok) {
-    const error = "Impossible de récupérer les données média !";
-    throw error;
+    console.log("Medias: ", response.statusText);
   }
   const { medias } = data;
 

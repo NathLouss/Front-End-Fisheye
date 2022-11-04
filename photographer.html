@@ -41,31 +41,32 @@
         <label class="filter_label">Trier par</label>
         <button
           class="filter_btn trigger"
-          aria-label="Trier par"
+          aria-labelledby="Trier par"
+          role="button"
           aria-haspopup="listbox"
           aria-expanded="false"
         >
           <span>Popularité</span>
-          <span><span class="fas fa-chevron-down"></span></span>
+          <span><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
         </button>
-        <ul class="filter_list" role="listbox" aria-labelledby="Option de tri">
+        <ul class="filter_list" role="listbox" aria-label="Option de tri" aria-selected="true">
           <li
             id="popularity"
             class="list_option"
-            role="option"
+            role="listbox"
             data-property="likes"
             aria-label="Trier par popularité"
             tabindex="0"
           >
             <span>Popularité</span>
             <span class="trigger">
-              <span class="fas fa-chevron-up chevron_list"></span>
+              <i class="fas fa-chevron-up chevron_list" aria-hidden="true"></i>
             </span>
           </li>
           <li
             id="date"
             class="list_option"
-            role="option"
+            role="listbox"
             data-property="date"
             aria-label="Trier par date"
             tabindex="0"
@@ -75,7 +76,7 @@
           <li
             id="title"
             class="list_option"
-            role="option"
+            role="listbox"
             data-property="title"
             aria-label="Trier par titre"
             tabindex="0"
@@ -90,7 +91,7 @@
       <aside class="photographer_thumbnail">
         <div>
           <p class="totalLikes"></p>
-          <i class="fas fa-heart"></i>
+          <i class="fas fa-heart" aria-hidden="true" title="J'aime"></i>
         </div>
       </aside>
     </main>
@@ -101,7 +102,6 @@
         class="contact_container"
         role="dialog"
         aria-label="Contactez-moi"
-        aria-describedby="Remplissez tous les champs"
       >
         <div class="contact_content">
           <header class="contact_header">
@@ -120,6 +120,7 @@
                 name="firstname"
                 aria-label="Prénom"
                 data-validation="false"
+                placeholder="Prénom"
                 required
               />
             </div>
@@ -132,6 +133,7 @@
                 name="lastname"
                 aria-label="Nom"
                 data-validation="false"
+                placeholder="Nom"
                 required
               />
             </div>
@@ -144,6 +146,7 @@
                 name="email"
                 aria-label="Email"
                 data-validation="false"
+                placeholder="Email"
                 required
               />
             </div>
@@ -155,6 +158,7 @@
                 name="message"
                 aria-label="Message"
                 data-validation="false"
+                placeholder="Veuillez saisir votre message"
                 required
               ></textarea>
             </div>
@@ -182,9 +186,9 @@
         aria-hidden="true"
       >
         <button class="svg_cross" aria-label="Fermer la fenêtre">
-          <span class="fas fa-times"></span>
+          <i class="fas fa-times" aria-hidden="true"></i>
         </button>
-        <ul class="slides_list" aria-label="liste des médias"></ul>
+        <ul class="slides_list" aria-label="Médias en vue rapprochée"></ul>
       </div>
     </aside>
 
