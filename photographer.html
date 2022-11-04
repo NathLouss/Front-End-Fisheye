@@ -42,20 +42,20 @@
         <button
           class="filter_btn trigger"
           aria-labelledby="Trier par"
-          role="button"
           aria-haspopup="listbox"
           aria-expanded="false"
         >
           <span>Popularité</span>
           <span><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
         </button>
-        <ul class="filter_list" role="listbox" aria-label="Option de tri" aria-selected="true">
+        <ul class="filter_list" role="listbox" aria-label="Option de tri">
           <li
             id="popularity"
             class="list_option"
-            role="listbox"
-            data-property="likes"
+            role="option"
             aria-label="Trier par popularité"
+            aria-selected="false"
+            data-property="likes"
             tabindex="0"
           >
             <span>Popularité</span>
@@ -66,9 +66,10 @@
           <li
             id="date"
             class="list_option"
-            role="listbox"
-            data-property="date"
+            role="option"
             aria-label="Trier par date"
+            aria-selected="false"
+            data-property="date"
             tabindex="0"
           >
             Date
@@ -76,9 +77,10 @@
           <li
             id="title"
             class="list_option"
-            role="listbox"
-            data-property="title"
+            role="option"
             aria-label="Trier par titre"
+            aria-selected="false"
+            data-property="title"
             tabindex="0"
           >
             Titre
