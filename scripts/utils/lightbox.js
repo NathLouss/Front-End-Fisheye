@@ -187,6 +187,6 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("keydown", (e) => {
   e.code == "Space" && playVideo();
 });
-document.addEventListener("keydown", (e) => {
+lightboxContainer.addEventListener("keydown", (e) => {
   e.code == "Enter" && cancelEnter(e);
 });

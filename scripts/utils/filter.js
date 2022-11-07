@@ -79,12 +79,12 @@ function displayMediasSorted(sortedMedias) {
     mediaCardDOM["anchor"].addEventListener("click", () =>
       openLightboxModal(media.currentPosition, sortedMedias)
     );
-    mediaCardDOM["divLike"].addEventListener(
+    mediaCardDOM["icon"].addEventListener(
       "click",
       (e) => incrementLikes(e, media),
       { once: true }
     );
-    mediaCardDOM["divLike"].addEventListener(
+    mediaCardDOM["icon"].addEventListener(
       "keydown",
       (e) => e.key === "Enter" && incrementLikes(e, media),
       { once: true }
