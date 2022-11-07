@@ -8,14 +8,14 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0 50px 60px;
+  margin: 0 50px 200px;
 }
 
 :focus-visible {
   outline: dashed;
   outline-color: #db8876;
   border-radius: 5px;
-  outline-width: 3px;
+  outline-width: 2px;
 }
 
 .no-scroll {

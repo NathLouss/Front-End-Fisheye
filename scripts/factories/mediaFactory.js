@@ -9,14 +9,14 @@ export function mediaFactory(data) {
 
     const anchor = document.createElement("a");
     anchor.setAttribute("href", "#");
+    anchor.setAttribute("role", "button");
     anchor.classList.add("lightbox_link");
     articlePortfolio.appendChild(anchor);
 
     if (image !== undefined && image !== null) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
-      img.setAttribute("aria-label", `${title}, vue rapprochée`);
-      img.setAttribute("title", title);
+      img.setAttribute("alt", `${title}, vue rapprochée`);
       anchor.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const capture = `assets/photographers/${photographerName}/${video.replace(
@@ -26,7 +26,6 @@ export function mediaFactory(data) {
       const mp4 = document.createElement("video");
       mp4.classList.add("video_poster");
       mp4.setAttribute("poster", capture);
-      mp4.setAttribute("title", title);
       mp4.setAttribute("aria-label", `${title}, vue rapprochée`);
       const src = document.createElement("source");
       src.setAttribute(
@@ -44,24 +43,28 @@ export function mediaFactory(data) {
 
     const titleImg = document.createElement("p");
     titleImg.textContent = title;
-    titleImg.setAttribute("tabindex", "0");
+    titleImg.setAttribute("aria-hidden", "true");
     divPortfolioText.appendChild(titleImg);
 
     const divLike = document.createElement("div");
+    divLike.setAttribute("aria-label", "likes");
     divLike.classList.add("article_like");
-    divLike.setAttribute("tabindex", "0");
     divPortfolioText.appendChild(divLike);
 
-    const likeNumber = document.createElement("p");
+    const likeNumber = document.createElement("span");
     likeNumber.classList.add("likes");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
+
     const icon = document.createElement("i");
     icon.classList.add("likes-icon", "fas", "fa-heart");
-    icon.setAttribute("aria-label", "likes");
+    icon.setAttribute("role", "button");
+    icon.setAttribute("tabindex", "0");
+    // icon.setAttribute("role", "button");
+    // icon.setAttribute("aria-label", "likes");
     divLike.appendChild(icon);
 
-    return { articlePortfolio, anchor, divLike };
+    return { articlePortfolio, anchor, icon };
   }
 
   // renvoi l'élément HTML d'un media pour la lightbox
@@ -73,8 +76,8 @@ export function mediaFactory(data) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
       img.classList.add("slideImg");
-      img.setAttribute("alt", "");
-      img.setAttribute("title", title);
+      img.setAttribute("alt", title);
+      // img.setAttribute("title", title);
       slideContent.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const mp4 = document.createElement("video");

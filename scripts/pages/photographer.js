@@ -57,12 +57,12 @@ async function displayDataMedias() {
     mediaCardDOM["anchor"].addEventListener("click", () =>
       openLightboxModal(media.currentPosition, selectedMedias)
     );
-    mediaCardDOM["divLike"].addEventListener(
+    mediaCardDOM["icon"].addEventListener(
       "click",
       (e) => incrementLikes(e, media),
       { once: true }
     );
-    mediaCardDOM["divLike"].addEventListener(
+    mediaCardDOM["icon"].addEventListener(
       "keydown",
       (e) => e.key === "Enter" && incrementLikes(e, media),
       { once: true }
