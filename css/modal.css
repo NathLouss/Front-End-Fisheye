@@ -123,6 +123,8 @@ textarea {
 .contact_close:focus-visible,
 form input:focus-visible,
 textarea:focus-visible,
-.submit_contact {
+.submit_contact:focus-visible {
   outline-color: white !important;
+  outline-style: double;
+  outline-width: 4px;
 }
