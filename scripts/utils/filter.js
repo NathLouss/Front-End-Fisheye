@@ -17,11 +17,18 @@ export function toggleDropDown() {
     filterList.style.display = "block";
     filterBtn.setAttribute("aria-expanded", "true");
     popularity.focus();
+    document.addEventListener("keydown", (e) => trapFocus(e));
+    document.addEventListener(
+      "keydown",
+      (e) => e.key === "Escape" && toggleDropDown()
+    );
   } else {
     filterList.style.display = "none";
     filterBtn.style.display = "inline";
     filterBtn.setAttribute("aria-expanded", "false");
     popularity.blur();
+    document.removeEventListener("keydown", (e) => trapFocus(e));
+    document.removeEventListener("keydown", (e) => toggleDropDown(e));
   }
 }
 
@@ -62,6 +69,30 @@ function accessibilityFilter(optionElt) {
   const options = document.querySelectorAll(".list_option");
   options.forEach((option) => option.setAttribute("aria-selected", "false"));
   optionElt.setAttribute("aria-selected", "true");
+}
+
+// garde le focus sur la page
+function trapFocus(e) {
+  const focusableElements = "li";
+  const firstFocusableElement =
+    filterList.querySelectorAll(focusableElements)[0];
+  const focusableContent = filterList.querySelectorAll(focusableElements);
+  const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+  if (e.shiftKey) {
+    // si la touche Maj est enfoncée pour la combinaison Maj + tabulation
+    if (document.activeElement === firstFocusableElement) {
+      lastFocusableElement.focus(); // ajouter le focus pour le dernier élément focalisable
+      e.preventDefault();
+    }
+  } else {
+    // si la touche de tabulation est enfoncée
+    if (document.activeElement === lastFocusableElement) {
+      // si la focalisation a atteint le dernier élément focalisable, alors focalisez le premier élément focalisable après avoir appuyé sur la tabulation
+      firstFocusableElement.focus(); // ajouter le focus pour le premier élément focalisable
+      e.preventDefault();
+    }
+  }
 }
 
 // affichage des médias triés et passage en argument pour l'affichage dans la lightbox

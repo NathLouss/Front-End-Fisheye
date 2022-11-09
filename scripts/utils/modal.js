@@ -5,6 +5,7 @@ const modalBg = document.querySelector(".contact_background");
 const contactSection = document.querySelector(".contact_container");
 const contactHeader = document.querySelector(".contact_header");
 let btnClose;
+const firstname = document.getElementById("firstname");
 const form = document.querySelector("form");
 let inputs = document.querySelectorAll(".text-control");
 let dataSend = {};
@@ -55,7 +56,7 @@ function modalAccessibility() {
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
-    btnClose.focus();
+    firstname.focus();
     document.addEventListener("keydown", (e) => trapFocus(e));
   } else {
     main.setAttribute("aria-hidden", "false");

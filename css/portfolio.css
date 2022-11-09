@@ -51,10 +51,13 @@
   display: flex;
   align-items: center;
   margin: 0;
-  cursor: pointer;
   padding-left: 10px;
 }
 
 .likes {
   padding-right: 10px;
+}
+
+.likes-icon {
+  cursor: pointer;
 }

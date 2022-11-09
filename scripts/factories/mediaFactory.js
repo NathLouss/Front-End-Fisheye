@@ -60,8 +60,6 @@ export function mediaFactory(data) {
     icon.classList.add("likes-icon", "fas", "fa-heart");
     icon.setAttribute("role", "button");
     icon.setAttribute("tabindex", "0");
-    // icon.setAttribute("role", "button");
-    // icon.setAttribute("aria-label", "likes");
     divLike.appendChild(icon);
 
     return { articlePortfolio, anchor, icon };
@@ -77,7 +75,6 @@ export function mediaFactory(data) {
       img.setAttribute("src", picture);
       img.classList.add("slideImg");
       img.setAttribute("alt", title);
-      // img.setAttribute("title", title);
       slideContent.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const mp4 = document.createElement("video");
