@@ -56,6 +56,43 @@ function getSlideBtnOnce() {
   }
 }
 
+//------------------------------------------------------------------------------------------
+// récupération du media selectionné pour l'afficher dans la lightbox
+let slideIndex = 1;
+function currentSlide(currentPosition) {
+  showSlides((slideIndex = currentPosition));
+}
+
+// changement de media dans la Lightbox
+function changeMedia(n) {
+  showSlides((slideIndex += n));
+}
+
+// affichage des medias dans la Lightbox
+function showSlides(p) {
+  var slides = document.getElementsByClassName("slide");
+  // si dde position sup au total des slides,
+  // réinitialise slideindex pour revenir au dbt
+  if (p > slides.length) {
+    slideIndex = 1;
+  }
+  // si dde position inf au total des slides,
+  // affiche la dernière slide
+  if (p < 1) {
+    slideIndex = slides.length;
+  }
+  // cache tous les slides par défaut
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+    slides[i].classList.remove("active");
+    slides[i].setAttribute("aria-hidden", "true");
+  }
+  // affiche le slide selon index
+  slides[slideIndex - 1].style.display = "flex";
+  slides[slideIndex - 1].classList.add("active");
+  slides[slideIndex - 1].setAttribute("aria-hidden", "false");
+}
+
 // fermeture de la lightbox
 function closeLightbox() {
   lightboxBg.style.display = "none";
@@ -99,16 +136,13 @@ function trapFocus(e) {
   }
 
   if (e.shiftKey) {
-    // si la touche Maj est enfoncée pour la combinaison Maj + tabulation
     if (document.activeElement === firstFocusableElement) {
-      lastFocusableElement.focus(); // ajouter le focus pour le dernier élément focalisable
+      lastFocusableElement.focus();
       e.preventDefault();
     }
   } else {
-    // si la touche de tabulation est enfoncée
     if (document.activeElement === lastFocusableElement) {
-      // si la focalisation a atteint le dernier élément focalisable, alors focalisez le premier élément focalisable après avoir appuyé sur la tabulation
-      firstFocusableElement.focus(); // ajouter le focus pour le premier élément focalisable
+      firstFocusableElement.focus();
       e.preventDefault();
     }
   }
@@ -138,46 +172,9 @@ function cancelEnter(e) {
 }
 
 //------------------------------------------------------------------------------------------
-// récupération du media selectionné pour l'afficher dans la lightbox
-let slideIndex = 1;
-function currentSlide(currentPosition) {
-  showSlides((slideIndex = currentPosition));
-}
-
-// changement de media dans la Lightbox
-function changeMedia(n) {
-  showSlides((slideIndex += n));
-}
-
-// affichage des medias dans la Lightbox
-function showSlides(p) {
-  var slides = document.getElementsByClassName("slide");
-  // si dde position sup au total des slides,
-  // réinitialise slideindex pour revenir au dbt
-  if (p > slides.length) {
-    slideIndex = 1;
-  }
-  // si dde position inf au total des slides,
-  // affiche la dernière slide
-  if (p < 1) {
-    slideIndex = slides.length;
-  }
-  // cache tous les slides par défaut
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-    slides[i].classList.remove("active");
-    slides[i].setAttribute("aria-hidden", "true");
-  }
-  // affiche le slide selon index
-  slides[slideIndex - 1].style.display = "flex";
-  slides[slideIndex - 1].classList.add("active");
-  slides[slideIndex - 1].setAttribute("aria-hidden", "false");
-}
-
-//------------------------------------------------------------------------------------------
 // eventlistener
 closeBtn.addEventListener("click", closeLightbox);
-document.addEventListener("keydown", (e) => {
+lightboxContainer.addEventListener("keydown", (e) => {
   const eventKey = e.key;
   if (eventKey === "ArrowRight") {
     changeMedia(1);

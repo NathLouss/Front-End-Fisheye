@@ -5,5 +5,4 @@ export function incrementLikes(e, media) {
   e.currentTarget.previousSibling.firstChild.textContent++;
   totalLikes.textContent++;
   media["likes"]++;
-  console.log(e.currentTarget.previousSibling.firstChild.textContent);
 }

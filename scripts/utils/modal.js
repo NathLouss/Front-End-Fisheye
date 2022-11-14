@@ -32,7 +32,6 @@ function createBtnClose() {
   btnClose = document.createElement("button");
   btnClose.setAttribute("aria-label", "Fermer le formulaire");
   btnClose.classList.add("contact_close");
-  // btnClose.classList.add("tabindex", "0");
 
   const cross = document.createElement("i");
   cross.classList.add("fas", "fa-times");
@@ -84,16 +83,13 @@ function trapFocus(e) {
   }
 
   if (e.shiftKey) {
-    // si la touche Maj est enfoncée pour la combinaison Maj + tabulation
     if (document.activeElement === firstFocusableElement) {
-      lastFocusableElement.focus(); // ajouter le focus pour le dernier élément focalisable
+      lastFocusableElement.focus();
       e.preventDefault();
     }
   } else {
-    // si la touche de tabulation est enfoncée
     if (document.activeElement === lastFocusableElement) {
-      // si la focalisation a atteint le dernier élément focalisable, alors focalisez le premier élément focalisable après avoir appuyé sur la tabulation
-      firstFocusableElement.focus(); // ajouter le focus pour le premier élément focalisable
+      firstFocusableElement.focus();
       e.preventDefault();
     }
   }
@@ -157,9 +153,18 @@ function validateForm(elt) {
     form.style.display = "none";
     form.reset();
     displayValidation();
-    // updateFocusElt();
     console.log(dataSend);
   }
+}
+
+// affiche le message de validation dans la modale
+function displayValidation() {
+  const validation = document.querySelector(".contact_validation");
+  validation.style.display = "flex";
+  updateFocusElt();
+  btnClose.focus();
+  message.setAttribute("tabindex", "0");
+  document.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 // update du focus après suppression du formulaire
@@ -171,16 +176,6 @@ function updateFocusElt() {
     input.setAttribute("disabled", "true");
   });
   submit.setAttribute("disabled", "true");
-}
-
-// affiche le message de validation dans la modale
-function displayValidation() {
-  const validation = document.querySelector(".contact_validation");
-  validation.style.display = "flex";
-  updateFocusElt();
-  btnClose.focus();
-  message.setAttribute("tabindex", "0");
-  document.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 //------------------------------------------------------------------------------------------

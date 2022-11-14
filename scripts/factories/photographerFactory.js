@@ -82,11 +82,6 @@ export function photographerFactory(data) {
     return rate;
   }
 
-  // récupération de l'id du photographer
-  function getSelectedPhotographerId() {
-    return id;
-  }
-
   // récupération du prénom du photographer
   function getSelectedPhotographerName() {
     return photographerName;
@@ -98,6 +93,5 @@ export function photographerFactory(data) {
     insertPhotoInHeader,
     insertRateInThumbnail,
     getSelectedPhotographerName,
-    getSelectedPhotographerId,
   };
 }
