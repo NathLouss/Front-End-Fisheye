@@ -25,7 +25,6 @@
           class="logo"
           alt="Fisheye Home page"
           title="Logo Fisheye"
-          role="button"
         />
       </a>
     </header>
@@ -33,7 +32,7 @@
     <main id="main" aria-hidden="false">
       <div class="photographer_header">
         <div class="header_text"></div>
-        <button class="contact_button" role="button" aria-label="Contactez-moi">
+        <button class="contact_button" aria-label="Contactez-moi">
           Contactez-moi
         </button>
       </div>
@@ -105,13 +104,13 @@
         class="contact_container"
         role="dialog"
         aria-label="Contactez-moi"
-        aria-labelledby="name"
+        aria-labelledby="contact_form"
       >
         <div class="contact_content">
           <header class="contact_header">
             <h1 id="name" aria-label="name">Contactez-moi</h1>
           </header>
-          <form aria-label="Formulaire de contact">
+          <form id="contact_form" aria-label="Formulaire de contact">
             <div class="formData" data-error="Veuillez saisir votre prénom.">
               <label for="firstname">Prénom</label>
               <input
@@ -119,7 +118,7 @@
                 id="firstname"
                 class="text-control"
                 name="firstname"
-                aria-label="Prénom"
+                aria-label="Veuillez saisir votre prénom"
                 data-validation="false"
                 placeholder="Prénom"
                 required
@@ -132,7 +131,7 @@
                 id="lastname"
                 class="text-control"
                 name="lastname"
-                aria-label="Nom"
+                aria-label="Veuillez saisir votre nom"
                 data-validation="false"
                 placeholder="Nom"
                 required
@@ -145,7 +144,7 @@
                 id="email"
                 class="text-control"
                 name="email"
-                aria-label="Email"
+                aria-label="Veuillez saisir votre email"
                 data-validation="false"
                 placeholder="Email"
                 required
@@ -157,7 +156,7 @@
                 id="message"
                 class="text-control"
                 name="message"
-                aria-label="Message"
+                aria-label="Veuillez saisir votre message"
                 data-validation="false"
                 placeholder="Veuillez saisir votre message"
                 required
@@ -172,7 +171,9 @@
             </button>
           </form>
         </div>
-        <div class="contact_validation">Votre message a bien été envoyé !</div>
+        <div class="contact_validation">
+          <span tabindex="0">Votre message a bien été envoyé !</span>
+        </div>
       </div>
     </aside>
 
@@ -182,7 +183,6 @@
         class="lightbox_container"
         role="dialog"
         aria-label="Portfolio vue rapprochée"
-        aria-hidden="true"
       >
         <button class="svg_cross" aria-label="Fermer la fenêtre">
           <i class="fas fa-times" aria-hidden="true"></i>

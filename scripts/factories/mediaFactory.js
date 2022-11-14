@@ -52,13 +52,13 @@ export function mediaFactory(data) {
 
     const likeNumber = document.createElement("span");
     likeNumber.classList.add("likes");
-    likeNumber.setAttribute("aria-label", "likes");
+    likeNumber.setAttribute("aria-description", "likes");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
 
     const btn = document.createElement("button");
     btn.setAttribute("type", "button");
-    btn.setAttribute("tabindex", "0");
+    btn.setAttribute("aria-label", "Appuyez pour aimer");
     btn.classList.add("btn_like");
     divLike.appendChild(btn);
 
@@ -79,10 +79,12 @@ export function mediaFactory(data) {
       img.setAttribute("src", picture);
       img.classList.add("slideImg");
       img.setAttribute("alt", title);
+      // img.setAttribute("aria-label", title);
       slideContent.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const mp4 = document.createElement("video");
       mp4.setAttribute("title", title);
+      // mp4.setAttribute("aria-label", title);
       mp4.setAttribute("controls", "true");
       mp4.classList.add("slideVideo");
       const src = document.createElement("source");

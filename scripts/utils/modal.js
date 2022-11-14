@@ -8,6 +8,7 @@ let btnClose;
 const firstname = document.getElementById("firstname");
 const form = document.querySelector("form");
 let inputs = document.querySelectorAll(".text-control");
+const validation = document.querySelector(".contact_validation");
 let dataSend = {};
 
 // lancement de la modale
@@ -30,6 +31,7 @@ function createBtnClose() {
   btnClose = document.createElement("button");
   btnClose.setAttribute("aria-label", "Fermer le formulaire");
   btnClose.classList.add("contact_close");
+  btnClose.classList.add("tabindex", "0");
 
   const cross = document.createElement("i");
   cross.classList.add("fas", "fa-times");
@@ -160,14 +162,15 @@ function validateForm(elt) {
 }
 
 // update du focus après suppression du formulaire
-function updateFocusElt() {
+function updateFocusElt(e) {
   const inputs = document.querySelectorAll(".text-control");
   const submit = document.querySelector(".submit_contact");
   inputs.forEach((input) => {
     input.setAttribute("disabled", "true");
   });
   submit.setAttribute("disabled", "true");
-  btnClose.focus();
+  debugger;
+  validation.focus();
 }
 
 // affiche le message de validation dans la modale
