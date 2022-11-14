@@ -79,13 +79,11 @@ export function mediaFactory(data) {
       const img = document.createElement("img");
       img.setAttribute("src", picture);
       img.classList.add("slideImg");
-      // img.setAttribute("alt", title);
-      // img.setAttribute("tabindex", "0");
+      img.setAttribute("alt", title);
       slideContent.appendChild(img);
     } else if (video !== undefined && video !== null) {
       const mp4 = document.createElement("video");
-      // mp4.setAttribute("title", title);
-      // mp4.setAttribute("tabindex", "0");
+      mp4.setAttribute("title", title);
       mp4.setAttribute("controls", "true");
       mp4.classList.add("slideVideo");
       const src = document.createElement("source");
@@ -96,6 +94,7 @@ export function mediaFactory(data) {
     }
     const titleImg = document.createElement("p");
     titleImg.textContent = title;
+    titleImg.setAttribute("aria-hidden", "true");
     slideContent.appendChild(titleImg);
 
     return slideContent;
