@@ -53,6 +53,7 @@ export function mediaFactory(data) {
     const likeNumber = document.createElement("span");
     likeNumber.classList.add("likes");
     likeNumber.setAttribute("aria-description", "likes");
+    likeNumber.setAttribute("tabindex", "0");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
 

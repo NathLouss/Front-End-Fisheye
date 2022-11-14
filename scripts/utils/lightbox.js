@@ -113,6 +113,7 @@ function trapFocus(e) {
 
 // lecture video au clavier
 function playVideo() {
+  debugger;
   let slideActive = document.querySelector(".active");
   let slideActiveClass = slideActive.firstChild.className;
   if (
@@ -184,7 +185,7 @@ document.addEventListener("keydown", (e) => {
     closeLightbox();
   }
 });
-document.addEventListener("keydown", (e) => {
+lightboxContainer.addEventListener("keydown", (e) => {
   e.code == "Space" && playVideo();
 });
 lightboxContainer.addEventListener("keydown", (e) => {

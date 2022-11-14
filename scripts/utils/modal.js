@@ -8,7 +8,7 @@ let btnClose;
 const firstname = document.getElementById("firstname");
 const form = document.querySelector("form");
 let inputs = document.querySelectorAll(".text-control");
-const validation = document.querySelector(".contact_validation");
+const message = document.getElementById("validation");
 let dataSend = {};
 
 // lancement de la modale
@@ -17,6 +17,7 @@ export function launchContactModal(photographer) {
   insertFirstnameInForm(photographer);
   createBtnClose();
   modalAccessibility();
+  document.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 // insertion prénom du photographe dans le header modale
@@ -31,7 +32,7 @@ function createBtnClose() {
   btnClose = document.createElement("button");
   btnClose.setAttribute("aria-label", "Fermer le formulaire");
   btnClose.classList.add("contact_close");
-  btnClose.classList.add("tabindex", "0");
+  // btnClose.classList.add("tabindex", "0");
 
   const cross = document.createElement("i");
   cross.classList.add("fas", "fa-times");
@@ -49,6 +50,7 @@ function closeContactModal() {
   modalBg.style.display = "none";
   contactHeader.removeChild(btnClose);
   modalAccessibility();
+  document.removeEventListener("keydown", (e) => trapFocus(e));
 }
 
 //------------------------------------------------------------------------------------------
@@ -58,13 +60,12 @@ function modalAccessibility() {
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
+    message.setAttribute("disabled", "true");
     firstname.focus();
-    document.addEventListener("keydown", (e) => trapFocus(e));
   } else {
     main.setAttribute("aria-hidden", "false");
     modalBg.setAttribute("aria-hidden", "true");
     body.classList.remove("no-scroll");
-    document.removeEventListener("keydown", (e) => trapFocus(e));
   }
 }
 
@@ -72,7 +73,7 @@ function modalAccessibility() {
 function trapFocus(e) {
   let isTabPressed = e.key === "Tab";
   const focusableElements =
-    "button:not([disabled]), input:not([disabled]), textarea:not([disabled])";
+    "button:not([disabled]), input:not([disabled]), textarea:not([disabled]), p:not([disabled])";
   const firstFocusableElement =
     contactSection.querySelectorAll(focusableElements)[0];
   const focusableContent = contactSection.querySelectorAll(focusableElements);
@@ -156,27 +157,30 @@ function validateForm(elt) {
     form.style.display = "none";
     form.reset();
     displayValidation();
-    updateFocusElt();
+    // updateFocusElt();
     console.log(dataSend);
   }
 }
 
 // update du focus après suppression du formulaire
-function updateFocusElt(e) {
+function updateFocusElt() {
+  message.removeAttribute("disabled");
   const inputs = document.querySelectorAll(".text-control");
   const submit = document.querySelector(".submit_contact");
   inputs.forEach((input) => {
     input.setAttribute("disabled", "true");
   });
   submit.setAttribute("disabled", "true");
-  debugger;
-  validation.focus();
 }
 
 // affiche le message de validation dans la modale
 function displayValidation() {
   const validation = document.querySelector(".contact_validation");
   validation.style.display = "flex";
+  updateFocusElt();
+  btnClose.focus();
+  message.setAttribute("tabindex", "0");
+  document.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 //------------------------------------------------------------------------------------------
