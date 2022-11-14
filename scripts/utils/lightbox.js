@@ -7,6 +7,7 @@ const lightboxBg = document.querySelector(".lightbox_background");
 const lightboxContainer = document.querySelector(".lightbox_container");
 const closeBtn = document.querySelector(".svg_cross");
 const mediasSection = document.querySelector(".slides_list");
+let activeSlide;
 let executed = false;
 
 // lancement de la lightbox
@@ -71,6 +72,8 @@ function lightboxAccessibility() {
     main.setAttribute("aria-hidden", "true");
     lightboxBg.setAttribute("aria-hidden", "false");
     lightboxContainer.setAttribute("aria-hidden", "false");
+    activeSlide = document.querySelector(".slide.active");
+    activeSlide.focus();
     document.addEventListener("keydown", (e) => trapFocus(e));
   } else {
     body.classList.remove("no-scroll");
@@ -113,7 +116,6 @@ function trapFocus(e) {
 
 // lecture video au clavier
 function playVideo() {
-  debugger;
   let slideActive = document.querySelector(".active");
   let slideActiveClass = slideActive.firstChild.className;
   if (
@@ -164,12 +166,12 @@ function showSlides(p) {
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
     slides[i].classList.remove("active");
-    slides[i].setAttribute("aria-hidden", "false");
+    slides[i].setAttribute("aria-hidden", "true");
   }
   // affiche le slide selon index
   slides[slideIndex - 1].style.display = "flex";
   slides[slideIndex - 1].classList.add("active");
-  slides[slideIndex - 1].setAttribute("aria-hidden", "true");
+  slides[slideIndex - 1].setAttribute("aria-hidden", "false");
 }
 
 //------------------------------------------------------------------------------------------
