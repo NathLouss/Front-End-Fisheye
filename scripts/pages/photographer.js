@@ -115,7 +115,11 @@ triggers.forEach((btn) =>
 // Event listeners tri des médias
 const optionSort = document.querySelectorAll(".list_option");
 optionSort.forEach((option) =>
-  option.addEventListener("click", (e) => updateSort(e, selectedMedias))
+  option.addEventListener("click", (e) => {
+    if (!(e.target.localName == "i")) {
+      updateSort(e, selectedMedias);
+    }
+  })
 );
 optionSort.forEach((option) =>
   option.addEventListener("keydown", (e) => {
