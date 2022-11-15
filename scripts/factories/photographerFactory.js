@@ -76,7 +76,6 @@ export function photographerFactory(data) {
   // création de l'élément HTML rate
   function insertRateInThumbnail() {
     const rate = document.createElement("p");
-    rate.setAttribute("aria-label", cost);
     rate.textContent = cost;
 
     return rate;
