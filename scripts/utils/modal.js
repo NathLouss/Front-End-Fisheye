@@ -8,6 +8,7 @@ let btnClose;
 const firstname = document.getElementById("firstname");
 const form = document.querySelector("form");
 let inputs = document.querySelectorAll(".text-control");
+const validation = document.querySelector(".contact_validation");
 const message = document.getElementById("validation");
 let dataSend = {};
 
@@ -17,7 +18,7 @@ export function launchContactModal(photographer) {
   insertFirstnameInForm(photographer);
   createBtnClose();
   modalAccessibility();
-  document.addEventListener("keydown", (e) => trapFocus(e));
+  contactSection.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 // insertion prénom du photographe dans le header modale
@@ -49,7 +50,7 @@ function closeContactModal() {
   modalBg.style.display = "none";
   contactHeader.removeChild(btnClose);
   modalAccessibility();
-  document.removeEventListener("keydown", (e) => trapFocus(e));
+  contactSection.removeEventListener("keydown", trapFocus);
 }
 
 //------------------------------------------------------------------------------------------
@@ -59,8 +60,12 @@ function modalAccessibility() {
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
-    message.setAttribute("disabled", "true");
-    firstname.focus();
+    if (!validation.classList.contains("active")) {
+      message.setAttribute("disabled", "true");
+      firstname.focus();
+    } else {
+      message.focus();
+    }
   } else {
     main.setAttribute("aria-hidden", "false");
     modalBg.setAttribute("aria-hidden", "true");
@@ -92,14 +97,6 @@ function trapFocus(e) {
       firstFocusableElement.focus();
       e.preventDefault();
     }
-  }
-}
-
-// fermeture de la modale au clavier
-function onKey(e) {
-  let keynum = e.key;
-  if (keynum == "Escape") {
-    closeContactModal();
   }
 }
 
@@ -159,12 +156,12 @@ function validateForm(elt) {
 
 // affiche le message de validation dans la modale
 function displayValidation() {
-  const validation = document.querySelector(".contact_validation");
   validation.style.display = "flex";
-  updateFocusElt();
-  btnClose.focus();
+  validation.classList.add("active");
   message.setAttribute("tabindex", "0");
-  document.addEventListener("keydown", (e) => trapFocus(e));
+  message.focus();
+  updateFocusElt();
+  contactSection.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 // update du focus après suppression du formulaire
@@ -180,8 +177,10 @@ function updateFocusElt() {
 
 //------------------------------------------------------------------------------------------
 //eventlisteners
-contactSection.addEventListener("keydown", (e) => onKey(e));
 form.addEventListener("submit", validateForm);
-inputs.forEach((input) =>
-  input.addEventListener("blur", (e) => isInputValid(e))
-);
+inputs.forEach((input) => {
+  input.addEventListener("blur", (e) => isInputValid(e));
+});
+contactSection.addEventListener("keydown", (e) => {
+  e.code == "Escape" && closeContactModal();
+});
