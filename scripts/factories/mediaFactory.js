@@ -47,22 +47,27 @@ export function mediaFactory(data) {
     divPortfolioText.appendChild(titleImg);
 
     const divLike = document.createElement("div");
-    divLike.setAttribute("aria-label", "likes");
     divLike.classList.add("article_like");
     divPortfolioText.appendChild(divLike);
 
     const likeNumber = document.createElement("span");
     likeNumber.classList.add("likes");
+    likeNumber.setAttribute("aria-description", "likes");
+    likeNumber.setAttribute("tabindex", "0");
     likeNumber.textContent = likes;
     divLike.appendChild(likeNumber);
 
+    const btn = document.createElement("button");
+    btn.setAttribute("type", "button");
+    btn.setAttribute("aria-label", "Appuyez pour aimer");
+    btn.classList.add("btn_like");
+    divLike.appendChild(btn);
+
     const icon = document.createElement("i");
     icon.classList.add("likes-icon", "fas", "fa-heart");
-    icon.setAttribute("role", "button");
-    icon.setAttribute("tabindex", "0");
-    divLike.appendChild(icon);
+    btn.appendChild(icon);
 
-    return { articlePortfolio, anchor, icon };
+    return { articlePortfolio, anchor, btn };
   }
 
   // renvoi l'élément HTML d'un media pour la lightbox
@@ -89,6 +94,7 @@ export function mediaFactory(data) {
     }
     const titleImg = document.createElement("p");
     titleImg.textContent = title;
+    titleImg.setAttribute("aria-hidden", "true");
     slideContent.appendChild(titleImg);
 
     return slideContent;

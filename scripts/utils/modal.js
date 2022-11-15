@@ -8,6 +8,8 @@ let btnClose;
 const firstname = document.getElementById("firstname");
 const form = document.querySelector("form");
 let inputs = document.querySelectorAll(".text-control");
+const validation = document.querySelector(".contact_validation");
+const message = document.getElementById("validation");
 let dataSend = {};
 
 // lancement de la modale
@@ -16,6 +18,7 @@ export function launchContactModal(photographer) {
   insertFirstnameInForm(photographer);
   createBtnClose();
   modalAccessibility();
+  contactSection.addEventListener("keydown", (e) => trapFocus(e));
 }
 
 // insertion prénom du photographe dans le header modale
@@ -47,6 +50,7 @@ function closeContactModal() {
   modalBg.style.display = "none";
   contactHeader.removeChild(btnClose);
   modalAccessibility();
+  contactSection.removeEventListener("keydown", trapFocus);
 }
 
 //------------------------------------------------------------------------------------------
@@ -56,13 +60,16 @@ function modalAccessibility() {
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
-    firstname.focus();
-    document.addEventListener("keydown", (e) => trapFocus(e));
+    if (!validation.classList.contains("active")) {
+      message.setAttribute("disabled", "true");
+      firstname.focus();
+    } else {
+      message.focus();
+    }
   } else {
     main.setAttribute("aria-hidden", "false");
     modalBg.setAttribute("aria-hidden", "true");
     body.classList.remove("no-scroll");
-    document.removeEventListener("keydown", (e) => trapFocus(e));
   }
 }
 
@@ -70,7 +77,7 @@ function modalAccessibility() {
 function trapFocus(e) {
   let isTabPressed = e.key === "Tab";
   const focusableElements =
-    "button:not([disabled]), input:not([disabled]), textarea:not([disabled])";
+    "button:not([disabled]), input:not([disabled]), textarea:not([disabled]), p:not([disabled])";
   const firstFocusableElement =
     contactSection.querySelectorAll(focusableElements)[0];
   const focusableContent = contactSection.querySelectorAll(focusableElements);
@@ -81,26 +88,15 @@ function trapFocus(e) {
   }
 
   if (e.shiftKey) {
-    // si la touche Maj est enfoncée pour la combinaison Maj + tabulation
     if (document.activeElement === firstFocusableElement) {
-      lastFocusableElement.focus(); // ajouter le focus pour le dernier élément focalisable
+      lastFocusableElement.focus();
       e.preventDefault();
     }
   } else {
-    // si la touche de tabulation est enfoncée
     if (document.activeElement === lastFocusableElement) {
-      // si la focalisation a atteint le dernier élément focalisable, alors focalisez le premier élément focalisable après avoir appuyé sur la tabulation
-      firstFocusableElement.focus(); // ajouter le focus pour le premier élément focalisable
+      firstFocusableElement.focus();
       e.preventDefault();
     }
-  }
-}
-
-// fermeture de la modale au clavier
-function onKey(e) {
-  let keynum = e.key;
-  if (keynum == "Escape") {
-    closeContactModal();
   }
 }
 
@@ -154,32 +150,37 @@ function validateForm(elt) {
     form.style.display = "none";
     form.reset();
     displayValidation();
-    updateFocusElt();
     console.log(dataSend);
   }
 }
 
+// affiche le message de validation dans la modale
+function displayValidation() {
+  validation.style.display = "flex";
+  validation.classList.add("active");
+  message.setAttribute("tabindex", "0");
+  message.focus();
+  updateFocusElt();
+  contactSection.addEventListener("keydown", (e) => trapFocus(e));
+}
+
 // update du focus après suppression du formulaire
 function updateFocusElt() {
+  message.removeAttribute("disabled");
   const inputs = document.querySelectorAll(".text-control");
   const submit = document.querySelector(".submit_contact");
   inputs.forEach((input) => {
     input.setAttribute("disabled", "true");
   });
   submit.setAttribute("disabled", "true");
-  btnClose.focus();
-}
-
-// affiche le message de validation dans la modale
-function displayValidation() {
-  const validation = document.querySelector(".contact_validation");
-  validation.style.display = "flex";
 }
 
 //------------------------------------------------------------------------------------------
 //eventlisteners
-contactSection.addEventListener("keydown", (e) => onKey(e));
 form.addEventListener("submit", validateForm);
-inputs.forEach((input) =>
-  input.addEventListener("blur", (e) => isInputValid(e))
-);
+inputs.forEach((input) => {
+  input.addEventListener("blur", (e) => isInputValid(e));
+});
+contactSection.addEventListener("keydown", (e) => {
+  e.code == "Escape" && closeContactModal();
+});

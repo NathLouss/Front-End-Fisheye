@@ -1,10 +1,10 @@
 // récupération des datas photographes
 export async function getPhotographers() {
   const response = await fetch("datas/photographers.json");
-  const data = await response.json();
   if (!response.ok) {
-    console.log("Photographers: ", response.statusText);
+    console.log(`Photographers: ${response.statusText}`);
   }
+  const data = await response.json();
   const { photographers } = data;
 
   return photographers;
@@ -13,10 +13,10 @@ export async function getPhotographers() {
 // récupération des datas medias
 export async function getMedias() {
   const response = await fetch("datas/photographers.json");
-  const data = await response.json();
   if (!response.ok) {
-    console.log("Medias: ", response.statusText);
+    console.log(`Medias: ${response.statusText}`);
   }
+  const data = await response.json();
   const { medias } = data;
 
   return medias;

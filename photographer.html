@@ -92,8 +92,8 @@
 
       <aside class="photographer_thumbnail">
         <div>
-          <p class="totalLikes"></p>
-          <i class="fas fa-heart" aria-hidden="true" title="J'aime"></i>
+          <p class="totalLikes" aria-label="total des likes du photographe"></p>
+          <i class="fas fa-heart" aria-hidden="true"></i>
         </div>
       </aside>
     </main>
@@ -104,13 +104,13 @@
         class="contact_container"
         role="dialog"
         aria-label="Contactez-moi"
-        aria-labelledby="name"
+        aria-labelledby="contact_form"
       >
         <div class="contact_content">
           <header class="contact_header">
             <h1 id="name" aria-label="name">Contactez-moi</h1>
           </header>
-          <form aria-label="Formulaire de contact">
+          <form id="contact_form" aria-label="Formulaire de contact">
             <div class="formData" data-error="Veuillez saisir votre prénom.">
               <label for="firstname">Prénom</label>
               <input
@@ -118,7 +118,7 @@
                 id="firstname"
                 class="text-control"
                 name="firstname"
-                aria-label="Prénom"
+                aria-label="Veuillez saisir votre prénom"
                 data-validation="false"
                 placeholder="Prénom"
                 required
@@ -131,7 +131,7 @@
                 id="lastname"
                 class="text-control"
                 name="lastname"
-                aria-label="Nom"
+                aria-label="Veuillez saisir votre nom"
                 data-validation="false"
                 placeholder="Nom"
                 required
@@ -144,7 +144,7 @@
                 id="email"
                 class="text-control"
                 name="email"
-                aria-label="Email"
+                aria-label="Veuillez saisir votre email"
                 data-validation="false"
                 placeholder="Email"
                 required
@@ -156,7 +156,7 @@
                 id="message"
                 class="text-control"
                 name="message"
-                aria-label="Message"
+                aria-label="Veuillez saisir votre message"
                 data-validation="false"
                 placeholder="Veuillez saisir votre message"
                 required
@@ -171,7 +171,9 @@
             </button>
           </form>
         </div>
-        <div class="contact_validation">Votre message a bien été envoyé !</div>
+        <div class="contact_validation">
+          <p id="validation">Votre message a bien été envoyé !</p>
+        </div>
       </div>
     </aside>
 
@@ -181,7 +183,6 @@
         class="lightbox_container"
         role="dialog"
         aria-label="Portfolio vue rapprochée"
-        aria-hidden="true"
       >
         <button class="svg_cross" aria-label="Fermer la fenêtre">
           <i class="fas fa-times" aria-hidden="true"></i>

@@ -57,14 +57,19 @@ async function displayDataMedias() {
     mediaCardDOM["anchor"].addEventListener("click", () =>
       openLightboxModal(media.currentPosition, selectedMedias)
     );
-    mediaCardDOM["icon"].addEventListener(
+    mediaCardDOM["btn"].addEventListener(
       "click",
-      (e) => incrementLikes(e, media),
+      (e) => {
+        incrementLikes(e, media);
+      },
       { once: true }
     );
-    mediaCardDOM["icon"].addEventListener(
+    mediaCardDOM["btn"].addEventListener(
       "keydown",
-      (e) => e.key === "Enter" && incrementLikes(e, media),
+      (e) => {
+        e.key === "Enter" && incrementLikes(e, media);
+        e.preventDefault();
+      },
       { once: true }
     );
   });

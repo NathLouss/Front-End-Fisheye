@@ -54,10 +54,13 @@
   padding-left: 10px;
 }
 
-.likes {
-  padding-right: 10px;
+.btn_like {
+  border: none;
+  background: none;
 }
 
 .likes-icon {
+  color: #901c1c;
+  font-size: 24px;
   cursor: pointer;
 }
