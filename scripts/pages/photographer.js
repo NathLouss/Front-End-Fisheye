@@ -105,6 +105,10 @@ init();
 // Event listener lancement de la modale
 const contactBtn = document.querySelector(".contact_button");
 contactBtn.addEventListener("click", () => launchContactModal(photographer));
+contactBtn.addEventListener("keydown", (e) => {
+  e.key === "Enter" && launchContactModal(photographer);
+  e.preventDefault();
+});
 
 // Event listener lancement dropdown de tri des médias
 const triggers = document.querySelectorAll(".trigger");
