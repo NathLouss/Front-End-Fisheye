@@ -15,7 +15,6 @@ let dataSend = {};
 
 // lancement de la modale
 export function launchContactModal(photographer) {
-  debugger;
   modalBg.style.display = "flex";
   insertFirstnameInForm(photographer);
   createBtnClose();
@@ -45,23 +44,19 @@ function createBtnClose() {
 
   btnClose.addEventListener("click", () => closeContactModal());
   contactHeader.appendChild(btnClose);
-  console.log("btn créé");
 }
 
 // fermeture de la modale
 function closeContactModal() {
   modalBg.style.display = "none";
   contactHeader.removeChild(btnClose);
-  console.log("btn supprimé");
   modalAccessibility();
-  document.removeEventListener("keydown", trapFocus);
 }
 
 //------------------------------------------------------------------------------------------
 // accessibilité de la modale
 function modalAccessibility() {
-  // debugger;
-  if (main.ariaHidden == "false") {
+  if (modalBg.style.display == "flex") {
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
@@ -186,5 +181,7 @@ inputs.forEach((input) => {
   input.addEventListener("blur", (e) => isInputValid(e));
 });
 document.addEventListener("keydown", (e) => {
-  e.code == "Escape" && closeContactModal();
+  if (e.code === "Escape" && modalBg.style.display == "flex") {
+    closeContactModal();
+  }
 });
