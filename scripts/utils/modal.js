@@ -4,6 +4,7 @@ const main = document.getElementById("main");
 const modalBg = document.querySelector(".contact_background");
 const contactSection = document.querySelector(".contact_container");
 const contactHeader = document.querySelector(".contact_header");
+const btnOpen = document.querySelector(".contact_button");
 let btnClose;
 const firstname = document.getElementById("firstname");
 const form = document.querySelector("form");
@@ -18,7 +19,9 @@ export function launchContactModal(photographer) {
   insertFirstnameInForm(photographer);
   createBtnClose();
   modalAccessibility();
-  contactSection.addEventListener("keydown", (e) => trapFocus(e));
+  document.addEventListener("keydown", (e) => {
+    e.code === "Tab" && trapFocus(e);
+  });
 }
 
 // insertion prénom du photographe dans le header modale
@@ -39,9 +42,7 @@ function createBtnClose() {
   cross.setAttribute("aria-hidden", "true");
   btnClose.appendChild(cross);
 
-  btnClose.addEventListener("click", (event) => {
-    closeContactModal(event);
-  });
+  btnClose.addEventListener("click", () => closeContactModal());
   contactHeader.appendChild(btnClose);
 }
 
@@ -50,16 +51,16 @@ function closeContactModal() {
   modalBg.style.display = "none";
   contactHeader.removeChild(btnClose);
   modalAccessibility();
-  contactSection.removeEventListener("keydown", trapFocus);
 }
 
 //------------------------------------------------------------------------------------------
 // accessibilité de la modale
 function modalAccessibility() {
-  if (main.ariaHidden == "false") {
+  if (modalBg.style.display == "flex") {
     main.setAttribute("aria-hidden", "true");
     modalBg.setAttribute("aria-hidden", "false");
     body.classList.add("no-scroll");
+    btnOpen.blur();
     if (!validation.classList.contains("active")) {
       message.setAttribute("disabled", "true");
       firstname.focus();
@@ -70,22 +71,18 @@ function modalAccessibility() {
     main.setAttribute("aria-hidden", "false");
     modalBg.setAttribute("aria-hidden", "true");
     body.classList.remove("no-scroll");
+    btnOpen.focus();
   }
 }
 
 // garde le focus dans la modale
 function trapFocus(e) {
-  let isTabPressed = e.key === "Tab";
   const focusableElements =
     "button:not([disabled]), input:not([disabled]), textarea:not([disabled]), p:not([disabled])";
   const firstFocusableElement =
     contactSection.querySelectorAll(focusableElements)[0];
   const focusableContent = contactSection.querySelectorAll(focusableElements);
   const lastFocusableElement = focusableContent[focusableContent.length - 1];
-
-  if (!isTabPressed) {
-    return;
-  }
 
   if (e.shiftKey) {
     if (document.activeElement === firstFocusableElement) {
@@ -161,7 +158,9 @@ function displayValidation() {
   message.setAttribute("tabindex", "0");
   message.focus();
   updateFocusElt();
-  contactSection.addEventListener("keydown", (e) => trapFocus(e));
+  document.addEventListener("keydown", (e) => {
+    e.code === "Tab" && trapFocus(e);
+  });
 }
 
 // update du focus après suppression du formulaire
@@ -181,6 +180,8 @@ form.addEventListener("submit", validateForm);
 inputs.forEach((input) => {
   input.addEventListener("blur", (e) => isInputValid(e));
 });
-contactSection.addEventListener("keydown", (e) => {
-  e.code == "Escape" && closeContactModal();
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Escape" && modalBg.style.display == "flex") {
+    closeContactModal();
+  }
 });

@@ -72,24 +72,18 @@ function changeMedia(n) {
 // affichage des medias dans la Lightbox
 function showSlides(p) {
   slides = document.getElementsByClassName("slide");
-  // si dde position sup au total des slides,
-  // réinitialise slideindex pour revenir au dbt
   if (p > slides.length) {
     slideIndex = 1;
   }
-  // si dde position inf au total des slides,
-  // affiche la dernière slide
   if (p < 1) {
     slideIndex = slides.length;
   }
-  // cache tous les slides par défaut
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
     slides[i].classList.remove("active");
     slides[i].setAttribute("aria-hidden", "true");
     slides[i].blur();
   }
-  // affiche le slide selon index
   slides[slideIndex - 1].style.display = "flex";
   slides[slideIndex - 1].classList.add("active");
   slides[slideIndex - 1].setAttribute("aria-hidden", "false");
@@ -144,17 +138,18 @@ function trapFocus(e) {
 
 // navigation lightbox au clavier
 document.addEventListener("keydown", (e) => {
-  const eventKey = e.code;
-  if (eventKey === "ArrowRight") {
-    changeMedia(1);
-  } else if (eventKey === "ArrowLeft") {
-    changeMedia(-1);
-  } else if (eventKey === "Escape") {
-    closeLightbox();
-  } else if (eventKey === "Space") {
-    playVideo();
-  } else if (eventKey === "Tab") {
-    trapFocus(e);
+  if (lightboxContainer.ariaHidden === "false") {
+    if (e.code === "ArrowRight") {
+      changeMedia(1);
+    } else if (e.code === "ArrowLeft") {
+      changeMedia(-1);
+    } else if (e.code === "Escape") {
+      closeLightbox();
+    } else if (e.code === "Space") {
+      playVideo();
+    } else if (e.code === "Tab") {
+      trapFocus(e);
+    }
   }
 });
 
