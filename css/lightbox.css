@@ -15,7 +15,7 @@
   width: 80%;
   align-items: center;
   justify-content: center;
-  margin: 4% auto;
+  margin: 1% auto;
 }
 
 @media screen and (max-width: 1440px) {
@@ -41,6 +41,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.slide p {
+  color: #901c1c;
+  font-size: 24px;
+  align-self: start;
 }
 
 .slideImg,
