@@ -110,7 +110,7 @@ function displayMediasSorted(sortedMedias) {
     mediaCardDOM["btn"].addEventListener(
       "click",
       (e) => {
-        incrementLikes(e, media);
+        e.target.localName === "i" && incrementLikes(e, media);
       },
       { once: true }
     );
