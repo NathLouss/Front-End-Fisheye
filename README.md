@@ -1,6 +1,8 @@
-# Base de code du projet P6 - Parcours Front-end
+# OpenClassrooms - Application Developer course - JavaScript React
 
-## Démarrer le projet
+## PROJECT 6 - FISHEYE
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
 
+Create an accessible site for a platform of photographers
+
+Hosted on GitHub page : https://nathlouss.github.io/Front-End-Fisheye/index.html
